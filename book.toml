@@ -1,0 +1,6 @@
+[book]
+title = "Gen-UI Book"
+authors = ["Willins.SHENG <syf20020816@outlook.com>"]
+language = "en"
+multilingual = false
+src = "src"

@@ -1,0 +1,1306 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Gen-UI Book</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="gen/quickstart.html"><strong aria-hidden="true">1.</strong> QuickStart</a></li><li class="chapter-item expanded "><a href="makepad/makepad.html"><strong aria-hidden="true">2.</strong> Makepad</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="makepad/quickstart.html"><strong aria-hidden="true">2.1.</strong> QuickStart</a></li><li class="chapter-item expanded "><a href="makepad/built-in/struct.html"><strong aria-hidden="true">2.2.</strong> Built-In</a></li><li class="chapter-item expanded "><a href="makepad/syntax/syntax.html"><strong aria-hidden="true">2.3.</strong> Syntax</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="makepad/syntax/global.html"><strong aria-hidden="true">2.3.1.</strong> Global</a></li><li class="chapter-item expanded "><a href="makepad/syntax/import.html"><strong aria-hidden="true">2.3.2.</strong> Import</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="gen/design/gen-ui-design.html"><strong aria-hidden="true">3.</strong> GenUI-Design</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="gen/design/parser/parser.html"><strong aria-hidden="true">3.1.</strong> Parser</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="gen/design/parser/result.html"><strong aria-hidden="true">3.1.1.</strong> Result</a></li><li class="chapter-item expanded "><a href="gen/design/parser/all.html"><strong aria-hidden="true">3.1.2.</strong> All</a></li></ol></li><li class="chapter-item expanded "><a href="gen/design/converter/converter.html"><strong aria-hidden="true">3.2.</strong> Converter</a></li><li class="chapter-item expanded "><a href="gen/design/issues/issues.html"><strong aria-hidden="true">3.3.</strong> issues</a></li><li class="chapter-item expanded "><a href="gen/design/future.html"><strong aria-hidden="true">3.4.</strong> future</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Gen-UI Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+  <header style="text-align: center">
+<div
+  style="display: flex; align-items: center; justify-content: center"
+>
+  <h1
+style="
+  margin: 32px 0;
+  width: fit-content;
+  color: transparent;
+  font-size: 78px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  background: linear-gradient(90deg, #ed5103, #ff8142);
+  background-clip: text;
+"
+  >
+Rust
+  </h1>
+</div>
+<h2
+  style="
+color: #f56922;
+font-size: 42px;
+font-weight: 700;
+margin: 8px 0;
+letter-spacing: 4px;
+  "
+>
+  Front End Framework
+</h2>
+  </header>
+  <center>
+<p style="font-size: 24px; letter-spacing: 2px; margin: 32px 0">
+  Revolutionize front-end with Rust
+</p>
+  </center>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="quickstart"><a class="header" href="#quickstart">QuickStart</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="makepad"><a class="header" href="#makepad">Makepad</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="quickstart-1"><a class="header" href="#quickstart-1">QuickStart</a></h1>
+<p>Welcome to the Makepad QuickStart guide. This document is designed to help you set up a new Makepad project quickly and understand its basic structure and components. Makepad is a creative coding environment that leverages Rust and its ecosystem to build performant and beautiful UI applications.</p>
+<h2 id="project-structure"><a class="header" href="#project-structure">Project Structure</a></h2>
+<p>A typical Makepad project has a structure similar to what you see below. Understanding this structure is crucial for navigating and managing your project effectively.</p>
+<pre><code class="language-shell">- hello                     # Your project directory
+├── Cargo.toml              # Rust's package manifest file for managing dependencies
+└── src                     # The main project directory containing Rust source files
+    ├── app.rs              # The entry file for the Makepad application, defines UI and behavior
+    ├── lib.rs              # The library file, used to expose modules to other parts of the application
+    └── main.rs             # The standard Rust main entry point; here, it's used to launch the Makepad app
+</code></pre>
+<h2 id="initiate-a-project"><a class="header" href="#initiate-a-project">Initiate a Project</a></h2>
+<p>To start a new Makepad project, you'll first need to create a new Rust project and then add the necessary Makepad dependencies.</p>
+<pre><code class="language-shell"># Create a new Rust project named hello
+cargo new hello
+
+# Navigate into your project directory
+cd hello
+
+# Add Makepad dependencies to your project
+cargo add makepad-widgets  # Adds Makepad's widget library for UI components
+cargo add makepad          # Adds Makepad itself (note: this line is awaiting Makepad's update to be functional)
+</code></pre>
+<h2 id="add-library-module"><a class="header" href="#add-library-module">Add Library Module</a></h2>
+<p>To organize your code and make the Makepad widgets available throughout your project, you'll need to create a <code>lib.rs</code> file under the <code>src</code> directory.</p>
+<ol>
+<li>Create a file named <code>lib.rs</code> in the <code>src</code> directory.</li>
+<li>Add the following content to <code>lib.rs</code>:</li>
+</ol>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub use makepad_widgets;  // Expose makepad_widgets to other parts of your application
+pub mod app;              // Declare the app module, which will contain your application's logic
+<span class="boring">}</span></code></pre></pre>
+<h2 id="create-the-application-module"><a class="header" href="#create-the-application-module">Create the Application Module</a></h2>
+<p>Now, let's focus on building your application. This involves using Makepad widgets, designing the application's UI, and defining its behavior.</p>
+<h3 id="use-widgets"><a class="header" href="#use-widgets">Use Widgets</a></h3>
+<p>In your <code>app.rs</code> or equivalent file, start by importing the Makepad widgets:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use makepad_widgets::*; // Import all components from makepad_widgets
+<span class="boring">}</span></code></pre></pre>
+<h3 id="add-live-design"><a class="header" href="#add-live-design">Add Live Design</a></h3>
+<p>Makepad supports live design through its macro system. This allows you to define UI components and their properties in a readable and concise manner.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use makepad_widgets::*; // Ensure makepad_widgets are imported
+
+live_design!{
+    import makepad_widgets::base::*;                  // Import base widgets and components
+    import makepad_widgets::theme_desktop_dark::*;    // Use the dark theme for desktop applications
+    App = {{App}} {                                   // Define the main App struct
+        ui: &lt;Window&gt;{}                                // Use a Window widget as the root UI element
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="build-the-application-struct"><a class="header" href="#build-the-application-struct">Build the Application Struct</a></h3>
+<p>The main application structure, <code>App</code>, should contain a reference to the root UI element. This is marked with the <code>#[live]</code> macro to integrate with Makepad's live design system.</p>
+<p><strong>This is necessary even if no event logic is written</strong></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(Live, LiveHook)] // Derive macros to enable live reloading and hooks
+pub struct App {
+    #[live] ui: WidgetRef, // The root UI element reference
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="register-the-application-struct"><a class="header" href="#register-the-application-struct">Register the Application Struct</a></h3>
+<p>To ensure Makepad recognizes your application structure, implement the <code>LiveRegister</code> trait for <code>App</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl LiveRegister for App {
+    fn live_register(cx: &amp;mut Cx) {
+        crate::makepad_widgets::live_design(cx); // Register the live design for makepad_widgets
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="implement-appmain-for-application"><a class="header" href="#implement-appmain-for-application">Implement <code>AppMain</code> for Application</a></h3>
+<p>To handle events and integrate with the Makepad system, implement the <code>AppMain</code> trait for your <code>App</code> struct.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl AppMain for App {
+    fn handle_event(&amp;mut self, cx: &amp;mut Cx, event: &amp;Event) {
+        self.ui.handle_event(cx, event, &amp;mut Scope::empty()); // Delegate event handling to the UI root
+    }
+}
+
+app_main!(App); // Macro to designate App as the main application entry
+<span class="boring">}</span></code></pre></pre>
+<h2 id="the-main-function"><a class="header" href="#the-main-function">The Main Function</a></h2>
+<p>Finally, define the <code>main</code> function in <code>main.rs</code>, which will launch your Makepad application.</p>
+<pre><pre class="playground"><code class="language-rust">fn main(){
+    hello::app::app_main(); // Call the app_main function generated by the app_main! macro in app.rs
+}</code></pre></pre>
+<p>Congratulations, you've set up a basic Makepad project! This setup outlines how to structure your project, add dependencies, and create a simple UI application. As you become more familiar with Makepad and Rust, you can start exploring more complex UI designs and application logic.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="built-in"><a class="header" href="#built-in">Built-In</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="syntax"><a class="header" href="#syntax">Syntax</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="global"><a class="header" href="#global">global</a></h1>
+<h2 id="constant"><a class="header" href="#constant">constant</a></h2>
+<p>Global constants can be used anywhere, but it is important to note the corresponding props' type</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>live_design!{
+    // global font size
+    GLOBAL_FONT_SIZE = 16.0
+    COLOR_BG = #xfff8ee
+
+    // ...others
+    // use GLOBAL_BG
+    ui: &lt;Window&gt;{
+        draw_bg: {color: COLOR_BG},
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Resources such as fonts and images also belong to global constants, see <code>import.md</code></p>
+<hr />
+<h2 id="next-import"><a class="header" href="#next-import">Next: <a href="makepad/syntax/">import</a></a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="import"><a class="header" href="#import">Import</a></h1>
+<p>This section details how to incorporate external resources such as images and fonts into your Makepad projects. Makepad supports various formats, allowing you to enhance the visual aspect of your applications.</p>
+<h2 id="importing-images"><a class="header" href="#importing-images">Importing Images</a></h2>
+<p>Makepad allows the importation of various image formats to enrich your user interface. Supported formats include:</p>
+<ul>
+<li><code>png</code> 👍</li>
+<li><code>jpg</code> 👍</li>
+<li><code>svg</code> 👍</li>
+<li>and more...</li>
+</ul>
+<h3 id="directory-structure"><a class="header" href="#directory-structure">Directory Structure</a></h3>
+<p>To organize your project and its resources effectively, follow a structured directory format. For example:</p>
+<pre><code>   ─┬─── MyProject       # Root directory of your project
+    │                    
+    ├─┬──── statics      # A directory for static resources like images and fonts
+    │ │                  
+    │ └─────── img1.png  # An example image file within the statics directory
+    │                    
+    └────── src          # The source directory where your Rust code lives
+</code></pre>
+<h3 id="image-importation"><a class="header" href="#image-importation">Image Importation</a></h3>
+<p>To import an image into your project, refer to it using a path that starts with <code>self</code>, indicating the current project. This makes your project references clear and organized.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>live_design!{
+    /// Import statement
+    IMG1 = dep("crate://self/statics/img1.png") // Using dep() function to import an image from the statics directory
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="importing-fonts"><a class="header" href="#importing-fonts">Importing Fonts</a></h2>
+<p>Importing fonts in Makepad is very similar to importing images. Makepad supports various font formats to allow you to customize the typography of your application. Supported font formats include:</p>
+<ul>
+<li><code>ttf</code> 👍</li>
+<li><code>otf</code></li>
+<li>and more...</li>
+</ul>
+<h3 id="example"><a class="header" href="#example">Example</a></h3>
+<p>To use a font in your project, you first name the font and then specify its path in the <code>font</code> field of your live design. This example demonstrates how to define and use a custom font style:</p>
+<ul>
+<li>First, assign a name to your font for reference.</li>
+<li>Use the <code>path</code> field within the <code>font</code> property to specify the font's location.</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>live_design!{
+    /// Import statement
+    TEXT_SUB = {
+        font_size: 16.0, // Define the font size
+        font: {path: dep("crate://makepad-widgets/resources/GoNotoKurrent-Regular.ttf")} // Specify the font's path
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>By following these guidelines, you can effectively manage and utilize external resources such as images and fonts in your Makepad projects, enhancing the visual appeal and user experience of your applications.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="genui-design"><a class="header" href="#genui-design">GenUI-Design</a></h1>
+<h2 id="template"><a class="header" href="#template">Template</a></h2>
+<p>HTML-LIKE：
+与HTML相似，但语法经过处理</p>
+<p>所有的被处理的被认为是不必要的，可能使得模版不够专注！</p>
+<ol>
+<li>不允许直接书写字符串</li>
+<li>禁止使用模版语法，使用Rust <code>format!</code>进行值绑定</li>
+<li>标签上声明基本属性只能使用基本类型，复杂类型需要绑定</li>
+<li>函数体不允许直接书写在属性中，使用函数绑定</li>
+<li>属性类型具有强类型指向型</li>
+</ol>
+<h2 id="script"><a class="header" href="#script">Script</a></h2>
+<ol>
+<li>Allow Rust syntax</li>
+</ol>
+<h2 id="style"><a class="header" href="#style">Style</a></h2>
+<ol>
+<li>bind to tag by name</li>
+<li>nesting allowed</li>
+<li>function and bind allowed</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="convert-rsx-dsl-to-ast"><a class="header" href="#convert-rsx-dsl-to-ast">Convert RSX DSL to AST</a></h1>
+<h2 id="how-to-convert"><a class="header" href="#how-to-convert">How to convert</a></h2>
+<pre><code class="language-shell">                                                   Real AST
+-----------       ---------------   Strategy   ---------------
+| RSX DSL |  --&gt;  | ParseTarget |  ----------&gt; | ParseResult |
+-----------       ---------------              ---------------  
+</code></pre>
+<h2 id="rsx"><a class="header" href="#rsx">RSX</a></h2>
+<ul>
+<li>Template</li>
+<li>Script</li>
+<li>Style</li>
+</ul>
+<h3 id="template-1"><a class="header" href="#template-1">Template</a></h3>
+<ol>
+<li>Unrestricted tags (tag name is not constrained)</li>
+<li>There are no styles, only properties, or in other words, all styles are properties</li>
+<li>Nesting strings in tags is not allowed (example: <view>this is a view</view> ❌)</li>
+</ol>
+<h3 id="script-1"><a class="header" href="#script-1">Script</a></h3>
+<ol>
+<li>Allow Rust syntax</li>
+</ol>
+<h3 id="style-1"><a class="header" href="#style-1">Style</a></h3>
+<ol>
+<li>bind to tag by name</li>
+<li>nesting allowed</li>
+<li>function and bind allowed</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="parse-rsx-file-to-ast"><a class="header" href="#parse-rsx-file-to-ast">Parse RSX File to AST</a></h1>
+<h2 id="parse-plan"><a class="header" href="#parse-plan">Parse Plan</a></h2>
+<ol>
+<li>parse the outer : <code>&amp;str to Vec&lt;Targets&gt; to ParseTarget</code></li>
+<li>parse the inner : <code>ParseTarget to AST</code></li>
+</ol>
+<h2 id="parse-outer"><a class="header" href="#parse-outer">parse outer</a></h2>
+<p>外层采用 nom 进行直接转换</p>
+<p>outer use nom to parse directly</p>
+<p>The aim of outer parsing is to divide the entire file into three main(Ⓜ️) parts:</p>
+<ol>
+<li>template (optional) Ⓜ️</li>
+<li>script (optional) Ⓜ️</li>
+<li>style (optional) Ⓜ️</li>
+<li>comment (optional)</li>
+</ol>
+<h3 id="parse-result"><a class="header" href="#parse-result">parse result</a></h3>
+<h4 id="normal"><a class="header" href="#normal">normal</a></h4>
+<h5 id="target"><a class="header" href="#target">target</a></h5>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let input = r#"
+        //! This is a comment1
+        //! This is a comment2
+        //! This is a comment3
+        &lt;template&gt;
+            &lt;window class="ui"&gt;
+            &lt;/window&gt;
+        &lt;/template&gt;
+
+        // This is line comment
+        /// This is a doc comment
+        /// hello
+        &lt;script&gt;
+        let mut counter:usize = 0
+
+        let handle_actions:FnOnce()-&gt;() = || {
+            counter += 1;
+        }
+        &lt;/script&gt;
+
+        // This is line comment2
+        &lt;style&gt;
+        .ui{
+            height : fill;
+            width : fill;
+            show-bg : true;
+        }
+        &lt;/style&gt;
+        // end of line comment
+        "#;
+<span class="boring">}</span></code></pre></pre>
+<h5 id="result"><a class="header" href="#result">result</a></h5>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>[parser/src/ast/mod.rs:310] target = Ok(
+    ParseTarget {
+        template: Some(
+            "&lt;window class=\"ui\"&gt;\n            &lt;/window&gt;\n        ",
+        ),
+        script: Some(
+            "let mut counter:usize = 0\n\n        let handle_actions:FnOnce()-&gt;() = || {\n            counter += 1;\n        }\n        ",
+        ),
+        style: Some(
+            ".ui{\n            height : fill;\n            width : fill;\n            show-bg : true;\n        }\n        ",
+        ),
+        comment: Some(
+            [
+                OfflineComment {
+                    value: [
+                        File(
+                            "This is a comment1",
+                        ),
+                        File(
+                            "This is a comment2",
+                        ),
+                        File(
+                            "This is a comment3",
+                        ),
+                    ],
+                    position: AboveTemplate,
+                },
+                OfflineComment {
+                    value: [
+                        Normal(
+                            "This is line comment",
+                        ),
+                        Document(
+                            "This is a doc comment",
+                        ),
+                        Document(
+                            "hello",
+                        ),
+                    ],
+                    position: AboveScript,
+                },
+                OfflineComment {
+                    value: [
+                        Normal(
+                            "This is line comment2",
+                        ),
+                    ],
+                    position: AboveStyle,
+                },
+                OfflineComment {
+                    value: [
+                        Normal(
+                            "end of line comment",
+                        ),
+                    ],
+                    position: End,
+                },
+            ],
+        ),
+    },
+)
+<span class="boring">}</span></code></pre></pre>
+<h4 id="empty"><a class="header" href="#empty">empty</a></h4>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>[parser/src/ast/mod.rs:318] target = Err(
+    ParseError(
+        "The current file has no content. It should be removed to ensure your program has clean file tree!",
+    ),
+)
+<span class="boring">}</span></code></pre></pre>
+<h4 id="only-code"><a class="header" href="#only-code">only code</a></h4>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>        let input = r#"
+        let a:&amp;str = "trest";
+        "#;
+<span class="boring">}</span></code></pre></pre>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>[parser/src/ast/mod.rs:328] target = Err(
+    ParseError(
+        "Parsing file exception. The current file contains content that is not covered by processed tags. If it is a rust script, please wrap it in a `&lt;script&gt;` tag",
+    ),
+)
+<span class="boring">}</span></code></pre></pre>
+<h2 id="parse-inner"><a class="header" href="#parse-inner">parse inner</a></h2>
+<p><strong>Block parsing</strong></p>
+<ol>
+<li>no <code>&lt;template&gt;</code> tag and no <code>&lt;style&gt;</code> tag --&gt; parse as rust script (1 thread)</li>
+<li>no <code>&lt;template&gt;</code> tag and no rust script has <code>&lt;style&gt;</code> tag --&gt; parse as style (1 thread)</li>
+<li>no <code>&lt;style&gt;</code> tag and no rust script has <code>&lt;template&gt;</code> tag --&gt; parse as template (1 thread)</li>
+<li>has <code>&lt;template&gt;</code> tag and rust script no <code>&lt;style&gt;</code> tag --&gt; parse as template_script (2 thread)</li>
+<li>has 3 tag --&gt; parse as whole rsx (3 thread)</li>
+</ol>
+<img src="gen/design/parser/../../../static/inner.png">
+<h3 id="parse-template"><a class="header" href="#parse-template">parse template</a></h3>
+<p>see parse_template.md</p>
+<h3 id="parse_style"><a class="header" href="#parse_style">parse_style</a></h3>
+<p>see parse_style.md</p>
+<h3 id="parse_script"><a class="header" href="#parse_script">parse_script</a></h3>
+<p>see parse_script.md</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="parse-result-1"><a class="header" href="#parse-result-1">Parse Result</a></h1>
+<h2 id="test-machine-1"><a class="header" href="#test-machine-1">test machine 1</a></h2>
+<p>cpu: 2.2 GHz 四核 Intel Core i7</p>
+<p>rsx:</p>
+<ul>
+<li>1.332564ms</li>
+<li>1.203039ms</li>
+<li>1.496007ms</li>
+<li>1.229173ms</li>
+<li>1.207143ms</li>
+<li>1.125941ms</li>
+</ul>
+<p>vue:</p>
+<ul>
+<li>6.839ms</li>
+<li>7.19ms</li>
+<li>6.804ms</li>
+<li>7.978ms</li>
+<li>6.977ms</li>
+<li>7.046ms</li>
+</ul>
+<h2 id="test-machine-2"><a class="header" href="#test-machine-2">test machine 2</a></h2>
+<p>cpu: Intel(R) Core(TM) i5-10200H CPU @ 2.40GHz 2.40 GHz</p>
+<p>rsx:</p>
+<ul>
+<li>1.4491ms</li>
+<li>1.2271ms</li>
+<li>1.6149ms</li>
+<li>1.6475ms</li>
+<li>1.4695ms</li>
+</ul>
+<p>vue:</p>
+<ul>
+<li>6.196ms</li>
+<li>6.012ms</li>
+<li>6.209ms</li>
+<li>6.319ms</li>
+<li>6.447ms</li>
+</ul>
+<h2 id="rsx-1"><a class="header" href="#rsx-1">rsx</a></h2>
+<pre><code class="language-html">&lt;template&gt;
+  &lt;window class="ui"&gt;
+    &lt;view class="body"&gt;
+      /// button componet
+      &lt;button value="Hello world" class="button1" @clicked="handle_click" /&gt;
+      &lt;text-input value="Click to count" class="input1" /&gt;
+      &lt;label :value="counter" class="label1" /&gt;
+    &lt;/view&gt;
+  &lt;/window&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+let mut counter:usize = 0_usize;
+
+let mut handle_click = ||{
+    counter += 1;
+};
+&lt;/script&gt;
+
+&lt;style&gt;
+.app {
+  .ui {
+    height: fill;
+    width: fill;
+    show_bg: true;
+    background_color: linear_gradient(180deg, #7, #3);
+    .body {
+      flow: down;
+      spacing: 20;
+      align: 0.5 0.5;
+      .button1 {
+      }
+      .input1 {
+        height: 30;
+        width: 100;
+      }
+      .label1 {
+        color: #ffffff;
+      }
+    }
+  }
+}
+&lt;/style&gt;
+</code></pre>
+<h2 id="result-1"><a class="header" href="#result-1">result</a></h2>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>[parser/src/ast/result.rs:291] res = ParseResult {
+    template: Some(
+        [
+            Tag(
+                Tag {
+                    name: "window",
+                    ty: Normal,
+                    props: Some(
+                        {
+                            PropsKey {
+                                name: "class",
+                                is_style: false,
+                                ty: Normal,
+                            }: UnKnown(
+                                "ui",
+                            ),
+                        },
+                    ),
+                    children: Some(
+                        [
+                            Tag(
+                                Tag {
+                                    name: "view",
+                                    ty: Normal,
+                                    props: Some(
+                                        {
+                                            PropsKey {
+                                                name: "class",
+                                                is_style: false,
+                                                ty: Normal,
+                                            }: UnKnown(
+                                                "body",
+                                            ),
+                                        },
+                                    ),
+                                    children: Some(
+                                        [
+                                            Comment(
+                                                Document(
+                                                    "button componet",
+                                                ),
+                                            ),
+                                            Tag(
+                                                Tag {
+                                                    name: "button",
+                                                    ty: SelfClosed,
+                                                    props: Some(
+                                                        {
+                                                            PropsKey {
+                                                                name: "value",
+                                                                is_style: false,
+                                                                ty: Normal,
+                                                            }: UnKnown(
+                                                                "Hello world",
+                                                            ),
+                                                            PropsKey {
+                                                                name: "clicked",
+                                                                is_style: false,
+                                                                ty: Function,
+                                                            }: Function(
+                                                                Function {
+                                                                    name: "handle_actions",
+                                                                    params: None,
+                                                                    is_style: false,
+                                                                },
+                                                            ),
+                                                            PropsKey {
+                                                                name: "class",
+                                                                is_style: false,
+                                                                ty: Normal,
+                                                            }: UnKnown(
+                                                                "button1",
+                                                            ),
+                                                        },
+                                                    ),
+                                                    children: None,
+                                                    parent: Some(
+                                                        Tag(
+                                                            Tag {
+                                                                name: "view",
+                                                                ty: Normal,
+                                                                props: Some(
+                                                                    {
+                                                                        PropsKey {
+                                                                            name: "class",
+                                                                            is_style: false,
+                                                                            ty: Normal,
+                                                                        }: UnKnown(
+                                                                            "body",
+                                                                        ),
+                                                                    },
+                                                                ),
+                                                                children: None,
+                                                                parent: None,
+                                                            },
+                                                        ),
+                                                    ),
+                                                },
+                                            ),
+                                            Tag(
+                                                Tag {
+                                                    name: "text-input",
+                                                    ty: SelfClosed,
+                                                    props: Some(
+                                                        {
+                                                            PropsKey {
+                                                                name: "value",
+                                                                is_style: false,
+                                                                ty: Normal,
+                                                            }: UnKnown(
+                                                                "Click to count",
+                                                            ),
+                                                            PropsKey {
+                                                                name: "class",
+                                                                is_style: false,
+                                                                ty: Normal,
+                                                            }: UnKnown(
+                                                                "input1",
+                                                            ),
+                                                        },
+                                                    ),
+                                                    children: None,
+                                                    parent: Some(
+                                                        Tag(
+                                                            Tag {
+                                                                name: "view",
+                                                                ty: Normal,
+                                                                props: Some(
+                                                                    {
+                                                                        PropsKey {
+                                                                            name: "class",
+                                                                            is_style: false,
+                                                                            ty: Normal,
+                                                                        }: UnKnown(
+                                                                            "body",
+                                                                        ),
+                                                                    },
+                                                                ),
+                                                                children: None,
+                                                                parent: None,
+                                                            },
+                                                        ),
+                                                    ),
+                                                },
+                                            ),
+                                            Tag(
+                                                Tag {
+                                                    name: "label",
+                                                    ty: SelfClosed,
+                                                    props: Some(
+                                                        {
+                                                            PropsKey {
+                                                                name: "value",
+                                                                is_style: false,
+                                                                ty: Bind,
+                                                            }: Bind(
+                                                                "counter",
+                                                            ),
+                                                            PropsKey {
+                                                                name: "class",
+                                                                is_style: false,
+                                                                ty: Normal,
+                                                            }: UnKnown(
+                                                                "label1",
+                                                            ),
+                                                        },
+                                                    ),
+                                                    children: None,
+                                                    parent: Some(
+                                                        Tag(
+                                                            Tag {
+                                                                name: "view",
+                                                                ty: Normal,
+                                                                props: Some(
+                                                                    {
+                                                                        PropsKey {
+                                                                            name: "class",
+                                                                            is_style: false,
+                                                                            ty: Normal,
+                                                                        }: UnKnown(
+                                                                            "body",
+                                                                        ),
+                                                                    },
+                                                                ),
+                                                                children: None,
+                                                                parent: None,
+                                                            },
+                                                        ),
+                                                    ),
+                                                },
+                                            ),
+                                        ],
+                                    ),
+                                    parent: Some(
+                                        Tag(
+                                            Tag {
+                                                name: "window",
+                                                ty: Normal,
+                                                props: Some(
+                                                    {
+                                                        PropsKey {
+                                                            name: "class",
+                                                            is_style: false,
+                                                            ty: Normal,
+                                                        }: UnKnown(
+                                                            "ui",
+                                                        ),
+                                                    },
+                                                ),
+                                                children: None,
+                                                parent: None,
+                                            },
+                                        ),
+                                    ),
+                                },
+                            ),
+                        ],
+                    ),
+                    parent: None,
+                },
+            ),
+        ],
+    ),
+    style: Some(
+        [
+            Style(
+                Style {
+                    name: "ui",
+                    ty: Class,
+                    props: Some(
+                        {
+                            PropsKey {
+                                name: "background_color",
+                                is_style: true,
+                                ty: Function,
+                            }: Function(
+                                Function {
+                                    name: "linear_gradient",
+                                    params: Some(
+                                        [
+                                            "180deg",
+                                            "#7",
+                                            "#3",
+                                        ],
+                                    ),
+                                    is_style: true,
+                                },
+                            ),
+                            PropsKey {
+                                name: "show_bg",
+                                is_style: true,
+                                ty: Normal,
+                            }: UnKnown(
+                                "true",
+                            ),
+                            PropsKey {
+                                name: "width",
+                                is_style: true,
+                                ty: Normal,
+                            }: UnKnown(
+                                "fill",
+                            ),
+                            PropsKey {
+                                name: "height",
+                                is_style: true,
+                                ty: Normal,
+                            }: UnKnown(
+                                "fill",
+                            ),
+                        },
+                    ),
+                    children: Some(
+                        [
+                            Style(
+                                Style {
+                                    name: "body",
+                                    ty: Class,
+                                    props: Some(
+                                        {
+                                            PropsKey {
+                                                name: "align",
+                                                is_style: true,
+                                                ty: Normal,
+                                            }: UnKnown(
+                                                "0.5 0.5",
+                                            ),
+                                            PropsKey {
+                                                name: "flow",
+                                                is_style: true,
+                                                ty: Normal,
+                                            }: UnKnown(
+                                                "down",
+                                            ),
+                                            PropsKey {
+                                                name: "spacing",
+                                                is_style: true,
+                                                ty: Normal,
+                                            }: UnKnown(
+                                                "20",
+                                            ),
+                                        },
+                                    ),
+                                    children: Some(
+                                        [
+                                            Style(
+                                                Style {
+                                                    name: "button1",
+                                                    ty: Class,
+                                                    props: None,
+                                                    children: None,
+                                                    parent: Some(
+                                                        Style(
+                                                            Style {
+                                                                name: "body",
+                                                                ty: Class,
+                                                                props: None,
+                                                                children: None,
+                                                                parent: None,
+                                                            },
+                                                        ),
+                                                    ),
+                                                },
+                                            ),
+                                            Style(
+                                                Style {
+                                                    name: "input1",
+                                                    ty: Class,
+                                                    props: Some(
+                                                        {
+                                                            PropsKey {
+                                                                name: "height",
+                                                                is_style: true,
+                                                                ty: Normal,
+                                                            }: UnKnown(
+                                                                "30",
+                                                            ),
+                                                            PropsKey {
+                                                                name: "width",
+                                                                is_style: true,
+                                                                ty: Normal,
+                                                            }: UnKnown(
+                                                                "100",
+                                                            ),
+                                                        },
+                                                    ),
+                                                    children: Some(
+                                                        [],
+                                                    ),
+                                                    parent: Some(
+                                                        Style(
+                                                            Style {
+                                                                name: "body",
+                                                                ty: Class,
+                                                                props: None,
+                                                                children: None,
+                                                                parent: None,
+                                                            },
+                                                        ),
+                                                    ),
+                                                },
+                                            ),
+                                            Style(
+                                                Style {
+                                                    name: "label1",
+                                                    ty: Class,
+                                                    props: Some(
+                                                        {
+                                                            PropsKey {
+                                                                name: "color",
+                                                                is_style: true,
+                                                                ty: Normal,
+                                                            }: UnKnown(
+                                                                "#ffffff",
+                                                            ),
+                                                        },
+                                                    ),
+                                                    children: Some(
+                                                        [],
+                                                    ),
+                                                    parent: Some(
+                                                        Style(
+                                                            Style {
+                                                                name: "body",
+                                                                ty: Class,
+                                                                props: None,
+                                                                children: None,
+                                                                parent: None,
+                                                            },
+                                                        ),
+                                                    ),
+                                                },
+                                            ),
+                                        ],
+                                    ),
+                                    parent: Some(
+                                        Style(
+                                            Style {
+                                                name: "ui",
+                                                ty: Class,
+                                                props: None,
+                                                children: None,
+                                                parent: None,
+                                            },
+                                        ),
+                                    ),
+                                },
+                            ),
+                        ],
+                    ),
+                    parent: None,
+                },
+            ),
+        ],
+    ),
+    script: Some(
+        Script(
+            Block {
+                brace_token: Brace,
+                stmts: [
+                    Stmt::Local {
+                        attrs: [],
+                        let_token: Let,
+                        pat: Pat::Type {
+                            attrs: [],
+                            pat: Pat::Ident {
+                                attrs: [],
+                                by_ref: None,
+                                mutability: Some(
+                                    Mut,
+                                ),
+                                ident: Ident(
+                                    counter,
+                                ),
+                                subpat: None,
+                            },
+                            colon_token: Colon,
+                            ty: Type::Path {
+                                qself: None,
+                                path: Path {
+                                    leading_colon: None,
+                                    segments: [
+                                        PathSegment {
+                                            ident: Ident(
+                                                usize,
+                                            ),
+                                            arguments: PathArguments::None,
+                                        },
+                                    ],
+                                },
+                            },
+                        },
+                        init: Some(
+                            LocalInit {
+                                eq_token: Eq,
+                                expr: Expr::Lit {
+                                    attrs: [],
+                                    lit: Lit::Int {
+                                        token: 0_usize,
+                                    },
+                                },
+                                diverge: None,
+                            },
+                        ),
+                        semi_token: Semi,
+                    },
+                    Stmt::Local {
+                        attrs: [],
+                        let_token: Let,
+                        pat: Pat::Ident {
+                            attrs: [],
+                            by_ref: None,
+                            mutability: Some(
+                                Mut,
+                            ),
+                            ident: Ident(
+                                click,
+                            ),
+                            subpat: None,
+                        },
+                        init: Some(
+                            LocalInit {
+                                eq_token: Eq,
+                                expr: Expr::Closure {
+                                    attrs: [],
+                                    lifetimes: None,
+                                    constness: None,
+                                    movability: None,
+                                    asyncness: None,
+                                    capture: None,
+                                    or1_token: Or,
+                                    inputs: [],
+                                    or2_token: Or,
+                                    output: ReturnType::Default,
+                                    body: Expr::Block {
+                                        attrs: [],
+                                        label: None,
+                                        block: Block {
+                                            brace_token: Brace,
+                                            stmts: [
+                                                Stmt::Expr(
+                                                    Expr::Binary {
+                                                        attrs: [],
+                                                        left: Expr::Path {
+                                                            attrs: [],
+                                                            qself: None,
+                                                            path: Path {
+                                                                leading_colon: None,
+                                                                segments: [
+                                                                    PathSegment {
+                                                                        ident: Ident(
+                                                                            counter,
+                                                                        ),
+                                                                        arguments: PathArguments::None,
+                                                                    },
+                                                                ],
+                                                            },
+                                                        },
+                                                        op: BinOp::AddAssign(
+                                                            PlusEq,
+                                                        ),
+                                                        right: Expr::Lit {
+                                                            attrs: [],
+                                                            lit: Lit::Int {
+                                                                token: 1,
+                                                            },
+                                                        },
+                                                    },
+                                                    Some(
+                                                        Semi,
+                                                    ),
+                                                ),
+                                            ],
+                                        },
+                                    },
+                                },
+                                diverge: None,
+                            },
+                        ),
+                        semi_token: Semi,
+                    },
+                ],
+            },
+        ),
+    ),
+}
+<span class="boring">}</span></code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="converter"><a class="header" href="#converter">Converter</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="issues"><a class="header" href="#issues">Issues</a></h1>
+<h2 id="style-内部属性注释需要处理后续"><a class="header" href="#style-内部属性注释需要处理后续">Style 内部属性注释需要处理（后续）</a></h2>
+<pre><code>// this is ok (现在只能在上面写)
+.ui{
+  // this is height ❌(issue,这里应该允许这样写)
+  height: 160;
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="incremental-compilation"><a class="header" href="#incremental-compilation">Incremental compilation</a></h1>
+<p>通过将代码分成模板、脚本、和样式三个部分，已经为实现增量编译奠定了基础。增量编译的关键在于能够快速识别出自上次编译以来哪些部分发生了变化，并仅重新编译这些变化的部分，从而节省时间和资源。将代码预处理成几个独立的部分，并使用策略模式来处理这些部分，为增量编译提供了一个很好的起点。以下是一些可以考虑的方向来进一步实现和优化增量编译的功能：</p>
+<h2 id="1-变更检测机制"><a class="header" href="#1-变更检测机制">1. 变更检测机制</a></h2>
+<p>为了实现增量编译，你需要一种机制来比较当前代码与上一次编译版本之间的差异。这涉及到对每个部分（模板、脚本、样式）进行某种形式的哈希或签名，以便快速识别出哪些部分发生了变化。Git这样的版本控制系统就是利用哈希来追踪文件变化的一个例子。</p>
+<h2 id="2-独立部分的编译与缓存"><a class="header" href="#2-独立部分的编译与缓存">2. 独立部分的编译与缓存</a></h2>
+<p>在检测到特定部分（模板、脚本、样式）发生变化后，你的框架应该能够仅重新编译这些变化的部分，而不是整个应用。此外，对于没有变化的部分，如果能够缓存它们的编译结果，就可以在下一次编译时直接复用，进一步提高编译效率。</p>
+<h2 id="3-策略模式的应用"><a class="header" href="#3-策略模式的应用">3. 策略模式的应用</a></h2>
+<p>使用了策略模式进行处理，这是一个很好的选择，因为它允许你为不同类型的变化定义不同的处理策略。例如，对于模板部分的变化，可能涉及到DOM结构的更新；而脚本部分的变化可能涉及到逻辑处理的更新；样式部分的变化则涉及到视觉表现的更新。通过为这些不同的变化类型定义具体的策略，你的框架可以更加灵活地处理各种变化情况。</p>
+<h2 id="4-优化构建过程"><a class="header" href="#4-优化构建过程">4. 优化构建过程</a></h2>
+<p>除了增量编译之外，还可以探索其他优化构建过程的方法。比如，是否可以并行处理某些任务？是否可以更智能地安排任务的执行顺序以减少依赖等待时间？这些都是值得考虑的优化方向。</p>
+<p>总的来说，已经为实现增量编译设定了一个很好的基础。接下来的关键在于如何有效地实现变更检测机制，以及如何优化独立部分的编译与缓存策略。通过不断迭代和优化，你的框架将能够提供更加高效和响应快速的开发体验。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
