@@ -13,6 +13,7 @@ style="
   letter-spacing: 4px;
   background: linear-gradient(90deg, #ed5103, #ff8142);
   background-clip: text;
+  -webkit-background-clip: text;
 "
   >
 Rust

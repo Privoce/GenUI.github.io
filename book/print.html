@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="gen/quickstart.html"><strong aria-hidden="true">1.</strong> QuickStart</a></li><li class="chapter-item expanded "><a href="makepad/makepad.html"><strong aria-hidden="true">2.</strong> Makepad</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="makepad/quickstart.html"><strong aria-hidden="true">2.1.</strong> QuickStart</a></li><li class="chapter-item expanded "><a href="makepad/built-in/struct.html"><strong aria-hidden="true">2.2.</strong> Built-In</a></li><li class="chapter-item expanded "><a href="makepad/syntax/syntax.html"><strong aria-hidden="true">2.3.</strong> Syntax</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="makepad/syntax/global.html"><strong aria-hidden="true">2.3.1.</strong> Global</a></li><li class="chapter-item expanded "><a href="makepad/syntax/import.html"><strong aria-hidden="true">2.3.2.</strong> Import</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="gen/design/gen-ui-design.html"><strong aria-hidden="true">3.</strong> GenUI-Design</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="gen/design/parser/parser.html"><strong aria-hidden="true">3.1.</strong> Parser</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="gen/design/parser/result.html"><strong aria-hidden="true">3.1.1.</strong> Result</a></li><li class="chapter-item expanded "><a href="gen/design/parser/all.html"><strong aria-hidden="true">3.1.2.</strong> All</a></li></ol></li><li class="chapter-item expanded "><a href="gen/design/converter/converter.html"><strong aria-hidden="true">3.2.</strong> Converter</a></li><li class="chapter-item expanded "><a href="gen/design/issues/issues.html"><strong aria-hidden="true">3.3.</strong> issues</a></li><li class="chapter-item expanded "><a href="gen/design/future.html"><strong aria-hidden="true">3.4.</strong> future</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="gen/quickstart.html"><strong aria-hidden="true">1.</strong> QuickStart</a></li><li class="chapter-item expanded "><a href="makepad/makepad.html"><strong aria-hidden="true">2.</strong> Makepad</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="makepad/quickstart.html"><strong aria-hidden="true">2.1.</strong> QuickStart</a></li><li class="chapter-item expanded "><a href="makepad/built-in/struct.html"><strong aria-hidden="true">2.2.</strong> Built-In</a></li><li class="chapter-item expanded "><a href="makepad/syntax/syntax.html"><strong aria-hidden="true">2.3.</strong> Syntax</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="makepad/syntax/global.html"><strong aria-hidden="true">2.3.1.</strong> Global</a></li><li class="chapter-item expanded "><a href="makepad/syntax/import.html"><strong aria-hidden="true">2.3.2.</strong> Import</a></li><li class="chapter-item expanded "><a href="makepad/syntax/macro/macro.html"><strong aria-hidden="true">2.3.3.</strong> Macro</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">2.3.3.1.</strong> </div></li></ol></li><li class="chapter-item expanded "><a href="makepad/syntax/redraw.html"><strong aria-hidden="true">2.3.4.</strong> Redraw</a></li><li class="chapter-item expanded "><a href="makepad/event/event.html"><strong aria-hidden="true">2.3.5.</strong> Event</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="makepad/event/match_event.html"><strong aria-hidden="true">2.3.5.1.</strong> MatchEvent</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="gen/design/gen-ui-design.html"><strong aria-hidden="true">3.</strong> GenUI-Design</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="gen/design/parser/parser.html"><strong aria-hidden="true">3.1.</strong> Parser</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="gen/design/parser/result.html"><strong aria-hidden="true">3.1.1.</strong> Result</a></li><li class="chapter-item expanded "><a href="gen/design/parser/all.html"><strong aria-hidden="true">3.1.2.</strong> All</a></li></ol></li><li class="chapter-item expanded "><a href="gen/design/converter/converter.html"><strong aria-hidden="true">3.2.</strong> Converter</a></li><li class="chapter-item expanded "><a href="gen/design/issues/issues.html"><strong aria-hidden="true">3.3.</strong> issues</a></li><li class="chapter-item expanded "><a href="gen/design/future.html"><strong aria-hidden="true">3.4.</strong> future</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -189,6 +189,7 @@ style="
   letter-spacing: 4px;
   background: linear-gradient(90deg, #ed5103, #ff8142);
   background-clip: text;
+  -webkit-background-clip: text;
 "
   >
 Rust
@@ -213,6 +214,29 @@ letter-spacing: 4px;
   </center>
 </div><div style="break-before: page; page-break-before: always;"></div><h1 id="quickstart"><a class="header" href="#quickstart">QuickStart</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="makepad"><a class="header" href="#makepad">Makepad</a></h1>
+<p>Makepad 是一个采用Rust编程语言开发的跨平台文本编辑器和开发环境。它特别强调在性能和可扩展性方面的优势，旨在为开发者提供一个高效、响应迅速的编码体验。Makepad 使用了自己的渲染引擎，该引擎也是用Rust编写的，这使得它在渲染大型项目时能够保持流畅的性能。</p>
+<p>Makepad的一些特色包括：</p>
+<ol>
+<li>
+<p><strong>跨平台支持</strong>：Makepad能够在多个操作系统上运行，包括Windows、macOS和Linux，这得益于Rust及其跨平台兼容性。</p>
+</li>
+<li>
+<p><strong>自定义渲染引擎</strong>：Makepad使用自己开发的渲染引擎，这意味着它可以优化渲染性能，同时还可以支持复杂的视觉效果和动画。</p>
+</li>
+<li>
+<p><strong>使用Rust语言开发</strong>：Rust的安全性和性能使Makepad能够高效地处理大型文件和复杂的项目，同时保持低内存使用和快速响应。</p>
+</li>
+<li>
+<p><strong>代码编辑和项目管理</strong>：Makepad不仅是一个文本编辑器，它还提供了项目管理工具，帮助开发者组织和管理他们的代码库。</p>
+</li>
+<li>
+<p><strong>可扩展性</strong>：Makepad旨在支持插件和扩展，这使得开发者可以根据自己的需求定制编辑器的功能。</p>
+</li>
+<li>
+<p><strong>面向未来的设计</strong>：Makepad的开发团队致力于探索新的编程范式和工具，例如利用WebGPU等现代技术来推动前端和图形编程的界限。</p>
+</li>
+</ol>
+<p>Makepad是一个相对较新的项目，仍在积极开发中，这意味着它会不断引入新功能并改进现有功能。对于寻求现代、高性能且可定制开发工具的Rust开发者和其他程序员来说，Makepad可能是一个有趣的选择。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="quickstart-1"><a class="header" href="#quickstart-1">QuickStart</a></h1>
 <p>Welcome to the Makepad QuickStart guide. This document is designed to help you set up a new Makepad project quickly and understand its basic structure and components. Makepad is a creative coding environment that leverages Rust and its ecosystem to build performant and beautiful UI applications.</p>
 <h2 id="project-structure"><a class="header" href="#project-structure">Project Structure</a></h2>
@@ -327,8 +351,6 @@ app_main!(App); // Macro to designate App as the main application entry
 }
 <span class="boring">}</span></code></pre></pre>
 <p>Resources such as fonts and images also belong to global constants, see <code>import.md</code></p>
-<hr />
-<h2 id="next-import"><a class="header" href="#next-import">Next: <a href="makepad/syntax/">import</a></a></h2>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="import"><a class="header" href="#import">Import</a></h1>
 <p>This section details how to incorporate external resources such as images and fonts into your Makepad projects. Makepad supports various formats, allowing you to enhance the visual aspect of your applications.</p>
 <h2 id="importing-images"><a class="header" href="#importing-images">Importing Images</a></h2>
@@ -382,6 +404,178 @@ app_main!(App); // Macro to designate App as the main application entry
 }
 <span class="boring">}</span></code></pre></pre>
 <p>By following these guidelines, you can effectively manage and utilize external resources such as images and fonts in your Makepad projects, enhancing the visual appeal and user experience of your applications.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="macro"><a class="header" href="#macro">Macro</a></h1>
+<h2 id="macro-in-live-widget"><a class="header" href="#macro-in-live-widget">Macro in Live Widget</a></h2>
+<p>you should focus four kinds of macros:</p>
+<ol>
+<li><code>#[derive(Live)]</code></li>
+<li><code>#[derive(LiveHook)]</code></li>
+<li><code>#[live]</code></li>
+<li><code>#[rust]</code></li>
+</ol>
+<h3 id="derivelive"><a class="header" href="#derivelive"><code>#[derive(Live)]</code></a></h3>
+<p>这个宏用于为结构体生成实现<code>LiveTrait</code>的代码。<code>LiveTrait</code>是Makepad中用于处理动态数据的一种方式。当你在一个结构体上使用这个宏，它会自动生成一些方法，这些方法可以让你的结构体在运行时动态地改变其值。</p>
+<blockquote>
+<p>这对于需要在运行时改变状态的UI组件来说非常有用</p>
+<p><code>LiveTrait</code>主要关注如何改变数据</p>
+</blockquote>
+<h3 id="derivelivehook"><a class="header" href="#derivelivehook"><code>#[derive(LiveHook)]</code></a></h3>
+<p>这个宏用于为结构体生成实现<code>LiveHookTrait</code>的代码。<code>LiveHookTrait</code>是Makepad中用于处理动态数据变化的一种方式。当你在一个结构体上使用这个宏，它会自动生成一些方法，这些方法可以让你的结构体在其值发生变化时执行一些操作。</p>
+<blockquote>
+<p>对于需要在数据变化时执行特定操作的UI组件来说非常有用，例如，当一个按钮被点击时，你可能希望执行一些操作。</p>
+<p><code>LiveHookTrait</code>主要关注数据改变时应该执行什么操作</p>
+</blockquote>
+<h3 id="live"><a class="header" href="#live"><code>#[live]</code>：</a></h3>
+<p>这个宏用于标记结构体中的字段，这些字段的值可以在运行时动态地改变。当你在一个字段上使用这个宏，Makepad会自动生成一些代码，这些代码可以让这个字段的值在运行时动态地改变。</p>
+<h3 id="rust"><a class="header" href="#rust"><code>#[rust]</code></a></h3>
+<p>这个宏用于标记结构体中的字段，这些字段的值不能在运行时动态地改变。当你在一个字段上使用这个宏，Makepad会自动生成一些代码，这些代码可以确保这个字段的值在运行时不会动态地改变。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="redraw"><a class="header" href="#redraw">Redraw</a></h1>
+<ul>
+<li><code>apply_over_and_redraw</code>: redraw immediately</li>
+<li><code>apply_over</code> then <code>draw_all</code>: redraw together</li>
+</ul>
+<p>the most commonly used should be <code>apply_over</code> and then use <code>draw all</code> to render</p>
+<p>sometimes you dont want it to redraw because you do apply over in a redraw function</p>
+<p>if you use <code>apply_over_and_redraw</code> in the redraw flow it will redraw continuously</p>
+<h2 id="redraw-immediately"><a class="header" href="#redraw-immediately">redraw immediately</a></h2>
+<p>立即重新渲染指的是当代码进行执行后会即刻对目标widget进行重新渲染操作</p>
+<h2 id="redraw-together"><a class="header" href="#redraw-together">redraw together</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="matchevent-trait"><a class="header" href="#matchevent-trait">MatchEvent Trait</a></h1>
+<p>The <code>MatchEvent</code> trait provides a framework for handling a wide array of events, encompassing application lifecycle, user interactions, network responses, and more.</p>
+<p>Whenever there's a need to handle events for widgets, you should opt to implement this trait rather than crafting your own implementation.</p>
+<h2 id="implementing-matchevent"><a class="header" href="#implementing-matchevent">Implementing MatchEvent</a></h2>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Struct requiring implementation
+#[derive(Live, LiveHook)]
+pub struct App {
+    #[live]
+    ui: WidgetRef,
+}
+
+/// Implementing the MatchEvent trait
+impl MatchEvent for App {
+    // Implementation of handle_actions
+    fn handle_actions(&amp;mut self, cx: &amp;mut Cx, actions:&amp;Actions) {
+        // Handling button click events
+        // Use id! macro to access button: btn1
+        if self.ui.button(id!(btn1)).clicked(&amp;actions) {
+            self.counter += 1;
+            let label = self.ui.label(id!(t_label));
+            // Setting text
+            label.set_text(&amp;format!("Click Number: {}", self.counter));
+            // Redrawing label
+            label.redraw(cx);
+        }
+    }
+}
+
+impl AppMain for App {
+    fn handle_event(&amp;mut self, cx: &amp;mut Cx, event: &amp;Event) {
+        // Registering match event for it to work
+        self.match_event(cx, event);
+        self.ui.handle_event(cx, event, &amp;mut Scope::empty());
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="complete-example"><a class="header" href="#complete-example">Complete Example</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use makepad_widgets::*;
+live_design! {
+    import makepad_widgets::base::*;
+    import makepad_widgets::theme_desktop_dark::*;
+    App = {{App}} { 
+        ui: &lt;Window&gt; {
+            show_bg: true, 
+            draw_bg: { color: #1C2630 }, 
+            width: Fill, 
+            height: Fill,  
+            body = &lt;View&gt; {
+                flow: Down,
+                align: {x: 0.5, y: 0.5},  
+                btn1 = &lt;Button&gt; {
+                    text: "Click Me!"
+                } 
+                t_label = &lt;Label&gt; { 
+                    margin: {top: 16.0},
+                    text: "Click Number: 0",
+                    draw_text: {
+                        color: #f, 
+                        text_style: { 
+                            font: {path: dep("crate://makepad-widgets/resources/IBMPlexSans-SemiBold.ttf")}, 
+                        } 
+                    }
+                } 
+            } 
+        } 
+    }
+}
+#[derive(Live, LiveHook)]
+pub struct App {
+    #[live]
+    ui: WidgetRef,
+    #[rust]
+    counter: usize,
+}
+
+impl LiveRegister for App {
+    fn live_register(cx: &amp;mut Cx) {
+        crate::makepad_widgets::live_design(cx);
+    }
+}
+
+impl MatchEvent for App {
+    fn handle_actions(&amp;mut self, cx: &amp;mut Cx, actions:&amp;Actions) {
+        if self.ui.button(id!(btn1)).clicked(&amp;actions) {
+            self.counter += 1;
+            let label = self.ui.label(id!(t_label));
+            label.set_text(&amp;format!("Click Number: {}", self.counter));
+            label.redraw(cx);
+        }
+    }
+}
+
+impl AppMain for App {
+    fn handle_event(&amp;mut self, cx: &amp;mut Cx, event: &amp;Event) {
+        self.match_event(cx, event);
+        self.ui.handle_event(cx, event, &amp;mut Scope::empty());
+    }
+}
+
+app_main!(App);
+<span class="boring">}</span></code></pre></pre>
+<h2 id="matchevent-functions"><a class="header" href="#matchevent-functions">MatchEvent Functions</a></h2>
+<p>The <code>MatchEvent</code> trait encapsulates various event handling functions:</p>
+<ul>
+<li><code>handle_startup</code>: Initializes event handling.</li>
+<li><code>handle_shutdown</code>: Handles shutdown events.</li>
+<li><code>handle_foreground</code>: Manages app foreground entry events.</li>
+<li><code>handle_background</code>: Manages app background entry events.</li>
+<li><code>handle_pause</code>: Manages app pause events.</li>
+<li><code>handle_resume</code>: Manages app resume events.</li>
+<li><code>handle_app_got_focus</code>: Handles app focus acquisition events.</li>
+<li><code>handle_app_lost_focus</code>: Handles app focus loss events.</li>
+<li><code>handle_next_frame</code>: Prepares for the next frame events.</li>
+<li><code>handle_action</code>: Handles individual action events.</li>
+<li><code>handle_actions</code>: Handles multiple action events.</li>
+<li><code>handle_signal</code>: Manages signal events (may be used for custom events or messaging).</li>
+<li><code>handle_audio_devices</code>: Manages audio device events.</li>
+<li><code>handle_midi_ports</code>: Manages MIDI port events.</li>
+<li><code>handle_video_inputs</code>: Manages video input events.</li>
+<li><code>handle_http_response</code>: Handles HTTP response events.</li>
+<li><code>handle_http_request_error</code>: Handles HTTP request error events.</li>
+<li><code>handle_http_progress</code>: Manages HTTP progress events.</li>
+<li><code>handle_network_responses</code>: Handles network response events, calling corresponding handlers based on response type.</li>
+<li><code>handle_draw</code>: Manages drawing events.</li>
+<li><code>handle_timer</code>: Manages timer events.</li>
+<li><code>handle_draw_2d</code>: Manages 2D drawing events.</li>
+<li><code>handle_key_down</code>: Handles key press events.</li>
+<li><code>handle_key_up</code>: Handles key release events.</li>
+<li><code>handle_back_pressed</code>: Manages back button events (commonly used in mobile devices).</li>
+<li><code>match_event</code>: Matches and processes incoming events, calling corresponding handlers based on the event type.</li>
+<li><code>match_event_with_draw_2d</code>: Specialized event matching and handling logic for drawing events, using Cx2d as context.</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="genui-design"><a class="header" href="#genui-design">GenUI-Design</a></h1>
 <h2 id="template"><a class="header" href="#template">Template</a></h2>
 <p>HTML-LIKE：

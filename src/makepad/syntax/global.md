@@ -20,6 +20,3 @@ live_design!{
 
 Resources such as fonts and images also belong to global constants, see `import.md`
 
----
-Next: [import]()
----
