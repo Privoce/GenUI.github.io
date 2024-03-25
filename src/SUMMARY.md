@@ -26,5 +26,6 @@
     - [Result](./gen/design/parser/result.md)
     - [All](./gen/design/parser/all.md)
   - [Converter](./gen/design/converter/converter.md)
+    - [Makepad](./gen/design/converter/rsx-makepad.md)
   - [issues](./gen/design/issues/issues.md)
   - [future](./gen/design/future.md)

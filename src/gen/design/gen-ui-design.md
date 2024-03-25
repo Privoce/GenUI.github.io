@@ -1,22 +1,26 @@
-# GenUI-Design
+# GenUI-Design Documentation
 
-## Template
-HTML-LIKE：
-与HTML相似，但语法经过处理
+## Template Section
 
-所有的被处理的被认为是不必要的，可能使得模版不够专注！
+### HTML-LIKE Syntax:
 
-1. 不允许直接书写字符串
-2. 禁止使用模版语法，使用Rust `format!`进行值绑定
-3. 标签上声明基本属性只能使用基本类型，复杂类型需要绑定
-4. 函数体不允许直接书写在属性中，使用函数绑定
-5. 属性类型具有强类型指向型
+The syntax is reminiscent of HTML but has been enhanced for more structured processing.
 
-## Script
-1. Allow Rust syntax
+Key considerations for maintaining a clear and focused template:
 
-## Style
+1. Direct string literals are not permitted.
+2. Template syntax is prohibited; use Rust's `format!` for value bindings instead.
+3. Declare basic attributes on tags using primitive types only; complex types should be bound separately.
+4. Function bodies must not be directly written within attributes; instead, employ function bindings.
+5. Attributes are strongly-typed, ensuring clear and explicit type associations.
 
-1. bind to tag by name
-2. nesting allowed
-3. function and bind allowed
+## Script Section
+
+1. Full support for Rust syntax is provided, allowing for powerful scripting capabilities.
+2. Integration with Special Frameworks is permitted, expanding the possibilities for functionality and customization.
+
+## Style Section
+
+1. Styles are bound to tags by their names, enabling easy and intuitive styling.
+2. Nesting of styles is allowed, offering a hierarchical approach to styling that mirrors traditional CSS.
+3. Functions and bindings are supported within styles, allowing for dynamic styling based on logic and conditions.
