@@ -8,6 +8,7 @@
   - [Code Guide](./makepad/code/code.md)
     - [Define Easy Widget](./makepad/code/widgets/define.md)
     - [Define Deref Widget](./makepad/code/widgets/define2.md)
+    - [For Loop Widget](./makepad/code/widgets/for.md)
   - [Built-In](./makepad/built-in/built-in.md)
     - [Types](./makepad/built-in/types/types.md)
       - [Walk](./makepad/built-in/types/walk.md)
