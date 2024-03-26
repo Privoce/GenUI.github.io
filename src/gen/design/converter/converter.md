@@ -11,3 +11,4 @@ Of course, I believe that my framework is not a replacement for Makepad, but rat
 For most people, they may not need very fancy special effects, but rather quickly start to implement a product.
 
 For those who pursue higher goals, Makepad can be directly used in DSL
+

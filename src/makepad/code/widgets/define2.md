@@ -2,7 +2,7 @@
 
 Following our previous exploration where we introduced the `MyLabel` widget, extending the `Label`, this chapter ventures into more sophisticated use cases. While `Label` provides a robust foundation, there might be instances where its granular control over internal properties isn't necessary for your project's needs.
 
-## Initiating with a New Module
+## Init a New Module
 
 Begin by creating a module specifically for our enhanced widget:
 
@@ -10,7 +10,7 @@ Begin by creating a module specifically for our enhanced widget:
 pub mod deref_label;
 ```
 
-## Designing a Live Layout
+## Design Live Design
 
 In this step, we define `DerefLabel`, focusing on simplicity and reusability:
 
@@ -35,7 +35,7 @@ live_design!{
 }
 ```
 
-## Creating a Deref Structure
+## Define a Deref Structure
 
 `DerefLabel` is designed with simplicity and flexibility in mind, allowing for easy customization of text, color, and font size:
 
@@ -53,7 +53,7 @@ pub struct DerefLabel{
 }
 ```
 
-## Implementing the Widget Trait
+## Impl the Widget Trait
 
 With the widget's structure defined, we implement the `Widget` trait to specify how `DerefLabel` behaves and is rendered:
 
