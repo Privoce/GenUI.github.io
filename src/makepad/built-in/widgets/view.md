@@ -4,10 +4,65 @@ The `View` widget represents a UI element that can be rendered on the screen wit
 
 “视图”小部件表示一个UI元素，该元素可以用各种属性（如背景色、布局、可见性等）在屏幕上呈现。它处理与用户交互相关的不同事件，如手指移动和按键。
 
+View是一个最基础的视图组件，其他视图组件有: `ScrollXYView`, `ScrollXView`, `ScrollYView`
+
 ## Example
 
 ```rust
+use makepad_widgets::*;
+       
+live_design!{
+    import makepad_widgets::base::*;
+    import makepad_widgets::theme_desktop_dark::*; 
+    
+    App = {{App}} {
+        ui: <Root>{
+            main_window = <Window>{
+                block_signal_event: true;
+                window: {inner_size: vec2(600, 400)},
+                pass: {clear_color: #1C2128},
+                <View>{
+                    show_bg: true,
+                    // inherits parent width
+                    width: All,
+                    // inherits parent height
+                    height: All,
+                    padding: 10.0,
+                    spacing: 16.0,
+                    draw_bg: {color: #ADBABD},
+                    flow: Right,
+                    <View>{
+                        height: 30,
+                        width: 120,
+                        show_bg: true,
+                        draw_bg: {color: #FF0000},
+                    }
+                    <View>{
+                        height: 30,
+                        width: 90,
+                        show_bg: true,
+                        draw_bg: {color: #FF00FF},
+                    }
+                    <View>{
+                        height: 30,
+                        width: 120,
+                        show_bg: true,
+                        draw_bg: {color: #FF00FF},
+                    }
+                }
+            }
+        }
+    }
+}  
+ 
 ```
+
+### flow Right
+![](../../../static/widget/view_flow_right.png)
+### flow Down
+![](../../../static/widget/view_flow_down.png)
+### flow Overlay
+![](../../../static/widget/view_flow_overlay.png)
 
 ## Props
 |decorate|name|type|description|
