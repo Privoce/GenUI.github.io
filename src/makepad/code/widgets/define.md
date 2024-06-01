@@ -2,7 +2,7 @@
 
 In this chapter, we'll delve into the creation of a `MyLabel` Widget, which extends the capabilities of the built-in `Label` widget in Makepad.
 
-## Starting with a New Module
+## Init a New Module
 
 First, create a new module for our custom widget:
 
@@ -10,7 +10,7 @@ First, create a new module for our custom widget:
 pub mod my_label;
 ```
 
-## Crafting a Live Design
+## Design Live Design
 
 The `live_design!` macro allows for an effortless and succinct definition of custom widgets. Here, we define `MyLabel` with unique styling:
 
@@ -36,7 +36,7 @@ live_design!{
 }
 ```
 
-## Defining the Widget Structure
+## Define the Widget Structure
 
 `MyLabel` will utilize the `Widget` trait and directly reference (`deref`) the `Label` widget:
 
@@ -49,7 +49,7 @@ pub struct MyLabel{
 }
 ```
 
-## Implementing the Widget Trait
+## Impl the Widget Trait
 
 Next, we implement the `Widget` trait for `MyLabel` to ensure it behaves as intended:
 
@@ -61,7 +61,7 @@ impl Widget for MyLabel {
 }
 ```
 
-## Registering in the Application
+## Register in the Application
 
 It's crucial to register our custom widget in the application to make it available for use:
 
@@ -74,7 +74,7 @@ impl LiveRegister for App {
 }
 ```
 
-## Utilizing in the App's Live Design
+## Use in the App's Live Design
 
 Finally, incorporate `MyLabel` into the application's live design, setting it up for use:
 

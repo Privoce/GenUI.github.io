@@ -2,7 +2,31 @@
 
 This section details how to incorporate external resources such as images and fonts into your Makepad projects. Makepad supports various formats, allowing you to enhance the visual aspect of your applications.
 
-## Importing Images
+> widgets: `import `
+> 
+> font, images, ...other static resources: `dep()`
+
+## Import Widgets
+
+use keyword: `import` can import widget in `live_design!`
+
+```rust
+live_design!{
+    import you_crate_name::widget_mod::widget_name;
+}
+
+// example
+live_design!{
+    import hello::header::Header;
+}
+
+//import all
+live_design!{
+    import hello::header::*;
+}
+```
+
+## Import Images
 
 Makepad allows the importation of various image formats to enrich your user interface. Supported formats include:
 
@@ -36,7 +60,7 @@ live_design!{
 }
 ```
 
-## Importing Fonts
+## Import Fonts
 
 Importing fonts in Makepad is very similar to importing images. Makepad supports various font formats to allow you to customize the typography of your application. Supported font formats include:
 

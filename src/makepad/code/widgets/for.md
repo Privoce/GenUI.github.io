@@ -2,7 +2,7 @@
 
 This example demonstrates how to generate components from iterable data in Makepad.
 
-## Writing Live Design
+## Write Live Design
 
 Note that we use `btn: <Button>` instead of `btn = <Button>`. This implies that the button is treated as a prop here.
 
@@ -27,7 +27,7 @@ live_design!{
 }
 ```
 
-## Writing the Widget
+## Define the Widget Struct
 
 Next, we implement a widget that conforms to the Widget trait. Here, we use `Area + LivePtr + ComponentMap`. You can roughly consider these as a standard combination (though that's not entirely accurate).
 
@@ -57,7 +57,7 @@ pub struct Footer {
 }
 ```
 
-## Drawing the Widget
+## Draw the Widget
 
 Implement the `draw_walk` method to render the widget.
 
@@ -87,6 +87,102 @@ impl Widget for Footer {
         self.btns.retain_visible();
         // Indicate that the drawing step is complete
         DrawStep::done()
+    }
+}
+```
+---
+
+## Impl handle_event
+
+In order for all buttons to receive events, we need to implement the `handle_event` function
+
+```rust
+impl Widget for Footer{
+
+    // ... draw_walk() fn
+
+    fn handle_event(&mut self, cx: &mut Cx, event: &Event, scope: &mut Scope) {
+        // Handle events for the current widget
+        for btn in self.btns.values_mut(){
+            // btn.handle_event(cx, event, scope);
+            for action in cx.capture_actions(|cx| btn.handle_event(cx, event, scope)){
+                match action.as_widget_action().cast() {
+                    // Handle button actions
+                    ButtonAction::Clicked => {
+                        log!("Button clicked:{}", btn.text());
+                    }
+                    _ => {}
+                }
+            }
+        }
+    }
+}
+```
+
+![](../../../static/for_loop_1.png)
+
+## Pass Event
+
+Now we need to implement event passing for the Footer widget, so that when any sub button is clicked, the Footer widget will trigger a Focus event
+
+### Define Footer Action
+
+Define a Focus event which get LiveId(Button's LiveId)
+
+```rust
+#[derive(Clone, Debug, DefaultNone)]
+pub enum FooterAction{
+    None,
+    // LiveId can specialize the clicked button
+    Focus(LiveId),
+}
+```
+
+### Change handle_event
+
+```rust
+impl Widget for Footer{
+
+    // ... draw_walk() fn
+
+    fn handle_event(&mut self, cx: &mut Cx, event: &Event, scope: &mut Scope) {
+        let uid = self.widget_uid();
+        // Handle events for the current widget
+        for (btn_id, btn) in self.btns.iter_mut(){
+            // btn.handle_event(cx, event, scope);
+            for action in cx.capture_actions(|cx| btn.handle_event(cx, event, scope)){
+                match action.as_widget_action().cast() {
+                    // Handle button actions
+                    ButtonAction::Clicked => {
+                        log!("Button clicked:{}", btn.text());
+                        // pass event
+                        cx.widget_action(uid, &scope.path, FooterAction::Focus(*btn_id))
+                    }
+                    _ => {}
+                }
+            }
+        }
+    }
+}
+```
+
+### Impl MatchEvent for Parent Widget
+
+impl `handle_actions` function, match the action we need to do and then handle.
+
+```rust
+impl MatchEvent for App{
+    fn handle_actions(&mut self, cx: &mut Cx, actions: &Actions) {
+        for action in actions{
+            match action.as_widget_action().cast(){
+                FooterAction::Focus(btn_id) => {
+                    log!("Button focused:{}", btn_id);
+                }
+                _ => {
+                    log!("other");
+                }
+            };
+        }
     }
 }
 ```
