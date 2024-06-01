@@ -5,6 +5,7 @@
 - [QuickStart](./gen/quickstart.md)
 - [Makepad](./makepad/makepad.md)
   - [QuickStart](./makepad/quickstart.md)
+  - [Project Structure](./makepad/structure/structure.md)
   - [Code Guide](./makepad/code/code.md)
     - [Define Easy Widget](./makepad/code/widgets/define.md)
     - [Define Deref Widget](./makepad/code/widgets/define2.md)
