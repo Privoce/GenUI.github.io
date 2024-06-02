@@ -4,39 +4,6 @@ In the Makepad framework, Window Widgets are the fundamental components used to 
 
 在Makepad框架中，Window Widget 是用于创建和管理应用程序窗口的基础组件。它作为顶层容器，负责承载应用界面的其它Widgets，并且提供了一系列的配置选项，允许开发者定制窗口的行为和外观。通过使用 Window Widget，开发者能够定义窗口的大小、标题、背景颜色等属性，从而创建出符合应用需求的窗口界面。
 
-## Example
-
-![](../../../static/widget/window.png)
-
-```rust
-use makepad_widgets::*;
-       
-live_design!{
-    import makepad_widgets::base::*;
-    import makepad_widgets::theme_desktop_dark::*; 
-    
-    App = {{App}} {
-        ui: <Root>{
-            main_window = <Window>{
-                block_signal_event: true;
-                show_bg: true
-                // set size
-                window: {inner_size: vec2(1280, 1000)},
-                // width: Fill,
-                // height: Fill,
-                // recommend pass
-                pass: {clear_color: #1C2128},
-                // draw_bg: {
-                //     fn pixel(self) -> vec4 {
-                //         // test
-                //         return mix(#7, #3, self.pos.y);
-                //     }
-                // }
-            }
-        }
-    }
-}
-```
 
 ## Props
 
