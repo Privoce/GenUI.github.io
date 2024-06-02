@@ -22,6 +22,21 @@ In Makepad, we believe that a component is an advanced widget, built upon the fo
 - `ScrollYView`
 - `ScrollXYView`
 - `KeyboardView`
+- `RectView`
+- `RoundedView`
+- `RoundedXView`
+- `RoundedYView`
+- `RoundedAllView`
+- `CircleView`
+- `HexagonView`
+- `GradientXView`
+- `GradientYView`
+- `CachedView`
+  - `CachedScrollXY`
+  - `CachedScrollX`
+  - `CachedScrollY`
+- `CachedRoundedView`
+- `StackViewHeader`
 
 ### ScrollBar(s)
 
