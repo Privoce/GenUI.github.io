@@ -6,11 +6,22 @@ In Makepad, we believe that a component is an advanced widget, built upon the fo
 
 ## All Components
 
+## Root
+
+- `Root`
+
+## Window
+
+- `Window`
+
 ### View
 
+- `View`
+- `SolidView`
 - `ScrollXView`
 - `ScrollYView`
 - `ScrollXYView`
+- `KeyboardView`
 
 ### ScrollBar(s)
 
