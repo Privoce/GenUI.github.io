@@ -66,7 +66,7 @@ live_design!{
     import makepad_widgets::base::*;                  // Import base widgets and components
     import makepad_widgets::theme_desktop_dark::*;    // Use the dark theme for desktop applications
     App = {{App}} {                                   // Define the main App struct
-        ui: <Window>{}                                // Use a Window widget as the root UI element
+        ui: <Root>{}                                // Use a Root widget as the root UI element
     }
 }
 ```
