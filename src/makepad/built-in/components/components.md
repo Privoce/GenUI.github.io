@@ -13,16 +13,16 @@ If you see the component marked with line, please do not use
 
 ## All Components
 
-## Root
+### Root
 
 - `Root`
 
-## Designer
+### Designer
 
 - `Designer`
 - ~`DesignerView`~
 
-## Window
+### Window
 
 - `Window`
 
@@ -52,6 +52,11 @@ If you see the component marked with line, please do not use
 - `CachedScrollX`
 - `CachedScrollY`
 - `CachedRoundedView`
+
+### Label
+
+- `Label`
+- `LinkLabel`
 
 ### ScrollBar(s)
 
