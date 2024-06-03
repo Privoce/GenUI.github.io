@@ -27,6 +27,8 @@
         - [SolidView](./makepad/built-in/components/solid_view.md)
         - [ScrollView](./makepad/built-in/components/scroll_view.md)
         - [ShapeView](./makepad/built-in/components/shape_view.md)
+        - [GradientView](./makepad/built-in/components/gradient_view.md)
+        - [CachedView](./makepad/built-in/components/cached_view.md)
   - [Effect](./makepad/effect/effect.md)
     - [background](./makepad/effect/bg.md)
     - [shape](./makepad/effect/shape.md)

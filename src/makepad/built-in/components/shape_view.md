@@ -151,7 +151,7 @@ live_design!{
 }
 ```
 
-## RoundedXView|RoundedYView|RoundedAllView
+### RoundedXView|RoundedYView|RoundedAllView
 
 - RoundedXView: `radius: {left: 2.5px, right: 2.5px}`
 - RoundedYView: `radius: {top: 2.5px, bottom: 2.5px}`
@@ -163,3 +163,10 @@ X, Y seems to have some issues and doesn't work as expected. This is a job that 
 </strong>
 
 ![](../../../static/widget/roundedxya_view.png)
+
+## CircleView | HexagonView
+
+<strong style="color: #FF0000">
+似乎有些问题，并没有像想象那样工作，这是个待修复的工作(todo!)<br><br>
+seems to have some issues and doesn't work as expected. This is a job that needs to be fixed (todo!)
+</strong>

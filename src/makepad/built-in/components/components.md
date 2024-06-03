@@ -4,11 +4,23 @@
 
 In Makepad, we believe that a component is an advanced widget, built upon the foundational structures of widgets. A component can either be a single widget with predefined properties or a combination of multiple widgets working together. This approach allows for greater flexibility and modularity in designing user interfaces. In the following sections, I will provide an in-depth explanation of all the components within Makepad's `theme_desktop_dark`, showcasing their unique properties and functionalities.
 
+## Attention
+
+<strong style="color: #FF0000">
+当你看到划线的组件，请不要使用<br><br>
+If you see the component marked with line, please do not use
+</strong>
+
 ## All Components
 
 ## Root
 
 - `Root`
+
+## Designer
+
+- `Designer`
+- ~`DesignerView`~
 
 ## Window
 
@@ -26,24 +38,27 @@ In Makepad, we believe that a component is an advanced widget, built upon the fo
 #### ShapeView
 - `RectView`
 - `RoundedView`
-- `RoundedXView`    
-- `RoundedYView`
+- ~`RoundedXView`~   
+- ~`RoundedYView`~
 - `RoundedAllView`
-- `CircleView`
-- `HexagonView`
+- ~`CircleView`~
+- ~`HexagonView`~
+#### GradientView
 - `GradientXView`
 - `GradientYView`
-#### CachedView
+#### ~CachedView~
 - `CachedView`
 - `CachedScrollXY`
 - `CachedScrollX`
 - `CachedScrollY`
 - `CachedRoundedView`
-- `StackViewHeader`
 
 ### ScrollBar(s)
 
 - `ScrollBar`
 - `ScrollBars`
 
-### 
+### ~Stack~
+- `StackViewHeader`
+- `StackNavigationView`
+  
