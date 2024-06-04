@@ -68,10 +68,22 @@ If you see the component marked with line, please do not use
 - `ImageBlend`
 - `RotatedImage`
 
+### CheckBox
+
+- `CheckBox`
+
+### RadioButton
+
+- `RadioButton`
+
 ### ScrollBar(s)
 
 - `ScrollBar`
 - `ScrollBars`
+
+### Splitter
+
+- `Splitter`
 
 ### ~Stack~
 - `StackViewHeader`
