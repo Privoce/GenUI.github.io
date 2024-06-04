@@ -58,6 +58,16 @@ If you see the component marked with line, please do not use
 - `Label`
 - `LinkLabel`
 
+### Icon
+
+- `icon`
+
+### Image
+
+- `Image`
+- `ImageBlend`
+- `RotatedImage`
+
 ### ScrollBar(s)
 
 - `ScrollBar`
