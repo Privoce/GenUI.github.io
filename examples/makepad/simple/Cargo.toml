@@ -1,0 +1,11 @@
+[package]
+name = "makepad-example-simple"
+version = "0.6.0"
+authors = ["syf20020816@outlook.com"]
+edition = "2021"
+description = "Makepad ui example"
+license = "MIT OR Apache-2.0"
+metadata.makepad-auto-version = "db3R5Gxh5Njhx8E-8kuZ2plQ1AI="
+
+[dependencies]
+makepad-widgets = "0.6.0"
