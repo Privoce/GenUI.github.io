@@ -32,3 +32,22 @@ See [TextStyle](./text_style.md)
 See [TextWrap](./text_wrap.md)
 
 See [DrawVars](./draw_vars.md)
+
+## Example
+
+```rust
+draw_text: {
+    wrap: Word,
+    // real font size = font size * font scale
+    font_scale: 1.5,
+    text_style: {
+        // so here font size = 16 * 1.5 = 24
+        font_size: 16,
+        font: {path: dep("crate://makepad-widgets/resources/IBMPlexSans-SemiBold.ttf")},
+        // brightness > 1.0 will make the text brighter
+        // < 1.0 will make the text darker
+        brightness: 1.0,
+    },
+    color: #FF0000,
+}
+```

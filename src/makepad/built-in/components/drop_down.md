@@ -1,6 +1,10 @@
 # DropDown
 
+一个下拉菜单小部件，允许用户从列表中选择一个项目。下拉列表可以显示标签和相关值，其外观和行为由各种属性和动画控制。
+
 在Makepad中`DropDown`就是我们使用的`Select`下拉选项框组件，它允许我们在一个选项组中选择需要的选项
+
+A dropdown menu widget that allows users to select an item from a list. The dropdown can display labels and associated values, and its appearance and behavior are controlled by various properties and animations.
 
 In Makepad, `DropDown` is the `Select` dropdown option box component we use, which allows us to select the desired options in a group of options
 
