@@ -30,6 +30,8 @@ If you see the component marked with line, please do not use
 
 - `View`
 - `SolidView`
+- `SlidesView`
+- `Slide`
 #### ScrollView
 - `ScrollXView`
 - `ScrollYView`
@@ -57,6 +59,7 @@ If you see the component marked with line, please do not use
 
 - `Label`
 - `LinkLabel`
+- `SlideBody`
 
 ### Icon
 
@@ -75,6 +78,14 @@ If you see the component marked with line, please do not use
 ### RadioButton
 
 - `RadioButton`
+
+### TextInput
+
+- `TextInput`
+
+### Slider
+
+- `Slider`
 
 ### ScrollBar(s)
 
