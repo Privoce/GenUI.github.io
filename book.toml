@@ -13,3 +13,6 @@ extra-watch-dirs = ["po", "third_party"]
 
 [preprocessor.gettext]
 after = ["links"]
+
+[output.html]
+git-repository-url = "https://github.com/palpus-rs/Gen-UI.github.io"

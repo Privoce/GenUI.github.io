@@ -1,13 +1,14 @@
 # Summary
 
 # Welcome to Makepad Book
-
+---
 - [Introduction](./makepad/introduction.md)
 - [Installation](./makepad/installation.md)
 
----
+
 
 # Makepad Tutorials
+---
 - [Tutorials](./makepad/tutorials.md)
   - [QuickStart](./makepad/quickstart.md)
   - [Project Structure](./makepad/structure/structure.md)
@@ -17,15 +18,16 @@
     - [For Loop Widget](./makepad/code/widgets/for.md)
   - [Videos](./makepad/videos.md)
 
----
+
 
 # Makepad Examples
+---
 - [Examples](./makepad/example/example.md)
   - [Todo Example](./makepad/example/todo/todo.md)
 
----
 
 # Makepad BuiltIn Concepts
+---
 - [Built-In](./makepad/built-in/built-in.md)
   - [Walk](./makepad/built-in/types/walk.md)
     - [DVec2|Vec2](./makepad/built-in/types/dvec2.md)
@@ -112,16 +114,18 @@
   - [ScrollBar(s)](./makepad/built-in/components/scrollbar.md)
   - [Dock⛔]()
 
----
+
 
 # Makepad Effect
+---
 - [Effect](./makepad/effect/effect.md)
   - [background](./makepad/effect/bg.md)
   - [shape](./makepad/effect/shape.md)
 
----
+
 
 # Makepad Syntax
+---
 - [Syntax](./makepad/syntax/syntax.md)
   - [Global](./makepad/syntax/global.md)
   - [Import](./makepad/syntax/import.md)
@@ -130,20 +134,21 @@
   - [Event](./makepad/event/event.md)
     - [MatchEvent](./makepad/event/match_event.md)
 
----
 
 # Makepad Current Issues
+---
 - [Issues](./makepad/issues.md)
 
----
+
 
 # Makepad Update Log
+---
 - [Makepad](./makepad/update/makepad.md)
 - [Makepad Widget](./makepad/update/makepad_widget.md)
 
----
 
 # GenUI
+---
 - [GenUI-Design](./gen/design/gen-ui-design.md)
   - [Parser](./gen/design/parser/parser.md)
     - [Result](./gen/design/parser/result.md)
