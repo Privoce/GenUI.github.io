@@ -18,22 +18,4 @@ Makepad的一些特色包括：
 6. **面向未来的设计**：Makepad的开发团队致力于探索新的编程范式和工具，例如利用WebGPU等现代技术来推动前端和图形编程的界限。
 
 Makepad是一个相对较新的项目，仍在积极开发中，这意味着它会不断引入新功能并改进现有功能。对于寻求现代、高性能且可定制开发工具的Rust开发者和其他程序员来说，Makepad可能是一个有趣的选择。
-## EN
-Makepad is a cross platform text editor and development environment developed using the Rust programming language. It emphasizes the advantages in performance and scalability, aiming to provide developers with an efficient and responsive coding experience. Makepad uses its own rendering engine, also written in Rust, which allows it to maintain smooth performance when rendering large projects.
-
-Some features of Makepad include:
-
-1. **Cross platform support**: Makepad can run on multiple operating systems, including Windows, macOS, and Linux, thanks to Rust and its cross platform compatibility.
-
-2. **Custom rendering engine**: Makepad uses its own developed rendering engine, which means it can optimize rendering performance while also supporting complex visual effects and animations.
-
-3. **Develop using the Rust language**: The security and performance of Rust enable Makepad to efficiently handle large files and complex projects while maintaining low memory usage and fast response.
-
-4. **Code Editing and Project Management**: Makepad is not only a text editor, but also provides project management tools to help developers organize and manage their code repository.
-
-5. **Scalability**: Makepad is designed to support plugins and extensions, allowing developers to customize editor functionality according to their own needs.
-
-6. **Future oriented design**: The development team of Makepad is committed to exploring new programming paradigms and tools, such as using modern technologies such as WebGPU to push the boundaries between front-end and graphical programming.
-
-Makepad is a relatively new project that is still actively being developed, which means it will continuously introduce new features and improve existing ones. For Rust developers and other programmers seeking modern, high-performance, and customizable development tools, Makepad may be an interesting choice.
 

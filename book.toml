@@ -4,4 +4,12 @@ authors = ["Willins.SHENG <syf20020816@outlook.com>"]
 language = "en"
 multilingual = false
 src = "src"
-theme = "Rust"
+
+[rust]
+edition = "2021"
+
+[build]
+extra-watch-dirs = ["po", "third_party"]
+
+[preprocessor.gettext]
+after = ["links"]
