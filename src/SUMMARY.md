@@ -4,7 +4,7 @@
 ---
 - [Introduction](./makepad/introduction.md)
 - [Installation](./makepad/installation.md)
-
+- [Learning Sequence](./makepad/learning_sequence.md)
 
 
 # Makepad Tutorials
@@ -13,6 +13,7 @@
   - [QuickStart](./makepad/quickstart.md)
   - [Project Structure](./makepad/structure/structure.md)
   - [Code Guide](./makepad/code/code.md)
+    - [Define Easy Component](./makepad/code/widgets/easy_component.md)
     - [Define Easy Widget](./makepad/code/widgets/define.md)
     - [Define Deref Widget](./makepad/code/widgets/define2.md)
     - [For Loop Widget](./makepad/code/widgets/for.md)
@@ -23,6 +24,7 @@
 # Makepad Examples
 ---
 - [Examples](./makepad/example/example.md)
+  - [Simple Example](./makepad/example/simple.md)
   - [Todo Example](./makepad/example/todo/todo.md)
 
 

@@ -1,6 +1,6 @@
 [book]
 title = "Gen-UI Book"
-authors = ["Willins.SHENG <syf20020816@outlook.com>"]
+authors = ["Will SHENG <syf20020816@outlook.com>"]
 language = "en"
 multilingual = false
 src = "src"
@@ -9,7 +9,7 @@ src = "src"
 edition = "2021"
 
 [build]
-extra-watch-dirs = ["po", "third_party"]
+# extra-watch-dirs = ["po", "third_party"]
 
 [preprocessor.gettext]
 after = ["links"]
