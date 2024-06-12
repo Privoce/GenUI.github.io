@@ -114,7 +114,7 @@
   - [Video⛔]()
   - [Splitter](./makepad/built-in/components/splitter.md)
   - [ScrollBar(s)](./makepad/built-in/components/scrollbar.md)
-  - [Dock⛔]()
+  - [Dock](./makepad/built-in/components/dock.md)
 
 
 
@@ -123,7 +123,8 @@
 - [Effect](./makepad/effect/effect.md)
   - [background](./makepad/effect/bg.md)
   - [shape](./makepad/effect/shape.md)
-
+- [GLSL](./makepad/glsl/glsl.md)
+- [Sdf2d](./makepad/sdf2d/sdf2d.md)
 
 
 # Makepad Syntax
