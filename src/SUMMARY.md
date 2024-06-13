@@ -136,7 +136,7 @@
   - [Redraw](./makepad/syntax/redraw.md)
   - [Event](./makepad/event/event.md)
     - [MatchEvent](./makepad/event/match_event.md)
-
+  - [LiveHook](./makepad/syntax/live_hook.md)
 
 # Makepad Current Issues
 ---

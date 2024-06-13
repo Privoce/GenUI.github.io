@@ -5,27 +5,31 @@
 ## 
 
 ```rust
+/// Sdf2d结构体使用glsl
+/// Sdf2d struct use glsl
 Sdf2d = struct {
     // Fields of the Sdf2d struct
-    field pos: vec2        // Current position
-    field result: vec4     // Result color
-    field last_pos: vec2   // Last position in path
-    field start_pos: vec2  // Start position in path
-    field shape: float     // Shape distance
-    field clip: float      // Clipping distance
-    field has_clip: float  // Clip flag
-    field old_shape: float // Previous shape distance
-    field blur: float      // Blur amount
-    field aa: float        // Anti-aliasing factor
-    field scale_factor: float // Scaling factor
-    field dist: float      // Distance to shape
+    field pos: vec2        // Current position 当前位置
+    field result: vec4     // Result color 最终的颜色
+    field last_pos: vec2   // Last position in path  路径中的最后一个位置
+    field start_pos: vec2  // Start position in path 路径中的初始的位置
+    field shape: float     // Shape distance 形状
+    field clip: float      // Clipping distance 裁剪长度
+    field has_clip: float  // Clip flag 是否被裁剪(0.0 is false)
+    field old_shape: float // Previous shape distance 上一个形状
+    field blur: float      // Blur amount 模糊量
+    field aa: float        // Anti-aliasing factor 抗锯齿因子
+    field scale_factor: float // Scaling factor 比例因子
+    field dist: float      // Distance to shape 到形状的距离
 
     // Calculate anti-aliasing factor based on the derivative of the position
+    // 根据位置的导数计算抗锯齿因子
     fn antialias(p: vec2) -> float {
         return 1.0 / length(vec2(length(dFdx(p)), length(dFdy(p))));
     }
 
     // Initialize a new Sdf2d struct with the given position
+    // 使用给定位置初始化新的Sdf2d结构
     fn viewport(pos: vec2) -> Self {
         return Self {
             pos: pos
@@ -44,12 +48,14 @@ Sdf2d = struct {
     }
 
     // Translate the current position by (x, y)
+    // 将当前位置平移（x，y）
     fn translate(inout self, x: float, y: float) -> vec2 {
         self.pos -= vec2(x, y);
         return self.pos;
     }
 
     // Rotate the current position around (x, y) by angle a
+    // 将当前位置绕（x，y）旋转角度a
     fn rotate(inout self, a: float, x: float, y: float) {
         let ca = cos(-a);
         let sa = sin(-a);
@@ -58,17 +64,20 @@ Sdf2d = struct {
     }
 
     // Scale the current position relative to (x, y) by factor f
+    // 按因子f相对于（x，y）缩放当前位置
     fn scale(inout self, f: float, x: float, y: float) {
         self.scale_factor *= f;
         self.pos = (self.pos - vec2(x, y)) * f + vec2(x, y);
     }
 
     // Clear the result color with the given color
+    // 使用给定的颜色清除结果颜色
     fn clear(inout self, color: vec4) {
         self.result = vec4(color.rgb * color.a + self.result.rgb * (1.0 - color.a), color.a);
     }
 
     // Calculate blur based on width w
+    // 根据宽度w计算模糊
     fn calc_blur(inout self, w: float) -> float {
         let wa = clamp(-w * self.aa, 0.0, 1.0);
         let wb = 1.0;
@@ -79,6 +88,7 @@ Sdf2d = struct {
     }
 
     // Fill the current shape with premultiplied alpha, keeping the previous fill
+    // 使用预乘的alpha填充当前形状，保持先前的填充
     fn fill_keep_premul(inout self, source: vec4) -> vec4 {
         let f = self.calc_blur(self.shape);
         self.result = source * f + self.result * (1. - source.a * f);
@@ -90,6 +100,7 @@ Sdf2d = struct {
     }
 
     // Fill the current shape with premultiplied alpha and reset the shape
+    // 用预乘的alpha填充当前形状并重置形状
     fn fill_premul(inout self, color: vec4) -> vec4 {
         self.fill_keep_premul(color);
         self.old_shape = self.shape = 1e+20;
@@ -99,16 +110,19 @@ Sdf2d = struct {
     }
 
     // Fill the current shape, keeping the previous fill
+    // 填充当前形状，保留以前的填充
     fn fill_keep(inout self, color: vec4) -> vec4 {
         return self.fill_keep_premul(vec4(color.rgb * color.a, color.a));
     }
 
     // Fill the current shape and reset the shape
+    // 填充当前形状并重置形状
     fn fill(inout self, color: vec4) -> vec4 {
         return self.fill_premul(vec4(color.rgb * color.a, color.a));
     }
 
     // Stroke the current shape, keeping the previous stroke
+    // 笔划当前形状，保持上一个笔划
     fn stroke_keep(inout self, color: vec4, width: float) -> vec4 {
         let f = self.calc_blur(abs(self.shape) - width / self.scale_factor);
         let source = vec4(color.rgb * color.a, color.a);
@@ -118,6 +132,7 @@ Sdf2d = struct {
     }
 
     // Stroke the current shape and reset the shape
+    // 笔划当前形状并重置形状
     fn stroke(inout self, color: vec4, width: float) -> vec4 {
         self.stroke_keep(color, width);
         self.old_shape = self.shape = 1e+20;
@@ -145,6 +160,7 @@ Sdf2d = struct {
     }
 
     // Union the current shape with the previous shape
+    // 将当前形状与上一个形状合并
     fn union(inout self) {
         self.old_shape = self.shape = min(self.dist, self.old_shape);
     }
@@ -200,6 +216,7 @@ Sdf2d = struct {
     }
 
     // Draw a rounded box at (x, y) with width w, height h, and radius r
+    // 在（x，y）处绘制一个宽度为w、高度为h、半径为r的圆角框
     fn box(inout self, x: float, y: float, w: float, h: float, r: float) {
         let p = self.pos - vec2(x, y);
         let size = vec2(0.5 * w, 0.5 * h);
