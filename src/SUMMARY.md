@@ -154,6 +154,17 @@
 # GenUI
 ---
 - [GenUI](./gen/introduction.md)
+  - [QuickStart](./gen/exmaple/quickstart.md)
+  - [Video](./gen/exmaple/video.md)
+  - [Tutorials]()
+    - [GenUI Logger](./gen/tutorials/logger.md)
+    - [GenUI Structure](./gen/tutorials/structure.md)
+    - [GenUI Ignore](./gen/tutorials/ignore.md)
+    - [GenUI Syntex](./gen/tutorials/syntex.md)
+      - [Color](./gen/tutorials/syntex/color.md)
+      - [Import](./gen/tutorials/syntex/import.md)
+      - [Static Page](./gen/tutorials/syntex/static.md)
+      - [Dyn Widget](./gen/tutorials/syntex/dyn_widget.md)
 - [Makepad-Plugin](./gen/makepad/plugin.md)
   - [BuiltIn-UI Lib](./gen/makepad/ui_lib.md)
     - [Components](./gen/makepad/components.md)
