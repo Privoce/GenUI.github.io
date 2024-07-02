@@ -70,7 +70,7 @@
 #ui{
   #main_window{
     //...
-    draw_bg: rgba(255, 112, 67, 0.3);
+    draw_bg: radial_gradient(#FF938A, #98943F, #6BC46D);
   }
 }
 </style>
