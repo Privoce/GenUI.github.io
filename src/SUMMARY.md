@@ -126,6 +126,7 @@
   - [shape](./makepad/effect/shape.md)
 - [GLSL](./makepad/glsl/glsl.md)
 - [Sdf2d](./makepad/sdf2d/sdf2d.md)
+- [Animation](./makepad/animation.md)
 
 
 # Makepad Syntax
