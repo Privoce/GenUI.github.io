@@ -92,28 +92,25 @@ pub mod root;
 - 设置目标入口文件的文件名字为`app`，这会让最终Makepad的入口为`app.rs`
 - 指定`E:/Rust/try/makepad/Gen-UI/examples/gen_makepad_simple/ui/views/root.gen`这个文件作为UI的根文件(通过这种方式，来切换多个UI根)
 - `add_dep()`方法将依赖添加到编译器中
-- 调用`compile()`方法进行编译
+- 调用`build()`方法进行编译
 - 调用`run()`方法启动编译器
 
 ```rust
-use gen_compiler::{app, DepType, RustDependence, Target};
+use gen_compiler::{app, Target, Builder};
 
 fn main() {
-    // set app and specify target
-    let mut app = app(Target::Makepad);
-    // add makepad widget dependence
-    let mut makepad_widget = RustDependence::new("makepad-widgets");
-    makepad_widget.set_ty(DepType::local(
-        "E:/Rust/try/makepad/makepad/rik/makepad/widgets",
-    ));
-    
-    // compile and run
-    let _ = app
+    let compiler = Target::makepad()
         .entry("app")
         .root("E:/Rust/try/makepad/Gen-UI/examples/gen_makepad_simple/ui/views/root.gen")
-        .add_dep(makepad_widget)
-        .compile();
+        .add_dep("makepad-widgets")
+        .local("E:/Rust/try/makepad/makepad/rik/makepad/widgets")
+        .build()
+        .build();
+
+    // set app and specify target
+    let mut app = app(Some(Box::new(compiler))).build();
 
     let _ = app.run();
 }
 ```
+
