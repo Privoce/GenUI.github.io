@@ -1,4 +1,4 @@
-# Props Manual
+# Props Manual (Comming Soon)
 
 GWPM(GenUI Widget Props Manual)的用途是为了帮助开发者正确使用GenUI属性，并提供各个属性的详细描述和使用示例。 
 

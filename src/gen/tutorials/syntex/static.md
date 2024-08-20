@@ -1,5 +1,7 @@
 # Static Page
 
+静态页面指的是不带有脚本的纯静态组件组成的页面，通常仅由`<template>`和`<style>`两个部分组成，但这不代表`<script>`标签不能使用，而是不在`<script>`中编写带有逻辑的脚本语句，在`<script>`标签中使用内置`import!`宏引入组件和`use`来引入库都不被视为违反静态原则。
+
 ## Example1
 
 ```rust
@@ -17,20 +19,20 @@
   #main_window{
     width: Fill;
     height: Fill;
-    show_bg: true;
-    draw_bg: #1C2128;
+    background_visible: true;
+    background_color: #1C2128;
     flow: Down;
-    inner_size: 600.0, 800.0;
-    position: 300.0;
+    window_size: 600.0 800.0;
+    window_position: 300.0;
     #main_view{
-      draw_bg: #FFF,
+      background_color: #FFF,
     }
   }
 }
 </style>
 ```
 
-## Example2
+## Example2 ⛔
 ```rust
 <template>
   <view id="checkbox_view">

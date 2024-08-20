@@ -66,17 +66,17 @@ cargo new ui
   #main_window{
     width: Fill;
     height: Fill;
-    show_bg: true;
-    draw_bg: #1C2128;
+    background_visible: true;
+    background_color: #1C2128;
     flow: Down;
-    inner_size: 600.0, 800.0;
-    position: 300.0;
+    window_size: 1024.0 820.0;
+    window_position: 300.0;
   }
 }
 </style>
 ```
-## Step3: 编写mod.rs导出root
-
+## Step3: 编写mod.gen导出root
+在`.gen`文件中如果直接编写Rust代码需要使用`<script>`标签进行包裹
 ```rust
 <script>
 pub mod root;
@@ -87,12 +87,12 @@ pub mod root;
 
 是GenUI的编译入口，提供编译指向的能力
 
-- 在这个实例中，我们通过`app()`函数创建一个App编译器实例，指定编译底层目标为Makepad平台
-- 创建`makepad-widgets`依赖并指定使用本地Git库作为依赖地址
-- 设置目标入口文件的文件名字为`app`，这会让最终Makepad的入口为`app.rs`
-- 指定`E:/Rust/try/makepad/Gen-UI/examples/gen_makepad_simple/ui/views/root.gen`这个文件作为UI的根文件(通过这种方式，来切换多个UI根)
-- `add_dep()`方法将依赖添加到编译器中
-- 调用`build()`方法进行编译
+- 使用`Target::makepad()`构建了一个Makepad Plugin Config Builder，这最终指定编译底层目标为Makepad平台
+  - 使用`entry`方法设置makepad的App入口文件为`app.rs`
+  - 使用`root`方法指定`E:/Rust/try/makepad/Gen-UI/examples/gen_makepad_simple/ui/views/root.gen`这个文件作为UI的根文件(通过这种方式，来切换多个UI根)
+  - `add_dep()`方法将依赖添加到编译器中, `local`指定了`makepad-widgets`这个库依赖本地的位置
+  - 最终调用`build`方法返回一个最终构建完成的compiler
+- 使用`app()`函数创建一个App编译器实例并借助上方构建的compiler作为编译插件
 - 调用`run()`方法启动编译器
 
 ```rust

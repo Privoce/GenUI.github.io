@@ -32,13 +32,13 @@ import!{
   #main_window{
     width: Fill;
     height: Fill;
-    show_bg: true;
-    draw_bg: #1C2128;
+    background_visible: true;
+    background_color: #1C2128;
     flow: Down;
-    inner_size: 600.0, 800.0;
-    position: 300.0;
+    window_size: 600.0 800.0;
+    window_position: 300.0;
     #main_view{
-      draw_bg: #FFF,
+      background_color: #FFF,
     }
   }
 }
