@@ -19,7 +19,7 @@ entry = "app"
 root = "E:/Rust/try/makepad/Gen-UI/examples/gen_makepad_simple/ui/views/root.gen"
 [makepad.dependencies] 
 makepad-widgets = { path = "E:/Rust/try/makepad/makepad/rik/makepad/widgets" }
-[wasm]
+[makepad.wasm]
 check = false
 fresh = true
 port = 8016

@@ -10,7 +10,7 @@ GenUI会将其处理为虚拟widget并自动生成Makepad的ForWidget（含有Co
 
 ![](../../../static/gen/tutorials/for.png)
 
-## Example
+## Example1
 
 ```rust
 <template>
@@ -25,6 +25,35 @@ GenUI会将其处理为虚拟widget并自动生成Makepad的ForWidget（含有Co
 
 <script>
 let list: Vec<String> = vec!["Hello".to_string(), "GenUI".to_string()];
+</script>
+
+<style>
+#ui{
+  #main_window{
+    width: Fill;
+    height: Fill;
+    flow: Down;
+    window_size: 600.0, 800.0;
+  }
+}
+</style>
+```
+
+## Example2
+
+```rust
+<template>
+  <component id="RootComponent" inherits="root">
+    <window id="main_window">
+        <view flow="Down" height="All" id="main_view">
+          <label :for="(index, value) in list" :text="value" font_size="16.0"></label>
+        </view>
+      </window>
+  </component>
+</template>
+
+<script>
+let list: [String; 2] = ["Hello".to_string(), "GenUI".to_string()];
 </script>
 
 <style>
