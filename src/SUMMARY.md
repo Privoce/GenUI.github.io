@@ -13,6 +13,7 @@
     - [GenUI Ignore](./gen/tutorials/ignore.md)
     - [Props Manual](./gen/tutorials/props/introduction.md)
       - [Type](./gen/tutorials/props/type.md)
+      - [Named](./gen/tutorials/props/named.md)
       - [Font](./gen/tutorials/props/font.md)
       - [Text](./gen/tutorials/props/text.md)
       - [Background](./gen/tutorials/props/background.md)
