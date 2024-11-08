@@ -25,9 +25,9 @@ GLink handles several user events such as hover and clicks.
 - `FocusLost`: Triggered when the link loses focus.
 
 ## Props
-|macro  |prop                    |description                                 |type              |default                |
-|-------|------------------------|--------------------------------------------|------------------|-----------------------|
-|live   |theme                   | Theme of the link                          |`Themes`          |`None`                 |
+|macro  |prop                     |description                                 |type              |default                |
+|-------|-------------------------|--------------------------------------------|------------------|-----------------------|
+|live   |theme                    | Theme of the link                          |`Themes`          |`None`                 |
 |live   |background_color         | Background color                           |`Option<Vec4>`    |`None`                 |
 |live   |hover_color              | Hover background color                     |`Option<Vec4>`    |`None`                 |
 |live   |focus_color              | Focus background color                     |`Option<Vec4>`    |`None`                 |
