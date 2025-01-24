@@ -1,29 +1,31 @@
-# Rspress Website
+# GenUI Book
 
-## Setup
+**👷The document is under rapid construction... Expected to be completed on January 30, 2025**
 
-Install the dependencies:
+## Guide
 
-```bash
-npm install
-```
+- [x] overview
+- [x] introduction
+- [x] tools
+- [x] plugins
 
-## Get Started
+## Tutorial
 
-Start the dev server:
+- [x] overview
+- [x] quick-start
+- [x] ract
+- [x] project-structure
+- [ ] template
+- [ ] style
+- [ ] script
 
-```bash
-npm run dev
-```
+## Config
 
-Build the website for production:
 
-```bash
-npm run build
-```
+## Components
 
-Preview the production build locally:
+## Examples
 
-```bash
-npm run preview
-```
+## Tools
+
+## API
