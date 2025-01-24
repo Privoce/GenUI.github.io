@@ -1,0 +1,38 @@
+.card {
+    width: 420px;
+    background-color: transparent;
+    border: 1px solid #ff8143;
+    border-radius: 6px;
+    padding: 12px;
+    transition: all 0.3s;
+    margin: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    flex: 1;
+    &-icon{
+        height: fit-content;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+    }
+    &-title{
+        font-size: 22px;
+        font-weight: 700;
+    }
+    &-desc{
+        font-size: 16px;
+        font-weight: 400;
+        margin-right: 24px;
+    }
+    &:hover{
+        box-shadow: 0 0 10px 2px #ff8143;
+        background-color: #ff55000b;
+        // .card-title{
+        //     color: #fff;
+        // }
+        // .card-desc{
+        //     color: #fff;
+        // }
+    }
+}

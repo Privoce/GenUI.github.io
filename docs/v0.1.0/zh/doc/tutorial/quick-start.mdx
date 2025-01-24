@@ -1,0 +1,237 @@
+import { Tab, Tabs } from 'rspress/theme';
+
+# 快速入门
+
+这是个快速入门示例，通过这个示例您可以快速了解GenUI的开发过程。
+
+## 环境说明
+
+|名称|版本|
+|--|--|
+|Mac|-|
+|Ract|0.1.0|
+
+> [!TIP]
+>
+> 更多Ract详细命令请参照: [Ract](/doc/tutorial/ract)
+
+## 安装并配置Ract
+
+`Ract`是您开启GenUI之路的第一步，请选择最新的版本进行下载
+
+> Releases: https://github.com/Privoce/ract/releases
+
+### 配置
+
+> [!WARNING]
+> 
+> 您的计算机可能会提示安全问题，请选择允许
+>
+> 当前Windows系统的打包问题尚未解决
+
+您可以通过以下方式将 ract 配置为全局命令：
+
+<Tabs>
+    <Tab label="Macos | Linux">
+        ```shell
+        # copy download ract to /usr/local/bin
+        sudo cp /path/to/download/ract /usr/local/bin/ract/ract
+
+        # add permission
+        sudo chmod 755 /usr/local/bin/ract
+        sudo chmod 755 /usr/local/bin/ract/ract
+
+        # confirm permission
+        sudo chown -R $(whoami) /usr/local/bin/ract
+
+        # echo to .zshrc
+        echo 'export PATH="/usr/local/bin/ract:$PATH"' >> ~/.zshrc
+
+        source ~/.zshrc
+        # get version
+        ract --version
+        ```
+    </Tab>
+    <Tab label="Windows">
+        ```
+        您只需将Ract设置到环境变量中即可
+        ```
+    </Tab>
+</Tabs>
+
+### 使用说明
+
+- 输入｜选择 结束需要使用`回车`表示完成当前操作
+- 当出现选项卡时使用`空格`表示增加或切换选项
+- 您需要使用`↑` `↓`键来切换选项卡
+- 您需要使用`←` `→`键来调整输入时光标的位置
+- 您需要输入`Yes`/`y`或`No`/`n`来表示是或否，当出现询问项时
+- 当出现错误或需要撤销重置或停止时请使用`ctrl + c`
+
+## 使用Ract创建项目 
+
+运行`ract create`命令，Ract会自动帮您检测环境，当所有工具链完整时，Ract会帮助您构建一个项目
+
+Ract会提示您相关的工具链的缺失，如果您的工具链不完整，可以直接使用`ract install`命令进行响应的安装
+
+> [!TIP]
+> 
+> 如果您是个新手，那么可能需要安装:
+>   - rustc，git，makepad
+>   - git
+>   - makepad
+>       - gen_components
+>       - wasm_build
+>       - default
+>
+> 你所要做的只是选择安装项即可
+
+### install的交互式对话框示例
+
+```shell
+🥳 Welcome to use ract Install!
+
+🔸 Select the tools to install:
+  - rustc
+  - cargo
+  - git
+  - makepad tools (default or custom options)
+? What tools you want to (re)install?
+> [ ] rustc|cargo
+  [ ] git
+  [x] makepad
+? What you need to (re)install?  
+  [x] gen_components
+  [ ] android_build
+  [ ] ios_build
+> [x] wasm_build
+  [ ] makepad_studio
+  [x] default
+```
+### create的交互式对话框示例
+
+```shell
+❤️ WELOCME TO GENUI, ract is a build tool for you!
+🔸 Current states:
+        🔻 Basic Tools
+                🔹 rustc: ✅ 
+                🔹 cargo: ✅ 
+                🔹 git: ✅ 
+        🔻 Makepad ToolChains:
+                🔹 makepad: ✅ 
+                🔹 gen-ui: ✅ 
+> Which framework template do you want to create? gen_ui
+> Input the name of the workspace: quickstart
+============ Project1 ======================
+> Which underlayer you want to select? Makepad
+> Project name: start
+> Authors name: 
+> Project description: This project is created by ract. Repo: https://github.com/Privoce/GenUI
+> Choose LICENSE: MIT
+> Version: 0.1.0
+> Keywords: front_end, ui
+> Do you confirm the project information? Yes
+> Do you want to add another project? No
+> Init as a git repository? No
+> Confirm All? Yes
+🛠️ ract is creating a new GenUI workspace `quickstart` in: /Users/shengyifei/projects/gen_ui/made_with_GenUI
+🚀 Create a new workspace project successfully!
+🚀 Create a new cargo project successfully!
+🎉 Your project has been created successfully!
+```
+
+## 启动项目
+
+在GenUI中，你需要使用`ract run`来启动项目
+
+> [!TIP]
+> 
+> 您无需`cd`到源项目代码目录，只需要`cd`到GenUI项目根目录即可
+>
+> GenUI项目是个典型的Rust Workspace项目，项目根目录就是Workspace目录
+>
+> 例如，您在`/Users/John/projects/gen_ui_project`处使用了`ract create`构建一个名叫`quickstart`的workspace。
+> 你只需要`cd`到`/Users/John/projects/gen_ui_project/quickstart`即可。然后直接运行`ract run`
+
+### 启动结果
+
+启动后，您会在终端中获得如下输入：
+
+```shell
+🥳 Welcome to use ract project runner!
+
+🔸 Now you can run makepad and gen_ui (Comming Soon) project
+❗️ Please make sure your project root has a `.ract` file to point the project kind
+🔸 If you do not know `.ract` file, please run `ract book` to search (Comming Soon)
+
+
+                                                      
+     _/_/_/  _/_/_/_/  _/      _/  _/    _/  _/_/_/   
+  _/        _/        _/_/    _/  _/    _/    _/      
+ _/  _/_/  _/_/_/    _/  _/  _/  _/    _/    _/       
+_/    _/  _/        _/    _/_/  _/    _/    _/        
+ _/_/_/  _/_/_/_/  _/      _/    _/_/    _/_/_/       
+                                                      
+
+GenUI-Compiler :: [2025-01-23 12:00:55] :: INFO >>> 🔧 Log Service is starting... Log entries will be available after the `app event::Change` occurs!
+    Creating binary (application) `src_gen_0` package
+note: see more `Cargo.toml` keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+GenUI-Compiler :: [2025-01-23 12:00:55] :: INFO >>> 🔧 Watcher Service started successfully! Ract is watching: `/Users/John/projects/gen_ui_project/quickstart/start`
+```
+
+此时Ract正在帮你监视并实时编译你的GenUI项目
+
+### 启动UI
+
+启动后，您会在workspace中获得一个名为`src_gen_0`的编译包，您需要新增一个终端并`cd`到这个目录并使用`cargo run`启动项目即可
+
+```shell
+cd src_gen_0
+
+cargo run
+```
+
+最终您将获取一个视图:
+
+![](/quickstart/makepad_genui.png)
+
+## 新增页面组件
+
+接下来，我们为`home`页面增加一个文字组件和多选框组件
+
+打开`start`目录中的`views`目录下的`home.gen`文件
+
+![](/quickstart/home.png)
+
+在`<template>`添加如下代码:
+
+```html title="home.gen"
+<label text="'Hello GenUI!!!'" font_size="16.0"></label>
+<checkbox text="'I am a checkbox'"></checkbox>
+```
+
+完整`<template>`如下代码所示：
+
+```html title="home.gen"
+<template>
+    <component name="Home" class="home_view">
+        <Hello id="header"></Hello>
+        <button id="my_btn" theme="Error" @clicked="click_btn()">
+            <label as_prop="slot" text="'Click Me!'" font_size="12.0"></label>
+        </button>
+        <label text="'Hello GenUI!!!'" font_size="16.0"></label>
+        <checkbox text="'I am a checkbox'"></checkbox>
+    </component>
+</template>
+```
+
+Ract进行增量编译后您会获得如下提示：
+
+```shell
+GenUI-Compiler :: [2025-01-23 12:10:00] :: INFO >>> File `/Users/John/projects/gen_ui_project/quickstart/start/views/home.gen` compiled successfully.
+```
+
+并且视图会进行自动更新：
+
+![](/quickstart/makepad_genui2.png)
+

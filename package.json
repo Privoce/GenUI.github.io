@@ -1,0 +1,17 @@
+{
+  "name": "gen_ui_book",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "rspress dev",
+    "build": "rspress build",
+    "preview": "rspress preview"
+  },
+  "dependencies": {
+    "rspress": "^1.38.0",
+    "rspress-plugin-align-image": "^0.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.17"
+  }
+}

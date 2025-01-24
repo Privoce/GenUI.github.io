@@ -1,0 +1,22 @@
+[
+    {
+        "type": "dir",
+        "name": "guide",
+        "label": "Guide"
+    },
+    {
+        "type": "dir",
+        "name": "tutorial",
+        "label": "Tutorial"
+    },
+    {
+        "type": "dir",
+        "name": "config",
+        "label": "Config"
+    },
+    {
+        "type": "dir",
+        "name": "components",
+        "label": "Components"
+    }
+]

@@ -1,0 +1,22 @@
+[
+    {
+        "type": "dir",
+        "name": "guide",
+        "label": "指南"
+    },
+    {
+        "type": "dir",
+        "name": "tutorial",
+        "label": "教程"
+    },
+    {
+        "type": "dir",
+        "name": "config",
+        "label": "配置"
+    },
+    {
+        "type": "dir",
+        "name": "components",
+        "label": "组件"
+    }
+]

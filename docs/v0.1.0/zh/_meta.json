@@ -1,0 +1,22 @@
+[
+  {
+    "text": "文档",
+    "link": "/doc/guide/overview",
+    "activeMatch": "/doc/"
+  },
+  {
+    "text": "工具",
+    "link": "/tools/overview",
+    "activeMatch": "/tools/"
+  },
+  {
+    "text": "示例",
+    "link": "/examples/overview",
+    "activeMatch": "/examples/"
+  },
+  {
+    "text": "API",
+    "link": "/api/",
+    "activeMatch": "/api/"
+  }
+]

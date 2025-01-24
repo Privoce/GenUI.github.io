@@ -1,0 +1,42 @@
+# 项目结构
+
+GenUI项目采用典型的Rust Workspace结构，由多个子项目组成。以下是项目目录及其功能的描述：
+
+> [!TIP]
+> 以下内容符号说明:
+> - `#`: 描述符，具体名称未知，例如`#workspace`表示使用者自己创建的某个workspace项目的项目名
+> - `[]`: 表示可选
+> 
+> 关于文件配置:
+> - `.ract`: [`.ract`配置说明]()
+> - `gen_ui.toml`: [`gen_ui.toml`配置说明]()
+
+
+```txt title="workspace"
+#workspace
+│
+├── #source_project            // 源代码目录
+│   ├── src/                   // Rust源代码目录
+│   │   └── main.rs            // 项目入口文件（通常为空）
+│   ├── resources/             // 静态资源
+│   ├── views/                 // 主页文件目录
+│   │   ├── root.gen           // UI入口文件
+│   │   ├── home.gen           // Home 页面
+│   │   └── mod.gen            // 页面导出文件
+│   ├── components/            // 组件文件目录
+│   │   ├── hello.gen          // Hello 组件
+│   │   ├── easy.gen           // Easy 组件
+│   │   └── mod.gen            // 组件导出文件
+│   ├── .gen_ui_cache/         // 缓存文件
+│   ├── Cargo.toml             // Rust项目配置文件
+│   └── gen_ui.toml            // GenUI项目配置文件
+│
+├── #compiled_project           // 编译结果包
+│
+├── .ract                      // Ract 配置文件
+├── Cargo.toml                 // Workspace 配置文件
+├── Cargo.lock                 // Dependency lock 文件
+├── [.gitignore]               // gitignore (可选)
+└── [LICENSE]                  // 项目许可文件（可选）
+```
+

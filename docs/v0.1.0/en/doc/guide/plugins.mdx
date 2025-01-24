@@ -1,0 +1,133 @@
+# Plugins (dependencies)
+
+This document introduces the plugins involved in the development of GenUI and how to configure them. Plugins play an important role in extending the functionality of GenUI, providing developers with a more flexible development experience.
+
+## Plugin Overview
+
+The plugins here refer to the dependency libraries required in the development of GenUI. The official plugins are stored in the [GenUI Plugins repository](https://github.com/Privoce/genui_plugins).
+
+The current official plugins include:
+
+- `gen_makepad_http`: A plugin that provides HTTP network request support.
+
+## Plugin Structure
+
+In the GenUI project, plugins consist of the following two parts:
+
+1. **Plugin source code**
+
+- Responsible for implementing the specific functional logic of the plugin.
+
+2. **Dynamic loading configuration (`token.toml` file)**
+
+- The configuration file describes the plugin's metadata and dynamic enhancement logic.
+
+### Dynamic loading configuration
+
+Each plugin needs to include a file called `token.toml`. The GenUI compiler provides syntax enhancements for Rust scripts by dynamically loading this file.
+
+### Example Configuration File
+
+Here is an example of a complete `token.toml` configuration file:
+
+```toml title="token.toml"
+[plugin]
+name = "gen_makepad_http"
+authors = ["syf<syf20020816@outlook.com>"]
+version = "0.1.0"
+description = "http support for makepad"
+category = "network"
+repo = { git = "https://github.com/Privoce/genui_plugins/tree/main/projects/gen_makepad_http" }
+
+[macros]
+http_get = { category = "prop_macro", stmts = 'if mac . ident == "http_get" { mac . tokens . push_str (", cx") ; return true; }' }
+http_post = { category = "prop_macro", stmts = 'if mac . ident == "http_post" { mac . tokens . push_str (", cx") ; return true; }' }
+http_put = { category = "prop_macro", stmts = 'if mac . ident == "http_put" { mac . tokens . push_str (", cx") ; return true; }' }
+http_delete = { category = "prop_macro", stmts = 'if mac . ident == "http_delete" { mac . tokens . push_str (", cx") ; return true; }' }
+http_patch = { category = "prop_macro", stmts = 'if mac . ident == "http_patch" { mac . tokens . push_str (", cx") ; return true; }' }
+
+[dependencies]
+serde = "1.0.217"
+lazy_static = "1.5.0"
+serde_json = "1.0.135"
+```
+
+## Detailed explanation of configuration items
+
+### Basic plugin configuration
+
+The following is the specific configuration of the `[plugin]` section in the `token.toml` file:
+
+```toml
+[plugin]
+name = "gen_makepad_http"
+authors = ["syf<syf20020816@outlook.com>"]
+version = "0.1.0"
+description = "http support for makepad"
+category = "network"
+repo = { git = "https://github.com/Privoce/genui_plugins/tree/main/projects/gen_makepad_http" }
+```
+
+| Field        | Type        |        Description                |
+|--------------|-------------|-----------------------------------|
+| `name` | `String` | Plugin name (unique identifier).           |
+| `authors` | `Vec<String>` | Plugin author list.                |
+| `version` | `String` | Plugin version number.                  |
+| `description`| `String` | Plugin functional description.       |
+| `category` | `String` | Plugin category (such as network, UI, etc.). |
+| `repo` | `Object` | Plugin code repository information.        |
+
+### Dynamic code block
+
+The `[macros]` section defines the dynamic code block of the plugin. When the GenUI compiler encounters the specified macro, it will call the corresponding code for processing.
+
+#### Example
+
+```toml
+[macros]
+http_get = {
+    category = "prop_macro",
+    stmts = 'if mac . ident == "http_get" { mac . tokens . push_str (", cx") ; return true; }'
+}
+```
+
+| Field | Type | Description |
+|--------------|-------------|-----------------------------------|
+| `category` | `String` | Indicates the category of the macro, such as `prop_macro`. |
+| `stmts` | `String` | Dynamic code block used to process the logic of the macro. |
+
+**Functional Description**:
+When the compiler encounters the `http_get!` macro in the script, it will execute the code in `stmts` for dynamic processing. The purpose of the above code is to expand a `cx` parameter to the syntax tree (tt) inside the macro, and return `true` if the processing is successful.
+
+### Plugin Dependencies
+
+The `[dependencies]` section declares the dependencies of the plugin.
+
+#### Example
+
+```toml
+[dependencies]
+serde = "1.0.217"
+lazy_static = "1.5.0"
+serde_json = "1.0.135"
+```
+
+| Field | Type | Description |
+|---------------|-------------|-----------------------------------|
+| `serde` | `String` | Library for serialization and deserialization. |
+| `lazy_static` | `String` | Library for defining static variables. |
+| `serde_json` | `String` | Library for processing JSON data. |
+
+## Notes on using plugins
+
+1. **Ensure the completeness of the plugin configuration file**:
+- `token.toml` must contain `[plugin]`, `[macros]`, and `[dependencies]` sections.
+
+2. **Version management**:
+- Ensure that the versions of the plugin and its dependencies are compatible with the version of the project.
+
+3. **Correctness of dynamic code blocks**:
+- Ensure that the macro processing logic (`stmts`) meets the project requirements to avoid potential compilation errors.
+
+Through the above configuration and usage instructions, developers can efficiently integrate and use GenUI's plugin system.
+

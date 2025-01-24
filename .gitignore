@@ -16,3 +16,8 @@ Cargo.lock
 /book/*
 
 **/.DS_Store
+
+/doc_build
+/node_modules
+
+package-lock.json

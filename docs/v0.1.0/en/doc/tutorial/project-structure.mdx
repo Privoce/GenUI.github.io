@@ -1,0 +1,41 @@
+# Project Structure
+
+The GenUI project adopts a typical Rust Workspace structure, consisting of multiple sub-projects. The following is a description of the project directory and its functions:
+
+> [!TIP]
+> The following content symbols are explained:
+> - `#`: Descriptor, the specific name is unknown, for example, `#workspace` means the project name of a workspace project created by the user
+> - `[]`: means optional
+> 
+> About file configuration:
+> - `.ract`: [`.ract` configuration]()
+> - `gen_ui.toml`: [`gen_ui.toml` configuration]()
+
+
+```txt title="workspace"
+#workspace
+│
+├── source_project             // Source code package
+│   ├── src/                   // Rust source code files
+│   │   └── main.rs            // Project entry file (usually empty)
+│   ├── resources/             // Static resources
+│   ├── views/                 // Main page files
+│   │   ├── root.gen           // UI entry file
+│   │   ├── home.gen           // Home page
+│   │   └── mod.gen            // Page export mod file
+│   ├── components/            // Component files
+│   │   ├── hello.gen          // Hello component
+│   │   ├── easy.gen           // Easy component
+│   │   └── mod.gen            // Component export mod file
+│   ├── .gen_ui_cache/         // Cache files
+│   ├── Cargo.toml             // Rust package configuration file
+│   └── gen_ui.toml            // GenUI project configuration file
+│
+├── compiled_project           // Compiled result package
+│
+├── .ract                      // Ract configuration file
+├── Cargo.toml                 // Workspace configuration file
+├── Cargo.lock                 // Dependency lock file
+├── [.gitignore]               // gitignore (optional)
+└── [LICENSE]                  // Project license file (optional)
+```

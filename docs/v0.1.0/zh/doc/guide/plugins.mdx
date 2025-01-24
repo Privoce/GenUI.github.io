@@ -1,0 +1,131 @@
+# 插件（依赖）
+
+本文档介绍了 GenUI 开发过程中涉及的插件及其配置方式。插件在 GenUI 中承担扩展功能的重要角色，为开发者提供更加灵活的开发体验。
+
+## 插件概述
+
+这里的插件指的是在 GenUI 开发过程中所需的依赖库。官方提供的插件统一存放在 [GenUI Plugins 仓库](https://github.com/Privoce/genui_plugins)。
+
+当前官方插件包括：
+
+- `gen_makepad_http`: 提供 HTTP 网络请求支持的插件。
+
+## 插件结构
+
+在 GenUI 项目中，插件由以下两部分组成：
+
+1. **插件源代码**
+   - 负责实现插件的具体功能逻辑。
+
+2. **动态加载配置（`token.toml` 文件）**
+   - 配置文件描述了插件的元数据以及动态增强逻辑。
+
+### 动态加载配置
+
+每个插件都需要包含一个名为 `token.toml` 的文件。GenUI 编译器通过动态加载该文件为 Rust 脚本提供语法增强。
+
+### 示例配置文件
+
+以下是一个完整的 `token.toml` 配置文件示例：
+
+```toml title="token.toml"
+[plugin]
+name = "gen_makepad_http"
+authors = ["syf<syf20020816@outlook.com>"]
+version = "0.1.0"
+description = "http support for makepad"
+category = "network"
+repo = { git = "https://github.com/Privoce/genui_plugins/tree/main/projects/gen_makepad_http" }
+
+[macros]
+http_get = { category = "prop_macro", stmts = 'if mac . ident == "http_get" { mac . tokens . push_str (", cx") ; return true; }' }
+http_post = { category = "prop_macro", stmts = 'if mac . ident == "http_post" { mac . tokens . push_str (", cx") ; return true; }' }
+http_put = { category = "prop_macro", stmts = 'if mac . ident == "http_put" { mac . tokens . push_str (", cx") ; return true; }' }
+http_delete = { category = "prop_macro", stmts = 'if mac . ident == "http_delete" { mac . tokens . push_str (", cx") ; return true; }' }
+http_patch = { category = "prop_macro", stmts = 'if mac . ident == "http_patch" { mac . tokens . push_str (", cx") ; return true; }' }
+
+[dependencies]
+serde = "1.0.217"
+lazy_static = "1.5.0"
+serde_json = "1.0.135"
+```
+
+## 配置项详解
+
+### 插件基础配置
+
+以下是 `token.toml` 文件中 `[plugin]` 部分的具体配置：
+
+```toml
+[plugin]
+name = "gen_makepad_http"
+authors = ["syf<syf20020816@outlook.com>"]
+version = "0.1.0"
+description = "http support for makepad"
+category = "network"
+repo = { git = "https://github.com/Privoce/genui_plugins/tree/main/projects/gen_makepad_http" }
+```
+
+| 字段         | 类型        | 说明                              |
+|--------------|-------------|-----------------------------------|
+| `name`       | `String`    | 插件名称（唯一标识）。            |
+| `authors`    | `Vec<String>` | 插件作者列表。                    |
+| `version`    | `String`    | 插件版本号。                      |
+| `description`| `String`    | 插件的功能描述。                  |
+| `category`   | `String`    | 插件分类（如网络、UI 等）。       |
+| `repo`       | `Object`    | 插件的代码仓库信息。              |
+
+### 动态代码块
+
+`[macros]` 部分定义了插件的动态代码块，当 GenUI 编译器遇到指定的宏时，会调用相应的代码进行处理。
+
+#### 示例
+
+```toml
+[macros]
+http_get = {
+    category = "prop_macro",
+    stmts = 'if mac . ident == "http_get" { mac . tokens . push_str (", cx") ; return true; }'
+}
+```
+
+| 字段         | 类型        | 说明                              |
+|--------------|-------------|-----------------------------------|
+| `category`   | `String`    | 表示宏的类别，例如 `prop_macro`。  |
+| `stmts`      | `String`    | 动态代码块，用于处理宏的逻辑。    |
+
+**功能说明**：
+当编译器在脚本中遇到 `http_get!` 宏时，会执行 `stmts` 中的代码进行动态处理。上述代码的作用是向宏内部的语法树（tt）扩展一个 `cx` 参数，若处理成功，则返回 `true`。
+
+### 插件依赖
+
+`[dependencies]` 部分声明了插件的依赖项。
+
+#### 示例
+
+```toml
+[dependencies]
+serde = "1.0.217"
+lazy_static = "1.5.0"
+serde_json = "1.0.135"
+```
+
+| 字段          | 类型        | 说明                              |
+|---------------|-------------|-----------------------------------|
+| `serde`       | `String`    | 用于序列化和反序列化的库。       |
+| `lazy_static` | `String`    | 用于定义静态变量的库。           |
+| `serde_json`  | `String`    | 用于处理 JSON 数据的库。         |
+
+## 使用插件的注意事项
+
+1. **确保插件配置文件完整性**：
+   - `token.toml` 必须包含 `[plugin]` ， `[macros]` 和 `[dependencies]` 部分。
+
+2. **版本管理**：
+   - 确保插件及其依赖的版本与项目的版本兼容。
+
+3. **动态代码块的正确性**：
+   - 确保宏处理逻辑（`stmts`）符合项目需求，避免潜在的编译错误。
+
+通过以上配置和使用说明，开发者可以高效地集成并使用 GenUI 的插件系统。
+
