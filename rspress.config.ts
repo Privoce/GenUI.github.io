@@ -3,6 +3,7 @@ import { defineConfig } from "rspress/config";
 import alignImage from "rspress-plugin-align-image";
 
 export default defineConfig({
+  base:"/genui/",
   root: path.join(__dirname, "docs"),
   title: "GenUI Book",
   description: "A book for GenUI",
