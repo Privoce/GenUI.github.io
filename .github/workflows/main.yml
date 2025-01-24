@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main, preview]
+    branches: [main]
 
   workflow_dispatch:
 
@@ -35,7 +35,7 @@ jobs:
           cache: npm
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        if: github.repository_owner == 'syf20020816'
+        if: github.repository_owner == 'privoce'
       - name: Install dependencies
         run: npm install
       - name: Build with Rspress
