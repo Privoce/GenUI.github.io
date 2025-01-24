@@ -1,10 +1,11 @@
 import Container from "@theme/components/Container";
 import { Badge } from '@theme';
+import { normalizeImagePath } from 'rspress/runtime';
 
 # 介绍 
 
 <Container>
-    <img src="/genui.png" height="60px" width="60px" />
+    <img src={normalizeImagePath('/genui.png')} height="60px" width="60px" />
 </Container>
 
 [GenUI](https://github.com/Privoce/GenUI)是一个创新的SFP前端框架，使用Rust语言开发，最初受到Vue3和Makepad的启发。旨在帮助用户更有效地使用Rust编写前端项目。
