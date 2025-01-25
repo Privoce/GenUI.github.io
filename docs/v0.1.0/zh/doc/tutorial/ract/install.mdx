@@ -1,0 +1,84 @@
+import { Tab, Tabs } from 'rspress/theme';
+
+# 安装和配置
+
+当前`Ract`已经发布到[Crate.io](https://crates.io/)和[Github](https://github.com/)中，你可以任选一种安装方式
+
+## Github Releases
+
+请在[Ract Releases](https://github.com/Privoce/ract/releases)中选择最新的版本并对应您的操作系统进行安装
+
+![](/ract/install_type.png)
+
+> [!TIP]
+> 
+> 若没有对应的操作系统请选择源码包并安装`Rust toolchain`自行编译
+>
+> 其中linux对应`Ubuntu`
+
+> [!WARNING]
+> 
+> 您的计算机可能会提示安全问题，请选择允许
+
+您可以通过以下方式将 ract 配置为全局命令：
+
+<Tabs>
+    <Tab label="Macos | Linux">
+        ```shell
+        # copy download ract to /usr/local/bin
+        sudo cp /path/to/download/ract /usr/local/bin/ract/ract
+
+        # add permission
+        sudo chmod 755 /usr/local/bin/ract
+        sudo chmod 755 /usr/local/bin/ract/ract
+
+        # confirm permission
+        sudo chown -R $(whoami) /usr/local/bin/ract
+
+        # echo to .zshrc
+        echo 'export PATH="/usr/local/bin/ract:$PATH"' >> ~/.zshrc
+
+        # fresh zshrc
+        source ~/.zshrc
+
+        # get version
+        ract --version
+        ```
+    </Tab>
+    <Tab label="Windows">
+        ### 下载并将修改名称
+        
+        当您完成下载后请将`ract_windows_gnu.exe`放置到某个目录中并修改名称为`ract.exe`
+
+        ### 设置Ract到环境变量
+        进入系统环境变量选择`Path`并新增一条`ract.exe`所在的目录地址
+
+        例如：ract的地址为`E://ract/ract.exe`，那么新增的环境变量地址为`E://ract`或`E:\ract`
+        ![](/ract/windows_env.png)
+
+        设置完成后进入`powershell`，输入`ract`相关命令进行验证
+        
+        ```shell
+        ract --version
+        ```
+    </Tab>
+</Tabs>
+
+
+## Crate.io
+
+我们已经发布到`Crate.io`上，所以您也可以直接使用cargo进行安装
+
+> [!NOTE]
+>
+> 虽然在`Crate.io`上您可能发现当前的`Ract`版本为`v0.1.2`但实际上就是Github上发布的`v0.1.1`
+
+```shell
+cargo install ract
+```
+
+这十分简单对吧，如果您正常安装了`rust toolchain`那么这一切都会是这样的，接下来您就可以直接进行使用
+
+```shell
+ract --version
+```

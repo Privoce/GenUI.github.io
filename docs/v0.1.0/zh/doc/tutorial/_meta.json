@@ -1,9 +1,37 @@
 [
-    "overview",
-    "quick-start",
-    "ract",
-    "project-structure",
-    "template",
-    "style",
-    "script"
+    {
+        "type": "file",
+        "name": "overview",
+        "label": "总览"
+    },
+    {
+        "type": "file",
+        "name": "quick-start",
+        "label": "快速入门"
+    },
+    {
+        "type": "dir",
+        "name": "ract",
+        "label": "Ract工具"
+    },
+    {
+        "type": "file",
+        "name": "project-structure",
+        "label": "项目结构"
+    },
+    {
+        "type": "file",
+        "name": "template",
+        "label": "模板"
+    },
+    {
+        "type": "file",
+        "name": "style",
+        "label": "样式"
+    },
+    {
+        "type": "file",
+        "name": "script",
+        "label": "脚本"
+    }
 ]

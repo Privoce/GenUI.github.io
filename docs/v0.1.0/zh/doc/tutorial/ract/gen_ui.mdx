@@ -1,0 +1,79 @@
+# Ract for GenUI
+
+
+## `create` - 创建GenUI或Makepad项目
+
+Ract 将根据用户输入的配置构建 **Makepad** 或​​ **GenUI** 项目模板
+
+**create 将帮助您检查当前环境状态**
+
+```bash
+ract create
+```
+
+交互式对话框示例： 
+
+```plaintext
+❤️ WELOCME TO GENUI, ract is a build tool for you!
+
+> Which project you want to create? gen_ui
+> Project name: test1
+> Authors name: John
+> ...
+🎉 Your project has been created successfully!
+```
+
+---
+
+## `run` - 运行项目
+
+运行**Makepad**或**GenUI**项目。
+
+```bash
+ract run
+```
+
+---
+
+## `add` - 添加开发插件
+
+---
+
+## `wasm` - 在浏览器中运行WASM项目
+直接从 CLI 构建并运行 WASM 项目。
+
+```bash
+ract wasm
+```
+
+交互式对话框示例：  
+```plaintext
+🥳 Welcome to use ract wasm!
+
+🔸 Port for the web studio 8888
+📦 wasm is being packaged
+🚀 wasm is being started...
+Starting webserver on 127.0.0.1:8888
+```
+
+---
+
+## `pkg` - 打包项目  
+使用“cargo-packager”打包项目。
+
+```bash
+# 进入编译后的包
+cd src_gen_0
+
+ract pkg
+```
+
+交互式对话框示例： 
+```plaintext
+🥳 Welcome to use ract packager!
+
+🔸 gpiler will check and install `cargo-packager` if not present.
+🔸 Basic packaging configuration is auto-generated.
+? Select how to package the project: init
+🎉 Package resources have been generated!
+```

@@ -1,0 +1,101 @@
+# 基础使用
+
+> [!NOTE]
+> 
+> 无论是 Makepad 还是 GenUI，`init`、`check`、`install`、`config`、`run`、`wasm` 命令的用法都是一样的
+>
+> 你只需要关注：`create`、`studio`、`pkg`
+>
+> 而且 `init`、`check`、`config` 都是自动的
+
+## `init` - 初始化Ract 
+
+初始化或重置 CLI。Ract 将生成： 
+
+1. `.env`  
+2. `chain/`  
+   - `chain/env.toml`  
+
+```bash
+ract init
+```
+
+输出:  
+```plaintext
+🚀 Start to init ract...
+✅ Chain init successfully!
+🎉 Init ract successfully!
+```
+
+## `check` - 检查工具链
+
+检查是否安装了所需的工具和依赖项。选项包括：
+- **Basic**：[cargo、rustc、git]
+- **Underlayer**：[makepad (gen_ui、makepad)]
+- **All**：结合基本工具和底层工具。
+
+```bash
+ract check
+```
+
+交互式对话框示例：
+```plaintext
+🥳 Welcome to use ract checker!
+? Which you need to check?
+> Basic
+  Underlayer
+  All
+```
+
+
+## `install` - 安装工具链
+
+安装开发所需的工具和依赖项。可用选项：
+- **Rust 工具**：`rustc`、`cargo`
+- **版本控制**：`git`
+- **Makepad 专用工具**：包括 `gen_components`、`wasm_build` 等组件。
+
+```bash
+ract install
+```
+
+交互式对话框示例： 
+```plaintext
+🥳 Welcome to use ract Install!
+
+🔸 Select the tools to install:
+  - rustc
+  - cargo
+  - git
+  - makepad tools (default or custom options)
+? What tools you want to (re)install?
+> [ ] rustc|cargo
+  [ ] git
+  [x] makepad
+```
+
+## `config` - 配置CLI
+
+设置或更新环境变量和 CLI 配置。 
+
+> [!TIP]
+> 
+> 多数情况下，你无需进行相关配置，除非原先就带有Ract相关依赖需要进行特殊指向时
+
+```bash
+ract config
+```
+
+交互式对话框示例：  
+```plaintext
+🥳 Welcome to use ract config!
+
+🔸 env: Set the `path` for the chain env.toml file
+🔸 chain_env_toml: Set the rust dependency for GenUI toolchain
+
+> Which env file do you want to config? chain_env_toml
+> Get or Set Config? set
+> Which one do you want to config? makepad-widgets
+> Path: /Users/shengyifei/projects/makepad/makepad
+🎉 Config finish!
+```
