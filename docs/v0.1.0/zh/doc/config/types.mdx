@@ -1,0 +1,188 @@
+# 配置类型
+
+## `.ract`
+
+### `FrameworkType`
+
+- `"gen_ui"`
+- `"makepad"`
+
+#### 源码
+
+```rust
+#[derive(Debug, Clone, Copy, Default)]
+pub enum FrameworkType {
+    #[default]
+    GenUI,
+    Makepad,
+}
+```
+
+### `Member`
+
+```
+{
+    source = "需要编译的源项目",
+    target = "编译后的项目"
+}
+```
+
+#### 源码
+
+```rust
+#[derive(Debug, Clone)]
+pub struct Member {
+    pub source: PathBuf,
+    pub target: PathBuf,
+}
+```
+
+## `gen_ui.toml`
+
+### 源码
+
+```rust
+
+/// Compiler Config for gen_ui.toml
+/// ```toml
+/// [compiler]
+/// // see [Underlayer]
+/// [makepad]
+/// // see [MakepadConfig]
+/// ```
+#[derive(Debug)]
+pub struct Conf {
+    pub compiler: CompilerConf,
+    /// underlayer for makepad (current support)
+    pub underlayer: CompileUnderlayer,
+    /// genui plugins, each plugin has a token.toml file
+    pub plugins: Option<HashMap<String, PathBuf>>,
+}
+
+#[derive(Debug)]
+pub struct CompilerConf {
+    pub target: Underlayer,
+    pub logo: bool,
+    pub log_level: LogLevel,
+    pub excludes: Excludes,
+}
+
+#[derive(Debug, Clone, Copy, Default, PartialEq, Eq, ValueEnum)]
+pub enum Underlayer {
+    #[default]
+    Makepad,
+}
+
+#[derive(Debug, Clone, Copy, Default)]
+pub enum LogLevel {
+    #[default]
+    Info,
+    Debug,
+    Error,
+    Warn,
+    Trace,
+    Off,
+}
+
+/// # Gen Excludes
+/// These files and directories are excludesd by the compiler(watcher)
+/// Which need to write in `gen_ui.toml` file
+/// ## Example
+/// ```toml
+/// [compiler]
+/// excludes: ["Cargo.toml", "Cargo.lock", "src/main.rs", "target", ".gen_ui_cache"]
+/// ```
+/// ## Default Excludes
+/// ["Cargo.toml", "Cargo.lock", "target", ".gen_ui_cache", "gen_ui.toml", ".plugins"]
+#[derive(Debug, Clone)]
+pub struct Excludes(pub Vec<PathBuf>);
+
+#[derive(Debug, Clone)]
+pub struct Config {
+    /// entry file name, default is app
+    pub entry: Option<String>,
+    /// root path of the project
+    pub root: RootConf,
+    /// rust dependencies in Cargo.toml
+    /// it depends on the target
+    /// - makepad: makepad-widgets
+    /// > **you can add more other dependencies which you need**
+    pub dependencies: Option<Vec<RustDependence>>,
+    /// use wasm to run ?
+    /// makepad wasm
+    pub wasm: Option<WasmConf>,
+}
+
+#[derive(Debug, Clone)]
+pub struct RootConf {
+    // pub name: String,
+    pub path: PathBuf,
+    pub window: Prop<WindowProps>,
+}
+
+#[derive(Debug, Clone)]
+pub enum Props {
+    OsType(GOsType),
+    DerefWidget(ViewProps),
+    ShowTitle(bool),
+    ShowIcon(bool),
+    LastMousePos(DVec2),
+    MouseCursorSize(DVec2),
+    HideCaptionOnFullscreen(bool),
+    EventKey(bool),
+    WindowSize(WindowSize),
+}
+
+#[derive(Clone, Copy, PartialEq, Debug, Default)]
+pub enum GOsType {
+    Windows,
+    Mac,
+    #[default]
+    Linux,
+    Other,
+}
+
+#[derive(Debug, Clone)]
+pub struct DVec2 {
+    pub x: f64,
+    pub y: f64,
+}
+
+#[derive(Debug, Clone)]
+pub enum Props {
+    Theme(Themes),
+    BackgroundColor(MakepadColor),
+    HoverColor(MakepadColor),
+    FocusColor(MakepadColor),
+    BorderColor(MakepadColor),
+    BorderWidth(F32),
+    BorderRadius(F32),
+    Visible(bool),
+    BackgroundVisible(bool),
+    ShadowColor(MakepadColor),
+    SpreadRadius(F32),
+    BlurRadius(F32),
+    ShadowOffset(Vec2),
+    Cursor(MouseCursor),
+    AnimationKey(bool),
+    GrabKeyFocus(bool),
+    BlockSignalEvent(bool),
+    // MinWidth(f32),
+    // MinHeight(f32),
+    // MaxWidth(f32),
+    // MaxHeight(f32),
+    Walk(Walk),
+    Layout(Layout),
+    EventOrder(EventOrder),
+    DpiFactor(F64),
+    Optimize(ViewOptimize),
+    CaptureOverload(bool),
+    EventKey(bool),
+    BlockChildEvents(bool),
+}
+
+#[derive(Debug, Clone)]
+pub struct WindowSize {
+    pub inner_size: DVec2,
+}
+```

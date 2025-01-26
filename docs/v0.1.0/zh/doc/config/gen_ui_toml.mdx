@@ -1,0 +1,55 @@
+# Compiler Conf (gen_ui.toml)
+
+`gen_ui.toml`是`GenUI`项目的配置文件，它为编译器配置具体的项目信息和编译底层以及开发时插件。
+
+## 配置示例
+
+```toml title="gen_ui.toml"
+[compiler]
+target = "makepad"
+logo = true
+log_level = "info"
+excludes = ["Cargo.toml", "Cargo.lock", "target", ".gen_ui_cache", "gen_ui.toml", ".plugins"]
+
+[makepad]
+
+[makepad.root]
+path = "/Users/shengyifei/projects/gen_ui/made_with_GenUI/quickstart/start/views/root.gen"
+window = { height = "Fill", width = "Fill", flow = "Down", window_size = { inner_size = { x = 1080.0, y = 720.0 } } }
+
+[makepad.dependencies]
+makepad-widgets = { path = "/Users/shengyifei/projects/makepad/makepad/widgets" }
+
+[plugins]
+
+```
+
+## 配置说明
+
+### `[compiler]`
+
+|key|value type|description|
+|--|--|--|
+|`target`|`Underlayer`|编译底层|
+|`logo`|`bool`|是否显示GenUI Logo|
+|`log_level`|`LogLevel`|日志级别|
+|`excludes`|`Excludes`|需要被编译器排除的文件和目录|
+
+> - [Underlayer](/zh/doc/config/types#underlayer)
+> - [LogLevel](/zh/doc/config/types#log_level)
+> - [Excludes](/zh/doc/config/types#excludes)
+
+### `[makepad]`
+
+#### `[makepad.root]`
+
+|key|value type|description|
+|--|--|--|
+|`path`|`PathBuf`|UI根入口的地址|
+|`window`|`Prop<WindowProps>`|窗口配置属性|
+
+#### `[makepad.dependencies]`
+
+
+
+### `[plugins]`

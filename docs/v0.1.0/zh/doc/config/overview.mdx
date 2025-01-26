@@ -42,3 +42,24 @@ import Container from "@theme/components/Container";
         description="gen_ui.toml是GenUI项目的配置文件，它为编译器配置具体的项目信息和编译底层以及开发时插件。"
     />
 </Container>
+
+## 类型映射
+
+在GenUI项目中绝大多数都使用`toml`进行配置，由`Rust`类型对`toml`进行了类型映射
+
+| Rust | TOML | TOML FORMATTER |
+|--|--|--|
+| `String` |`String` | `"  "` |
+| `i_type` | `Integer` | `0` |
+| `u_type` | `Integer` | `0` |
+| `f32, f64`| `Float` | `0.0` |
+| `bool` | `Bool` | `true, false` |
+| `Vec<R>` | `Array<T>` | `[  ]` |
+| `enum (United)` | `String` | `"  "` |
+| `enum (Named)` | `Table` / `InlineTable` | `[[struct name]] {}` |
+| `enum (Unnamed)` | `Table` / `InlineTable` | `[[struct name]] {}` |
+| `struct` | `Table` / `InlineTable` | `[[struct name]] {}` |
+
+> [!TIP]
+>
+> `String`总是使用`snake name rule`
