@@ -1,3 +1,5 @@
+import { Tab, Tabs } from 'rspress/theme';
+
 # Compiler Conf (gen_ui.toml)
 
 `gen_ui.toml`是`GenUI`项目的配置文件，它为编译器配置具体的项目信息和编译底层以及开发时插件。
@@ -26,6 +28,14 @@ makepad-widgets = { path = "/Users/shengyifei/projects/makepad/makepad/widgets" 
 
 ## 配置说明
 
+|key|value type|description|
+|--|--|--|
+|`compiler`|`CompilerConf`|编译基本配置|
+|`underlayer`|`CompileUnderlayer`|编译底层配置(动态类型)|
+|`plugins`|`Option<HashMap<String, PathBuf>>`|GenUI插件|
+
+---
+
 ### `[compiler]`
 
 |key|value type|description|
@@ -35,21 +45,61 @@ makepad-widgets = { path = "/Users/shengyifei/projects/makepad/makepad/widgets" 
 |`log_level`|`LogLevel`|日志级别|
 |`excludes`|`Excludes`|需要被编译器排除的文件和目录|
 
-> - [Underlayer](/zh/doc/config/types#underlayer)
-> - [LogLevel](/zh/doc/config/types#log_level)
-> - [Excludes](/zh/doc/config/types#excludes)
+> - [`Underlayer`](/zh/doc/config/types#underlayer)
+> - [`LogLevel`](/zh/doc/config/types#log_level)
+> - [`Excludes`](/zh/doc/config/types#excludes)
 
-### `[makepad]`
+---
 
-#### `[makepad.root]`
+### underlayer
 
-|key|value type|description|
-|--|--|--|
-|`path`|`PathBuf`|UI根入口的地址|
-|`window`|`Prop<WindowProps>`|窗口配置属性|
+<Tabs>
+    <Tab label="makepad">
+        ### `[makepad]`
 
-#### `[makepad.dependencies]`
+        |key|value type|description|
+        |--|--|--|
+        |`entry`|`Option<String>`|入口文件名|
+        |`root`|`RootConf`|入口配置，包含UI入口地址和窗口属性|
+        |`dependencies`|`Option<Vec<RustDependence>>`|Rust依赖项|
+        |`wasm`|`Option<WasmConf>`|wasm相关配置(编译同步模式, 暂不支持)|
 
+        #### `entry`
 
+        - `Option<String>`
+
+        #### `[makepad.root]`
+
+        |key|value type|description|
+        |--|--|--|
+        |`path`|`PathBuf`|UI根入口的地址|
+        |`window`|`Prop<WindowProps>`|窗口配置属性|
+
+        > - [`WindowProps`](/zh/doc/config/types#window_props)
+
+        #### `[makepad.dependencies]`
+
+        这里使用`Option<Vec<RustDependence>>`类型
+
+        > - [`RustDependence`](https://doc.rust-lang.org/cargo/commands/cargo-add.html)
+
+        #### `[makepad.wasm]`
+
+        |key|value type|description|
+        |--|--|--|
+        |`fresh`|`bool`|是否需要在每次更新后重新编译|
+        |`port`|`Option<u16>`|端口 (默认8010)|
+    
+    </Tab>
+    <Tab label="其他暂无"></Tab>
+</Tabs>
+
+---
 
 ### `[plugins]`
+
+- `Option<HashMap<String, PathBuf>>`: 开发插件条目
+
+这个配置一般由`ract add`命令自动添加，除非您需要使用自己开发的本地插件，它的写法很统一，指向插件的`token.toml`所在的目录即可
+
+`plugin_name = ".plugins/plugin_name"`

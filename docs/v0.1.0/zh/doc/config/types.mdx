@@ -39,26 +39,9 @@ pub struct Member {
 
 ## `gen_ui.toml`
 
-### 源码
+### CompilerConf
 
 ```rust
-
-/// Compiler Config for gen_ui.toml
-/// ```toml
-/// [compiler]
-/// // see [Underlayer]
-/// [makepad]
-/// // see [MakepadConfig]
-/// ```
-#[derive(Debug)]
-pub struct Conf {
-    pub compiler: CompilerConf,
-    /// underlayer for makepad (current support)
-    pub underlayer: CompileUnderlayer,
-    /// genui plugins, each plugin has a token.toml file
-    pub plugins: Option<HashMap<String, PathBuf>>,
-}
-
 #[derive(Debug)]
 pub struct CompilerConf {
     pub target: Underlayer,
@@ -66,13 +49,34 @@ pub struct CompilerConf {
     pub log_level: LogLevel,
     pub excludes: Excludes,
 }
+```
 
+### Underlayer
+
+- `"makepad"`
+
+#### 源码
+
+```rust
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, ValueEnum)]
 pub enum Underlayer {
     #[default]
     Makepad,
 }
+```
 
+### LogLevel
+
+- `"info"`
+- `"debug"`
+- `"error"`
+- `"warn"`
+- `"trace"`
+- `"off"`
+
+#### 源码
+
+```rust
 #[derive(Debug, Clone, Copy, Default)]
 pub enum LogLevel {
     #[default]
@@ -83,7 +87,11 @@ pub enum LogLevel {
     Trace,
     Off,
 }
+```
 
+### Excludes
+
+```rust
 /// # Gen Excludes
 /// These files and directories are excludesd by the compiler(watcher)
 /// Which need to write in `gen_ui.toml` file
@@ -96,7 +104,11 @@ pub enum LogLevel {
 /// ["Cargo.toml", "Cargo.lock", "target", ".gen_ui_cache", "gen_ui.toml", ".plugins"]
 #[derive(Debug, Clone)]
 pub struct Excludes(pub Vec<PathBuf>);
+```
 
+### MakepadConfig
+
+```rust
 #[derive(Debug, Clone)]
 pub struct Config {
     /// entry file name, default is app
@@ -112,25 +124,52 @@ pub struct Config {
     /// makepad wasm
     pub wasm: Option<WasmConf>,
 }
+```
 
+### RootConf
+
+```rust
 #[derive(Debug, Clone)]
 pub struct RootConf {
     // pub name: String,
     pub path: PathBuf,
     pub window: Prop<WindowProps>,
 }
+```
+### WindowProps
 
+也许对于您来说源码过于复杂，您可以直接看如下配置示例，这是最常用的配置：
+
+```
+{
+    os_type = "mac",
+    show_title = true,
+    window_size = {
+        inner_size = {x = 1080.0, y = 720.0}
+    }
+}
+```
+
+#### 源码
+
+> [!TIP]
+> 
+> 我们隐藏了一些您不该配置的属性
+
+```rust
 #[derive(Debug, Clone)]
 pub enum Props {
     OsType(GOsType),
     DerefWidget(ViewProps),
     ShowTitle(bool),
     ShowIcon(bool),
-    LastMousePos(DVec2),
-    MouseCursorSize(DVec2),
     HideCaptionOnFullscreen(bool),
-    EventKey(bool),
     WindowSize(WindowSize),
+}
+
+#[derive(Debug, Clone)]
+pub struct WindowSize {
+    pub inner_size: DVec2,
 }
 
 #[derive(Clone, Copy, PartialEq, Debug, Default)]
@@ -167,10 +206,6 @@ pub enum Props {
     AnimationKey(bool),
     GrabKeyFocus(bool),
     BlockSignalEvent(bool),
-    // MinWidth(f32),
-    // MinHeight(f32),
-    // MaxWidth(f32),
-    // MaxHeight(f32),
     Walk(Walk),
     Layout(Layout),
     EventOrder(EventOrder),
@@ -179,10 +214,5 @@ pub enum Props {
     CaptureOverload(bool),
     EventKey(bool),
     BlockChildEvents(bool),
-}
-
-#[derive(Debug, Clone)]
-pub struct WindowSize {
-    pub inner_size: DVec2,
 }
 ```
