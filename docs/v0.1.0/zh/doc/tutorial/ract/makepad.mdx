@@ -1,16 +1,15 @@
 # Ract for Makepad
 
+## `create` - 创建Makepad项目
 
-## `create` - 创建GenUI或Makepad项目
-
-Ract 将根据用户输入的配置构建 **Makepad** 或​​ **GenUI** 项目模板
+Ract 将根据用户输入的配置构建 **Makepad**项目模板
 
 **create 将帮助您检查当前环境状态**
 
 ```bash
 ract create
 ```
-Interactive dialog example:  
+交互式对话框示例：
 ```plaintext
 ❤️ WELOCME TO GENUI, ract is a build tool for you!
 
@@ -21,35 +20,31 @@ Interactive dialog example:
 🎉 Your project has been created successfully!
 ```
 
----
+## `run` - Run a Project  
 
-### `run` - Run a Project  
-
-Run **Makepad** or **GenUI** projects.  
+运行**Makepad**项目。
 
 ```bash
 ract run
 ```
 
----
+## `studio` - Launch Makepad Studio  
 
-### `studio` - Launch Makepad Studio  
-Start Makepad Studio for GUI projects.  
+启动 Makepad Studio 进行 GUI 项目。
 
 ```bash
 ract studio
 ```
 
----
+## `wasm` - Run WASM Project in Browser  
 
-### `wasm` - Run WASM Project in Browser  
-Build and run a WASM project directly from the CLI.  
+直接从 CLI 构建并运行 WASM 项目。
 
 ```bash
 ract wasm
 ```
 
-Interactive dialog example:  
+交互式对话框示例：
 ```plaintext
 🥳 Welcome to use ract wasm!
 
@@ -59,10 +54,9 @@ Interactive dialog example:
 Starting webserver on 127.0.0.1:8888
 ```
 
----
+## `pkg` - Package a Project  
 
-### `pkg` - Package a Project  
-Package a project using `cargo-packager`.  
+使用`cargo-packager`打包项目。
 
 ```bash
 # if is workspace
@@ -71,7 +65,7 @@ cd /target/makepad/project
 ract pkg
 ```
 
-Interactive dialog example:  
+交互式对话框示例：
 ```plaintext
 🥳 Welcome to use ract packager!
 

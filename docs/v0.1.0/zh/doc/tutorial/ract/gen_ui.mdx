@@ -1,9 +1,17 @@
 # Ract for GenUI
 
+> [!TIP]
+> 
+> 您无需`cd`到源项目代码目录，只需要`cd`到GenUI项目根目录即可
+>
+> GenUI项目是个典型的Rust Workspace项目，项目根目录就是Workspace目录
+>
+> 例如，您在`/Users/John/projects/gen_ui_project`处使用了`ract create`构建一个名叫`quickstart`的workspace。
+> 你只需要`cd`到`/Users/John/projects/gen_ui_project/quickstart`即可。然后直接运行`ract run`
 
-## `create` - 创建GenUI或Makepad项目
+## `create` - 创建GenUI项目
 
-Ract 将根据用户输入的配置构建 **Makepad** 或​​ **GenUI** 项目模板
+Ract将根据用户输入的配置构建**GenUI** 项目模板
 
 **create 将帮助您检查当前环境状态**
 
@@ -16,30 +24,33 @@ ract create
 ```plaintext
 ❤️ WELOCME TO GENUI, ract is a build tool for you!
 
-> Which project you want to create? gen_ui
-> Project name: test1
+> Which framework template do you want to create? gen_ui
+> Input the name of the workspace: quickstart
+============ Project1 ======================
+> Which underlayer you want to select? Makepad
+> Project name: start
 > Authors name: John
 > ...
 🎉 Your project has been created successfully!
 ```
 
----
-
 ## `run` - 运行项目
 
-运行**Makepad**或**GenUI**项目。
+运行**GenUI**项目。
 
 ```bash
 ract run
 ```
 
----
-
 ## `add` - 添加开发插件
 
----
+```bash
+# add gen_makepad_http for network http(s)
+ract add gen_makepad_http
+```
 
 ## `wasm` - 在浏览器中运行WASM项目
+
 直接从 CLI 构建并运行 WASM 项目。
 
 ```bash
@@ -56,10 +67,8 @@ ract wasm
 Starting webserver on 127.0.0.1:8888
 ```
 
----
-
 ## `pkg` - 打包项目  
-使用“cargo-packager”打包项目。
+使用`cargo-packager`打包项目。
 
 ```bash
 # 进入编译后的包

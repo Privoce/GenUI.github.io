@@ -2,7 +2,25 @@ import { Tab, Tabs } from 'rspress/theme';
 
 # 安装和配置
 
-当前`Ract`已经发布到[Crate.io](https://crates.io/)和[Github](https://github.com/)中，你可以任选一种安装方式
+当前`Ract`已经发布到[crate.io](https://crates.io/)和[Github](https://github.com/)中，你可以任选一种安装方式
+
+## crate.io
+
+我们已经发布到`crate.io`上，所以您也可以直接使用cargo进行安装
+
+> [!NOTE]
+>
+> 虽然在`crate.io`上您可能发现当前的`Ract`版本为`v0.1.2`但实际上就是Github上发布的`v0.1.1`
+
+```shell
+cargo install ract
+```
+
+这十分简单对吧，如果您正常安装了`rust toolchain`那么这一切都会是这样的，接下来您就可以直接进行使用
+
+```shell
+ract --version
+```
 
 ## Github Releases
 
@@ -63,22 +81,3 @@ import { Tab, Tabs } from 'rspress/theme';
         ```
     </Tab>
 </Tabs>
-
-
-## Crate.io
-
-我们已经发布到`Crate.io`上，所以您也可以直接使用cargo进行安装
-
-> [!NOTE]
->
-> 虽然在`Crate.io`上您可能发现当前的`Ract`版本为`v0.1.2`但实际上就是Github上发布的`v0.1.1`
-
-```shell
-cargo install ract
-```
-
-这十分简单对吧，如果您正常安装了`rust toolchain`那么这一切都会是这样的，接下来您就可以直接进行使用
-
-```shell
-ract --version
-```

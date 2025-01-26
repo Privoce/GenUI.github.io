@@ -1,0 +1,44 @@
+import MyLinkCard from "@theme/components/LinkCard";
+import Container from "@theme/components/Container";
+
+# 总览
+
+在配置部分我们会详细说明每个配置文件具体的信息和可配置的条目
+
+> [!TIP]
+>
+> 通常来说这些配置文件你极少需要进行手动修改
+
+## Ract
+
+<Container>
+    <MyLinkCard
+        href="/doc/config/env"
+        title=".env"
+        description=".env是Ract对于env.toml的指向文件"
+    />
+</Container>
+<Container>
+    <MyLinkCard
+        href="/doc/config/env"
+        title="env.toml"
+        description="env.toml是Ract的环境配置文件，由这个文件中的内容Ract可以找到使用者开发时的环境依赖项。"
+    />
+</Container>
+<Container>
+    <MyLinkCard
+        href="/doc/config/ract_toml"
+        title=".ract"
+        description=".ract是Ract编译器的配置文件，它使用toml格式。"
+    />
+</Container>
+
+## GenUI
+
+<Container>
+    <MyLinkCard
+        href="/doc/config/gen_ui_toml"
+        title="gen_ui.toml"
+        description="gen_ui.toml是GenUI项目的配置文件，它为编译器配置具体的项目信息和编译底层以及开发时插件。"
+    />
+</Container>
