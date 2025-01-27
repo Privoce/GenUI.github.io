@@ -1,0 +1,43 @@
+.color {
+  height: 120px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  border: 1px solid #ff8143;
+  box-shadow: 0 0 10px 2px #ff8143;
+  flex-wrap: wrap;
+  &-info{
+    padding: 0px 16px;
+    height: 36px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    h2 {
+        font-weight: 700;
+        font-size: 18px;
+        width: 100%;
+    }
+    h3 {
+        font-weight: 700;
+        font-size: 16px;
+    }
+  }
+  &-blocks{
+    margin-top: 8px;
+    height: 46px;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    &-item{
+        height: 100%;
+        width: 9.0909%;
+    }
+  }
+}

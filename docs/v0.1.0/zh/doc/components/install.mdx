@@ -1,0 +1,21 @@
+# 安装
+
+在`GenUI`项目中是无需手动对`GenUI Builtin Components`进行安装的，在使用`Ract`创建项目时这些配置都会被自动构建。
+
+## 配置说明
+
+您会在由`Ract`自动构建的`gen_ui.toml`文件中看到如下配置:
+
+```toml title="gen_ui.toml"
+[makepad.dependencies]
+gen_components = { path = "path/to/gen_components" }
+```
+
+> [!TIP]
+>
+> 若您未看到这个配置请借助`ract config`的`get`命令获取`gen_components`的目录并进行添加，
+> 并将这个问题发布到`GenUI`到`issue`或我们的Discord频道，我会尽快回复您
+>
+> 点击这里发布：
+> - [GenUI Issues](https://github.com/Privoce/GenUI/issues)
+> - [Discord](https://discord.gg/jVEJDhE75Y)
