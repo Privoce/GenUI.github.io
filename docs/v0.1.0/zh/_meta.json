@@ -5,6 +5,11 @@
     "activeMatch": "/doc/"
   },
   {
+    "text": "组件",
+    "link": "/components/overview",
+    "activeMatch": "/components/"
+  },
+  {
     "text": "工具",
     "link": "/tools/overview",
     "activeMatch": "/tools/"

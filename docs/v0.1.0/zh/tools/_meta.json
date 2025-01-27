@@ -1,4 +1,12 @@
 [
-    "overview"
-
+  {
+    "type": "file",
+    "name": "overview",
+    "label": "总览"
+  },
+  {
+    "type": "dir",
+    "name": "ract",
+    "label": "Ract"
+  }
 ]

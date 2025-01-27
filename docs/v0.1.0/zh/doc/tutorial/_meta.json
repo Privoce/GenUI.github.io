@@ -10,11 +10,6 @@
         "label": "快速入门"
     },
     {
-        "type": "dir",
-        "name": "ract",
-        "label": "Ract工具"
-    },
-    {
         "type": "file",
         "name": "project-structure",
         "label": "项目结构"
