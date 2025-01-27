@@ -1,0 +1,67 @@
+请帮我基于Rust的struct生成一个文档表格：
+pub enum Props {
+    Theme(Themes),
+    BackgroundColor(MakepadColor),
+    BackgroundVisible(bool),
+    HoverColor(MakepadColor),
+    FocusColor(MakepadColor),
+    ShadowColor(MakepadColor),
+    SpreadRadius(F32),
+    BlurRadius(F32),
+    ShadowOffset(Vec2),
+    BorderColor(MakepadColor),
+    BorderWidth(F32),
+    BorderRadius(F32),
+    Cursor(MouseCursor),
+    Visible(bool),
+    GrabKeyFocus(bool),
+    AnimationKey(bool),
+    Walk(Walk),
+    Layout(Layout),
+    EventKey(bool),
+}
+
+表格如下：
+| 名称                | 说明                                    | 类型           |
+
+如果遇到Walk或Layout需要改为：
+
+pub enum Walk {
+    AbsPos(DVec2),
+    Margin(Margin),
+    Width(Size),
+    Height(Size),
+}
+
+pub enum Layout {
+    Scroll(DVec2),
+    ClipX(bool),
+    ClipY(bool),
+    Padding(Padding),
+    Align(Align),
+    Flow(Flow),
+    Spacing(F64),
+}
+
+基于事件生成表格：
+
+impl_widget_event! {
+    ButtonEvent {
+        ButtonEvent::HoverIn => "GButtonHoverParam" => "hover_in",
+        ButtonEvent::HoverOut => "GButtonHoverParam" => "hover_out",
+        ButtonEvent::Clicked => "GButtonClickedParam" => "clicked",
+        ButtonEvent::Focus => "GButtonFocusParam" => "focus",
+        ButtonEvent::FocusLost => "GButtonFocusLostParam" => "focus_lost"
+    }
+}
+
+
+表格如下：
+
+| 名称                  | 说明            | 参数              |
+|-----------------------|-----------------|-------------------|
+
+注意：
+请将名称从camel修改为snake_name命名，类型依然保持camel命名
+
+只需要生成表格即可不用其他说明
