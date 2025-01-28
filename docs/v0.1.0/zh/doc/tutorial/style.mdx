@@ -1,0 +1,89 @@
+# 属性(样式)
+
+组件属性(样式)，在`.gen`文件中由`<style></style>`标签包裹，用于编写组件的属性。
+
+属性部分会在编译期间合并到组件中，通过`id`或`class`进行索引。
+
+### 使用`<style>`
+
+```html
+<template>
+    <view id="my_view">
+        <label class="my_label"></label>
+    </view>
+</template>
+
+<style>
+#my_view{
+    height: 100.0;
+    width: 100.0;
+    background_visible: true;
+    theme: Error;
+    .my_label{
+        text: "Hello World";
+        color: #f4b177;
+    }
+}
+</style>
+```
+
+### 索引原则
+
+在`<style>`中通过
+
+- `#`索引组件`id`
+- `.`索引组件`class`
+- 支持并建议进行嵌套
+
+### 权重原则
+
+属性的权重原则很简单，嵌套越深权重值越大，权重值越大，属性优先级越高。
+
+```html
+<style>
+#my_view{
+    .my_label{    2️⃣
+        text: "Hello World";
+        color: #f4b177;
+    }
+}
+
+.my_label{   1️⃣
+    color: #FF0000;
+}
+</style>
+```
+
+在上面的例子中有两个`.my_label`，其中 2️⃣ 比 1️⃣ 的权重值更大，优先级更高，因此当它们有相同属性`color`时，采用了`color: #f4b177;`，也就是优先级更高的。
+
+### 合并原则
+
+属性的合并原则适用于`class`，当有多个同名`class`时这些`class`中的属性会合并为一个`class`并也遵守权重原则。
+
+```html
+<style>
+#my_view{
+    .my_label{
+        text: "Hello World";
+        color: #f4b177;
+    }
+}
+
+.my_label{
+    font_size: 16.0;
+    color: #FF0000;
+}
+</style>
+```
+
+如上，根据合并原则最终`.my_label`的所有属性为：
+
+```html
+<style>
+.my_label{ 
+    font_size: 16.0;
+    text: "Hello World";
+    color: #f4b177;
+}
+</style>
+```

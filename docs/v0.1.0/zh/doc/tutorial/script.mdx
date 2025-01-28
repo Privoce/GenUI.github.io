@@ -1,0 +1,108 @@
+# 脚本
+
+`GenUI`的脚本部分使用Rust语言，在`.gen`文件中使用`<script>`标签进行包裹。
+
+> [!TIP]
+>
+> 本文档仅简单说明脚本部分的使用，具体文档请参看：[API](/zh/api/index)
+
+## 定义组件属性
+
+对于自定义组件，我们需要使用`#[prop]`宏进行组件的属性声明，但并不是所有的类型都是允许的，能够在属性中使用的类型需要实现`Default`trait。
+
+```rust
+<script>
+#[prop]
+pub struct MyView{
+    name: String
+}
+</script>
+```
+
+## 定义组件的事件
+
+本身自定义组件没有任何事件，事件需要使用`#[event]`宏进行声明，并且需要增加`#[derive(Debug, Clone)]`。
+
+```rust
+#[event]
+#[derive(Debug, Clone)]
+pub enum MyViewEvent{
+    Clicked,
+    Changed(String),
+}
+```
+
+在上面的例子中，我们定义了两个事件回调: 
+
+1. `Clicked`
+2. `Changed`
+
+其中`Clicked`没有任何回调参数，`Changed`的回调参数为`String`类型。
+
+## 数据绑定
+
+在前面我们了解了如何定义组件的属性，而组件模版的数据绑定也是基于属性定义的
+
+在这个例子中我们在`MyView`中定义了`label`的`text`属性的值，对于绑定的值，`GenUI`会自动生成对应的`get`和`set`方法。
+
+```rust
+<template>
+    <component name="MyView">
+        <label id="my_label" :text="txt"></label>
+        <button id="my_btn" @clicked="change_txt()"></button>
+    </component>
+</template>
+
+<script>
+#[prop]
+pub struct MyView{
+    txt: String
+}
+
+let mut prop = default_prop!{
+    MyView{
+        txt: "Hello".to_string()
+    }
+};
+</script>
+```
+
+在这段代码中，会自动生成`get_txt`和`set_txt`方法。
+
+## 方法与回调
+
+对于方法和回调而言使用`fn`或`closure`进行声明，以下例子中我们定义了`change_txt`方法作为按钮的点击的回调方法。
+
+```rust
+<template>
+    <component name="MyView">
+        <label id="my_label" :text="txt"></label>
+        <button id="my_btn" @clicked="change_txt()"></button>
+    </component>
+</template>
+
+<script>
+#[prop]
+pub struct MyView{
+    txt: String
+}
+
+let mut prop = default_prop!{
+    MyView{
+        txt: "Hello".to_string()
+    }
+};
+
+fn change_txt(){
+    prop.set_txt("World".to_string());
+}
+</script>
+```
+
+以上方法还可以使用`closure`来改写
+
+```rust
+let mut change_txt = ||{
+    prop.set_txt("World".to_string());
+};
+```

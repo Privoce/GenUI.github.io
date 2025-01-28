@@ -139,17 +139,23 @@ import { Tab, Tabs } from 'rspress/theme';
 对于需要绑定的属性使用`:`作为属性的前缀，属性值为`Bind::Ident`类型，写法如下：
 
 ```html
-<view :height="view_h"></view>
+<view id="my_view" :height="view_h"></view>
 ```
+
+> [!TIP]
+>
+> 请注意，若组件进行了数据绑定一定要添加`id`作为标识符
 
 ### 回调
 
 回调表示组件激发某个事件之后调用的某个方法，使用`@`作为回调前缀，写法如下：
 
 ```html
-<button @clicked="click_btn()"></button>
+<button id="my_btn" @clicked="click_btn()"></button>
 ```
 
 > [!TIP]
 >
 > 回调中可能没有任何参数，但依然需要添加`()`
+>
+> 若组件使用了回调一定要添加`id`作为标识符
