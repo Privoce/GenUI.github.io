@@ -16,11 +16,6 @@
     },
     {
         "type": "dir",
-        "name": "data",
-        "label": "数据"
-    },
-    {
-        "type": "dir",
         "name": "components",
         "label": "组件"
     }

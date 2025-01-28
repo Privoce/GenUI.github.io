@@ -28,5 +28,10 @@
         "type": "file",
         "name": "script",
         "label": "脚本"
+    },
+    {
+        "type": "file",
+        "name": "data",
+        "label": "数据类型"
     }
 ]

@@ -1,0 +1,45 @@
+import { Badge } from '@theme';
+
+# GenUI数据类型
+
+`GenUI`将数据类型进行了抽象，分为11种类型：
+
+- `USize`：无符号整型
+- `ISize`：有符号整型
+- `Double`：浮点型，包含`f32`和`f64`
+- `Bool`：布尔型
+- `Vec`：向量
+- `String`：字符串
+- `Bind`：绑定
+- `Function`：方法
+- `Struct`：结构体
+- `Enum`：枚举
+- `Unknown`：未知
+
+这并不意味着您需要使用这些类型，只是`GenUI`在解析的时候会对涉及到的属性值进行类型抽象而已，您需要注意的是如何在模版中使用即可。
+
+> [!TIP]
+> 
+> 更多具体的内置数据类型请参考: [数据API](/zh/api/index)
+
+## 值解析与写法
+
+> - <Badge text="template" type="info" />：表示在`<template>`标签中的使用方式
+> - <Badge text="style" type="info" />：表示在`<style>`标签中的使用方式
+
+|值|解析类型|
+|--|--|
+|`10`|`USize(10)`|
+|`-10`|`ISize(-10)`|
+|`10.0`|`Double(10.0)`|
+|`true`|`Bool(true)`|
+|`[10, 12]`|`Vec[USize(10), USize(12)]`|
+|`'Hello'` <Badge text="template" type="info" />|`String("Hello")`|
+|`"Hello"` <Badge text="style" type="info" />|`String("Hello")`|
+|`:age="user_age"` <Badge text="template" type="info" />|`Bind([Ident("user_age")])`|
+|`@clicked="click_btn()"` <Badge text="template" type="info" />|`Function{ name:"click_btn", params: None}`|
+|`color: rgb(12, 0, 255)` <Badge text="style" type="info" />|`Function{ name:"rgb", params: [USize(12), USize(0), USize(255)]}`|
+|`{x: 0.5}`|`Struct{ name: None, fields: {"x": Double(0.5)} }`|
+|`Dark`|`Enum{ field_chain: [EnumItem::Leaf("Dark", None)] }`|
+|`Themes::Dark`|`Enum{ field_chain: [EnumItem::Root("Themes"), EnumItem::Leaf("Dark", None)] }`|
+|`12.0 10.0`|`Unknown("12.0 10.0")`|
