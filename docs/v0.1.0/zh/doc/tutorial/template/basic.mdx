@@ -1,0 +1,155 @@
+import { Tab, Tabs } from 'rspress/theme';
+
+# 组件模版
+
+组件模版指的是以`.gen`为后缀名的文件中由`<template>`标签包裹的用来描述页面结构的部分。
+
+## 基本语法
+
+```html
+<template>
+    <$component_name 
+        $($($static_prop="$prop_value")*)?
+        $($(:$bind_prop="$bind_ident")*)?
+        $($(@callback="$callback_ident($($arg),*)")*)?
+    >
+        // ...
+    </$component_name>
+</template>
+```
+
+> - `$component_name`: 组件名称
+> - `$static_prop`: 静态属性
+> - `$prop_value`: 属性值
+> - `$bind_prop`: 绑定属性
+> - `$bind_ident`: 绑定变量标识符
+> - `$callback`: 回调
+> - `$callback_ident`: 回调方法标识符
+> - `$arg`: 参数
+> - `$()*`: many1，1个或多个
+> - `$()?`: recognize，0个或1个
+
+
+### 示例
+
+```html title="root.gen"
+<template>
+    <view id="UiRoot">
+        <label text="'Hello GenUI!'"></label>
+        <view height="100.0" width="100.0" theme="Info"></view>
+    </view>
+</template>
+```
+
+## 语法规则
+
+在语法规则部分我们会详细讲述组件模版的编写规则
+
+### 根组件
+
+根组件指的是每个`.gen`文件中组件模版部分的根组件，即`<template>`标签包裹的首个标签
+
+```html
+<template>
+    <view id="UiRoot"></view>
+</template>
+```
+
+在这个例子中根组件就是`<view id="UiRoot"></view>`
+
+#### 唯一根原则
+
+任何组件模版有且只有一个唯一的根组件，且根组件必须有一个唯一名称
+
+<Tabs>
+    <Tab label="静态唯一根">
+    ```html
+    <view id="SpecialName"></view>
+    ```
+    </Tab>
+    <Tab label="动态唯一根">
+    ```html
+    <component name="SpecialName"></component>
+    ```
+    </Tab>
+</Tabs>
+
+> [!TIP]
+>
+> 您可能发现了静态和动态使用的唯一命名属性是不同的，静态使用`id`动态使用`name`
+
+#### 命名引用原则
+
+1. 该原则只对根组件生效，对根组件而已，唯一名称就是外部引用时的组件名，例如当唯一名称为`Hello`时，在其他组件中使用`<Hello></Hello>`表示该组件
+2. 您也可以使用`snake name rule`进行根组件的命名，例如： `my_view1`，但在其他组件中引入时依然会转为`camel name rule`，即：`<MyView1></MyView1>`
+3. 命名引用原则只对外部引用有效
+
+#### 默认继承原则
+
+对于根组件，默认继承`view`视图组件，不可更改，我们希望每个被封装的组件都可以作为独立的单个视图出现。
+
+### 内外原则
+
+上方对于根组件`id`和`name`的说明我们称为对内原则和对外原则，`id`对内，`name`对外，意思是：
+
+- `id`仅对当前被封装的组件内部起效，外部无法通过内部的`id`获取内部组件
+- `name`仅对外有效，是外部使用被封装组件的途径，对内无法用`name`对组件进行获取，且`name`只存在于`<component>`中
+
+### 静态属性
+
+静态属性的写法为：`$static_prop="$prop_value"`，多个属性由`空格`分割，例如：
+
+```html
+<view height="100.0" width="200.0"></view>
+```
+
+组件的属性值是有类型的，**错误类型无法编译通过**
+
+> [!TIP]
+>
+> 属性值的类型请参考: [数据类型](/zh/doc/data/value)
+
+#### id
+
+`id`是组件的唯一标识，每个组件都有这个属性，通过`id`可以获取到对应的组件，同时它也是组件的属性标识
+
+```html
+<label id="my_label"></label>
+```
+
+> [!TIP]
+> 
+> 如果您无法理解，请先阅读[内外原则](#内外原则)
+
+#### class
+
+`class`是组件的属性(样式)标识，通过`class`可以将样式(`<style>`)部分对于的样式合并到组件中
+
+- `class`没有唯一性
+- 一个组件可以有多个`class`，但不能声明多个`class`
+
+```html
+<label class="common_label" ></label>
+
+<label class="[common_label, bold_label, font_smaller]"></label>
+```
+
+### 绑定属性
+
+对于需要绑定的属性使用`:`作为属性的前缀，属性值为`Bind::Ident`类型，写法如下：
+
+```html
+<view :height="view_h"></view>
+```
+
+### 回调
+
+回调表示组件激发某个事件之后调用的某个方法，使用`@`作为回调前缀，写法如下：
+
+```html
+<button @clicked="click_btn()"></button>
+```
+
+> [!TIP]
+>
+> 回调中可能没有任何参数，但依然需要添加`()`

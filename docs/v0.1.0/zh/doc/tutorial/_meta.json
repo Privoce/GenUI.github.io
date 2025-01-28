@@ -15,7 +15,7 @@
         "label": "项目结构"
     },
     {
-        "type": "file",
+        "type": "dir",
         "name": "template",
         "label": "模板"
     },

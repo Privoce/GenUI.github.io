@@ -1,0 +1,52 @@
+import { Badge } from '@theme';
+
+# 语法糖
+
+本篇讲述GenUI中内置组件属性语法糖的使用
+
+## `For`
+
+`for`语法糖允许使用者快速的通过传入的迭代器构建可迭代的组件模版
+
+### 语法
+
+```html
+<label :for="($($index)?, $item) in $iter_ident"></label>
+```
+
+具体写法如下：
+1. `:for="($index, $item) in $iter_ident"`
+2. `:for="$item in $iter_ident"`
+3. `:for="($index, ($item1, $item2, ...)) in $iter_ident"`
+4. `:for="($index, ()) in $iter_ident"`
+5. `:for="($index, _) in $iter_ident"`
+
+> - `$index`：索引
+> - `$item`：迭代元素
+> - `$iter_ident`：迭代器
+
+### 例子
+
+#### 单个
+
+```html
+<label :for="item in label_list" :text="item"></label>
+```
+
+#### 嵌套引用
+
+```html
+<view :for="item in label_list">
+    <label :text="item"></label>
+</view>
+```
+
+#### 嵌套for
+
+```html
+<view :for="(index, item) in label_list">
+    <label :for="item1 in item[index]" :text="item1"></label>
+</view>
+```
+
+## `If_ElseIf_Else` <Badge text="Comming Soon" type="warning" />
