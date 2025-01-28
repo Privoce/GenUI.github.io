@@ -1,57 +1,73 @@
-请帮我基于Rust的struct生成一个文档表格：
-pub enum Props {
+请帮我基于Rust的struct生成文档表格：
+
+pub enum InputProps {
     Theme(Themes),
-    BackgroundColor(MakepadColor),
-    BackgroundVisible(bool),
-    HoverColor(MakepadColor),
-    FocusColor(MakepadColor),
     ShadowColor(MakepadColor),
     SpreadRadius(F32),
     BlurRadius(F32),
     ShadowOffset(Vec2),
+    PlaceholderColor(MakepadColor),
+    Color(MakepadColor),
+    CursorColor(MakepadColor),
+    SelectColor(MakepadColor),
+    BackgroundColor(MakepadColor),
+    BackgroundVisible(bool),
+    Visible(bool),
+    HoverColor(MakepadColor),
+    TextHoverColor(MakepadColor),
+    TextFocusColor(MakepadColor),
+    CursorHoverColor(MakepadColor),
+    CursorFocusColor(MakepadColor),
+    SelectHoverColor(MakepadColor),
+    SelectFocusColor(MakepadColor),
+    FocusColor(MakepadColor),
     BorderColor(MakepadColor),
     BorderWidth(F32),
     BorderRadius(F32),
-    Cursor(MouseCursor),
-    Visible(bool),
-    GrabKeyFocus(bool),
-    AnimationKey(bool),
+    FontSize(F64),
+    HeightFactor(F64),
+    Wrap(TextWrap),
+    FontFamily(LiveDependency),
+    CursorBorderRadius(F64),
     Walk(Walk),
     Layout(Layout),
+    CursorWidth(F64),
+    ReadOnly(bool),
+    NumericOnly(bool),
+    Placeholder(String),
+    Text(String),
     EventKey(bool),
 }
 
 表格如下：
 | 名称                | 说明                                    | 类型           |
 
-如果遇到Walk或Layout需要改为：
+如果遇到Walk请把Walk的位置改为以下表格：
 
-pub enum Walk {
-    AbsPos(DVec2),
-    Margin(Margin),
-    Width(Size),
-    Height(Size),
-}
+| `abs_pos`   | 绝对位置             | `DVec2`    |
+| `margin`    | 外边距               | `Margin`   |
+| `width`     | 宽度                 | `Size`     |
+| `height`    | 高度                 | `Size`     |
 
-pub enum Layout {
-    Scroll(DVec2),
-    ClipX(bool),
-    ClipY(bool),
-    Padding(Padding),
-    Align(Align),
-    Flow(Flow),
-    Spacing(F64),
-}
+如果遇到Layout请把Layout的位置改为以下表格：
+
+| `scroll`   | 滚动偏移             | `DVec2`      |
+| `clip_x`   | 是否裁剪 X 轴         | `bool`       |
+| `clip_y`   | 是否裁剪 Y 轴         | `bool`       |
+| `padding`  | 内边距               | `Padding`    |
+| `align`    | 对齐方式             | `Align`      |
+| `flow`     | 流动方式             | `Flow`       |
+| `spacing`  | 间距                 | `F64`        |
 
 基于事件生成表格：
 
 impl_widget_event! {
-    ButtonEvent {
-        ButtonEvent::HoverIn => "GButtonHoverParam" => "hover_in",
-        ButtonEvent::HoverOut => "GButtonHoverParam" => "hover_out",
-        ButtonEvent::Clicked => "GButtonClickedParam" => "clicked",
-        ButtonEvent::Focus => "GButtonFocusParam" => "focus",
-        ButtonEvent::FocusLost => "GButtonFocusLostParam" => "focus_lost"
+    InputEvent {
+        InputEvent::Changed => "GInputChangedParam" => "changed",
+        InputEvent::KeyDownUnhandled => "KeyEvent" => "keydown_unhandled",
+        InputEvent::Escaped => "_" => "escaped",
+        InputEvent::KeyFocus => "_" => "key_focus",
+        InputEvent::KeyFocusLost => "_" => "key_focus_lost"
     }
 }
 

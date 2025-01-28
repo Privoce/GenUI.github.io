@@ -1,0 +1,61 @@
+# `label` 文本
+
+`label`组件是一个可自定义的标签小部件，具有动画和事件处理功能。它允许通过各种属性、动画和事件进行悬停、聚焦和文本样式设置。
+
+## 示例
+
+### 基础使用
+
+```html
+<label 
+    text="'Hello World'" 
+    font_size="16.0" 
+    color="#FFF">
+</label>
+```
+
+### 传入字体
+
+使用内置的`dep`函数
+
+```html
+<label 
+    text="'Hello World'" 
+    font_family="dep('crate://self/path/to/font/family')">
+</label>
+```
+
+## 属性
+
+| 名称                  | 说明            | 类型              |
+|-----------------------|-----------------|-------------------|
+| `theme`              | 主题            | `Themes`          |
+| `color`              | 颜色            | `MakepadColor`    |
+| `stroke_hover_color`   | 悬停时字体颜色    | `MakepadColor`    |
+| `stroke_focus_color`   | 获取焦点时字体颜色    | `MakepadColor`    |
+| `font_size`           | 字体大小        | `F64`             |
+| `cursor`             | 鼠标光标        | `MouseCursor`     |
+| `line_spacing`        | 行间距          | `F64`             |
+| `height_factor`       | 高度因子        | `F64`             |
+| `wrap`               | 文本换行方式    | `TextWrap`        |
+| `font_family`         | 字体类型        | `LiveDependency`  |
+| `visible`            | 是否可见        | `bool`            |
+| `height`             | 高度            | `Size`            |
+| `width`              | 宽度            | `Size`            |
+| `margin`             | 外边距          | `Margin`          |
+| `padding`            | 内边距          | `Padding`         |
+| `align`              | 对齐方式        | `Align`           |
+| `text`               | 文本内容        | `String`          |
+| `animation_key`       | 是否允许动画          | `bool`            |
+| `event_key`           | 是否允许事件          | `bool`            |
+| `grabKey_focus`       | 是否捕获键焦点      | `bool`            |
+
+
+## 事件回调
+
+| 名称         | 说明            | 参数                 |
+|--------------|-----------------|----------------------|
+| `hover_in`   | 鼠标进入事件     | `GLabelHoverParam`   |
+| `hover_out`  | 鼠标离开事件     | `GLabelHoverParam`   |
+| `focus`      | 获取焦点事件     | `GLabelFocusParam`   |
+| `focus_lost` | 失去焦点事件     | `GLabelFocusLostParam` |

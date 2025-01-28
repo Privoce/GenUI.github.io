@@ -1,0 +1,131 @@
+# `checkbox` 多选框
+
+我们推荐您将`checkbox`放在`checkbox_group`中进行使用
+
+> `checkbox_group`继承自`view`
+
+## 示例
+
+### 基础使用
+
+如果要表示选中状态，使用`selected`进行指定
+
+```html
+<checkbox_group>
+    <checkbox text="'rap'"></checkbox>
+    <checkbox text="'play basketball'" selected="true"></checkbox>
+</checkbox_group>
+```
+
+## 属性
+
+### `checkbox`属性
+
+| 名称                | 说明                                    | 类型           |
+|--------------------|----------------------------------------|----------------|
+| `theme`           | 主题                                    | `Themes`       |
+| `color`           | 颜色                                    | `MakepadColor` |
+| `text_hover_color`| 文本悬停颜色                            | `MakepadColor` |
+| `text_focus_color`| 文本聚焦颜色                            | `MakepadColor` |
+| `font_size`       | 字体大小                                | `F64`          |
+| `height_factor`   | 高度因子                                | `F64`          |
+| `wrap`            | 文本换行方式                            | `TextWrap`     |
+| `font_family`     | 字体族路径                              | `LiveDependency`|
+| `text_visible`    | 文本是否可见                            | `bool`         |
+| `size`            | 大小                                    | `F32`          |
+| `checkbox_background_color`| 复选框背景颜色               | `MakepadColor` |
+| `checkbox_background_visible`| 复选框背景是否可见         | `bool`         |
+| `checkbox_hover_color`| 复选框悬停颜色                      | `MakepadColor` |
+| `checkbox_selected_color`| 复选框选中颜色                  | `MakepadColor` |
+| `stroke_color`    | 描边颜色                                | `MakepadColor` |
+| `stroke_hover_color`| 描边悬停颜色                          | `MakepadColor` |
+| `stroke_selected_color`| 描边选中颜色                      | `MakepadColor` |
+| `checkbox_border_color`| 复选框边框颜色                    | `MakepadColor` |
+| `checkbox_border_width`| 复选框边框宽度                    | `F32`          |
+| `scale`           | 缩放比例                                | `F32`          |
+| `background_color`| 背景颜色                                | `MakepadColor` |
+| `hover_color`     | 悬停颜色                                | `MakepadColor` |
+| `focus_color`     | 聚焦颜色                                | `MakepadColor` |
+| `shadow_color`    | 阴影颜色                                | `MakepadColor` |
+| `border_color`    | 边框颜色                                | `MakepadColor` |
+| `background_visible`| 背景是否可见                           | `bool`         |
+| `border_width`    | 边框宽度                                | `F32`          |
+| `border_radius`   | 边框圆角半径                            | `F32`          |
+| `spread_radius`   | 扩散半径                                | `F32`          |
+| `blur_radius`     | 模糊半径                                | `F32`          |
+| `shadow_offset`   | 阴影偏移                                | `Vec2`         |
+| `cursor`          | 鼠标指针样式                            | `MouseCursor`  |
+| `value`           | 值                                      | `String`       |
+| `selected`        | 是否选中                                | `bool`         |
+| `text`            | 文本内容                                | `String`       |
+| `checkbox_type`   | 复选框类型                              | `GChooseType`  |
+| `abs_pos`         | 绝对位置                                | `DVec2`        |
+| `margin`          | 外边距                                  | `Margin`       |
+| `width`           | 宽度                                    | `Size`         |
+| `height`          | 高度                                    | `Size`         |
+| `scroll`          | 滚动偏移                                | `DVec2`        |
+| `clip_x`          | 是否裁剪 X 轴                           | `bool`         |
+| `clip_y`          | 是否裁剪 Y 轴                           | `bool`         |
+| `padding`         | 内边距                                  | `Padding`      |
+| `align`           | 对齐方式                                | `Align`        |
+| `flow`            | 流动方式                                | `Flow`         |
+| `spacing`         | 间距                                    | `F64`          |
+| `visible`         | 是否可见                                | `bool`         |
+| `animation_key`   | 动画键                                  | `bool`         |
+| `grab_key_focus`  | 捕获键盘焦点                            | `bool`         |
+| `event_key`       | 事件键                                  | `bool`         |
+
+### `checkbox_group`属性
+
+| 名称                | 说明                                    | 类型           |
+|--------------------|----------------------------------------|----------------|
+| `theme`           | 主题                                    | `Themes`       |
+| `background_color`| 背景颜色                                | `MakepadColor` |
+| `hover_color`     | 悬停颜色                                | `MakepadColor` |
+| `focus_color`     | 聚焦颜色                                | `MakepadColor` |
+| `border_color`    | 边框颜色                                | `MakepadColor` |
+| `border_width`    | 边框宽度                                | `F32`          |
+| `border_radius`   | 边框圆角半径                            | `F32`          |
+| `visible`         | 是否可见                                | `bool`         |
+| `background_visible`| 背景是否可见                          | `bool`         |
+| `shadow_color`    | 阴影颜色                                | `MakepadColor` |
+| `spread_radius`   | 阴影扩散半径                            | `F32`          |
+| `blur_radius`     | 阴影模糊半径                            | `F32`          |
+| `shadow_offset`   | 阴影偏移                                | `Vec2`         |
+| `cursor`          | 鼠标指针样式                            | `MouseCursor`  |
+| `animation_key`   | 动画键                                  | `bool`         |
+| `grab_key_focus`  | 捕获键盘焦点                            | `bool`         |
+| `block_signal_event`| 阻止信号事件                           | `bool`         |
+| `abs_pos`         | 绝对位置                                | `DVec2`        |
+| `margin`          | 外边距                                  | `Margin`       |
+| `width`           | 宽度                                    | `Size`         |
+| `height`          | 高度                                    | `Size`         |
+| `scroll`          | 滚动偏移                                | `DVec2`        |
+| `clip_x`          | 是否裁剪 X 轴                           | `bool`         |
+| `clip_y`          | 是否裁剪 Y 轴                           | `bool`         |
+| `padding`         | 内边距                                  | `Padding`      |
+| `align`           | 对齐方式                                | `Align`        |
+| `flow`            | 流动方式                                | `Flow`         |
+| `spacing`         | 间距                                    | `F64`          |
+| `event_order`     | 事件顺序                                | `EventOrder`   |
+| `dpi_factor`      | DPI 缩放因子                            | `F64`          |
+| `optimize`        | 视图优化选项                            | `ViewOptimize` |
+| `capture_overload`| 捕获重载                                | `bool`         |
+| `event_key`       | 事件键                                  | `bool`         |
+| `block_child_events`| 阻止子事件传递                        | `bool`         |
+
+## 事件回调
+
+### `checkbox`事件回调
+
+| 名称                  | 说明            | 参数              |
+|-----------------------|-----------------|-------------------|
+| `clicked`            | 点击事件         | `GCheckboxClickedParam`|
+| `hover_in`           | 鼠标悬停事件     | `GCheckboxHoverParam` |
+| `hover_out`          | 鼠标移出事件     | `GCheckboxHoverParam` |
+
+### `checkbox_group`事件回调
+
+| 名称                  | 说明            | 参数              |
+|-----------------------|-----------------|-------------------|
+| `changed`            | 状态改变事件     | `GCheckboxGroupEventParam`|

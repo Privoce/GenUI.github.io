@@ -1,0 +1,51 @@
+# `image` 图片
+
+展示图片，目前允许以下格式的图片:
+
+- `jpg`
+- `png`
+
+## 示例
+
+### 基础使用
+
+在使用前请确保图片地址存在，使用`dep`内置函数指向图片地址，这个函数可以使用绝对地址，在以下例子中`crate://self/`表示项目根目录。
+
+```html
+<image src="dep('crate://self/resources/genui.png')"></image>
+```
+
+## 属性
+
+| 名称                | 说明                                    | 类型           |
+|--------------------|----------------------------------------|----------------|
+| `visible`         | 是否可见                                | `bool`         |
+| `grab_key_focus`  | 捕获键盘焦点                            | `bool`         |
+| `opacity`         | 不透明度                                | `F32`          |
+| `cursor`          | 鼠标指针样式                            | `MouseCursor`  |
+| `scale`           | 缩放比例                                | `F64`          |
+| `fit`             | 图片适配方式                            | `ImageFit`     |
+| `src`             | 图片资源路径                            | `LiveDependency`|
+| `min_width`       | 最小宽度                                | `i64`          |
+| `min_height`      | 最小高度                                | `i64`          |
+| `rotation`        | 旋转角度                                | `F32`          |
+| `abs_pos`         | 绝对位置                                | `DVec2`        |
+| `margin`          | 外边距                                  | `Margin`       |
+| `width`           | 宽度                                    | `Size`         |
+| `height`          | 高度                                    | `Size`         |
+| `scroll`          | 滚动偏移                                | `DVec2`        |
+| `clip_x`          | 是否裁剪 X 轴                           | `bool`         |
+| `clip_y`          | 是否裁剪 Y 轴                           | `bool`         |
+| `padding`         | 内边距                                  | `Padding`      |
+| `align`           | 对齐方式                                | `Align`        |
+| `flow`            | 流动方式                                | `Flow`         |
+| `spacing`         | 间距                                    | `F64`          |
+| `event_key`       | 事件键                                  | `bool`         |
+
+## 事件回调
+
+| 名称                  | 说明            | 参数              |
+|-----------------------|-----------------|-------------------|
+| `hover_in`           | 鼠标悬停事件     | `GImageHoverParam`|
+| `hover_out`          | 鼠标移出事件     | `GImageHoverParam`|
+| `clicked`            | 点击事件         | `GImageClickedParam`|

@@ -1,0 +1,77 @@
+# `view` 视图
+
+用于呈现数据、处理用户交互以及构建用户界面的视觉部分
+
+## 示例
+
+### 基础使用
+
+```html
+<view 
+    theme="Info"
+    height="100.0"
+    width="100.0"
+    padding="12.0"
+    margin="6.0 8.0">
+</view>
+```
+
+### 为视图添加滚动条
+
+当视图内部组件的大小溢出时，可以添加滚动条，并且使用`clip_x, clip_y`进行边缘裁剪。
+
+```html
+<view 
+    theme="Info"
+    height="100.0"
+    width="100.0"
+    clip_x="true"
+    clip_y="true">
+    <scroll_bars as_prop="scroll_bars"></scroll_bars>
+    <view height="200.0" width="20.0"></view>
+</view>
+```
+
+
+## 属性
+
+| 名称                | 说明                                    | 类型           |
+|--------------------|----------------------------------------|----------------|
+| `theme`           | 主题                                    | `Themes`       |
+| `background_color`| 背景颜色                                | `MakepadColor` |
+| `hover_color`     | 悬停颜色                                | `MakepadColor` |
+| `focus_color`     | 聚焦颜色                                | `MakepadColor` |
+| `border_color`    | 边框颜色                                | `MakepadColor` |
+| `border_width`    | 边框宽度                                | `F32`          |
+| `border_radius`   | 边框圆角半径                            | `F32`          |
+| `visible`         | 是否可见                                | `bool`         |
+| `background_visible`| 背景是否可见                          | `bool`         |
+| `shadow_color`    | 阴影颜色                                | `MakepadColor` |
+| `spread_radius`   | 阴影扩散半径                            | `F32`          |
+| `blur_radius`     | 阴影模糊半径                            | `F32`          |
+| `shadow_offset`   | 阴影偏移                                | `Vec2`         |
+| `cursor`          | 鼠标指针样式                            | `MouseCursor`  |
+| `animation_key`   | 动画键                                  | `bool`         |
+| `grab_key_focus`  | 捕获键盘焦点                            | `bool`         |
+| `block_signal_event`| 阻止信号事件                           | `bool`         |
+| `abs_pos`         | 绝对位置                                | `DVec2`        |
+| `margin`          | 外边距                                  | `Margin`       |
+| `width`           | 宽度                                    | `Size`         |
+| `height`          | 高度                                    | `Size`         |
+| `scroll`          | 滚动偏移                                | `DVec2`        |
+| `clip_x`          | 是否裁剪 X 轴                           | `bool`         |
+| `clip_y`          | 是否裁剪 Y 轴                           | `bool`         |
+| `padding`         | 内边距                                  | `Padding`      |
+| `align`           | 对齐方式                                | `Align`        |
+| `flow`            | 流动方式                                | `Flow`         |
+| `spacing`         | 间距                                    | `F64`          |
+| `event_order`     | 事件顺序                                | `EventOrder`   |
+| `dpi_factor`      | DPI 缩放因子                            | `F64`          |
+| `optimize`        | 视图优化选项                            | `ViewOptimize` |
+| `capture_overload`| 捕获重载                                | `bool`         |
+| `event_key`       | 事件键                                  | `bool`         |
+| `block_child_events`| 阻止子事件传递                        | `bool`         |
+
+## 事件回调
+
+无

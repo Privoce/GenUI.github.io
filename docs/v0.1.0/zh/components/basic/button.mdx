@@ -1,0 +1,67 @@
+# `button` 按钮
+
+专为交互式 UI 元素设计的可自定义按钮。它支持悬停、聚焦和点击动画，并具有各种可配置的外观属性，包括背景颜色、阴影和边框样式。
+
+## 示例
+
+### 基础使用
+
+```html
+<button>
+    <label as_prop="slot" text="'Hello'"></label>
+</button>
+```
+
+### 自定义内部
+
+```html
+<button>
+    <view as_prop="slot">
+        <label text="'Hello'"></label>
+        <label text="'World'"></label>
+    </view>
+</button>
+```
+
+## 属性
+
+| 名称                  | 说明                 | 类型             |
+|-----------------------|----------------------|------------------|
+| `theme`              | 主题                 | `Themes`         |
+| `background_color`   | 背景颜色             | `MakepadColor`   |
+| `background_visible` | 背景是否可见         | `bool`           |
+| `hover_color`        | 悬停颜色             | `MakepadColor`   |
+| `focus_color`        | 聚焦颜色             | `MakepadColor`   |
+| `shadow_color`       | 阴影颜色             | `MakepadColor`   |
+| `spread_radius`      | 阴影扩展半径         | `F32`            |
+| `blur_radius`        | 阴影模糊半径         | `F32`            |
+| `shadow_offset`      | 阴影偏移             | `Vec2`           |
+| `border_color`       | 边框颜色             | `MakepadColor`   |
+| `border_width`       | 边框宽度             | `F32`            |
+| `border_radius`      | 边框圆角半径         | `F32`            |
+| `cursor`             | 鼠标指针             | `MouseCursor`    |
+| `visible`            | 是否可见             | `bool`           |
+| `grab_key_focus`     | 是否捕获键盘焦点     | `bool`           |
+| `animation_key`      | 动画键               | `bool`           |
+| `event_key`          | 事件键               | `bool`           |
+| `abs_pos`   | 绝对位置             | `DVec2`    |
+| `margin`    | 外边距               | `Margin`   |
+| `width`     | 宽度                 | `Size`     |
+| `height`    | 高度                 | `Size`     |
+| `scroll`   | 滚动偏移             | `DVec2`      |
+| `clip_x`   | 是否裁剪 X 轴         | `bool`       |
+| `clip_y`   | 是否裁剪 Y 轴         | `bool`       |
+| `padding`  | 内边距               | `Padding`    |
+| `align`    | 对齐方式             | `Align`      |
+| `flow`     | 流动方式             | `Flow`       |
+| `spacing`  | 间距                 | `F64`        |
+
+## 事件回调
+
+| 名称         | 说明             | 参数                  |
+|--------------|------------------|-----------------------|
+| `hover_in`   | 鼠标进入事件     | `GButtonHoverParam`   |
+| `hover_out`  | 鼠标离开事件     | `GButtonHoverParam`   |
+| `clicked`    | 点击事件         | `GButtonClickedParam` |
+| `focus`      | 获取焦点事件     | `GButtonFocusParam`   |
+| `focus_lost` | 失去焦点事件     | `GButtonFocusLostParam` |

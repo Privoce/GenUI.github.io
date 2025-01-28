@@ -1,0 +1,28 @@
+# `scroll_bars` 滚动条
+
+当组件内部溢出时，添加滚动条能够让使用者对视图进行滚动控制
+
+## 基础使用
+
+```html
+<view 
+    theme="Info"
+    height="100.0"
+    width="100.0"
+    clip_x="true"
+    clip_y="true">
+    <scroll_bars as_prop="scroll_bars"></scroll_bars>
+    <view height="200.0" width="20.0"></view>
+</view>
+```
+
+## 属性
+
+| 名称                | 说明                                    | 类型           |
+|--------------------|----------------------------------------|----------------|
+| `scroll_x` | 是否显示x轴滚动条 | `bool` |
+| `scroll_y` | 是否显示y轴滚动条 | `bool` |
+
+## 事件回调
+
+无

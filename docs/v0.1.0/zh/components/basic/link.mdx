@@ -1,0 +1,78 @@
+# `link` 链接
+
+用于对某个地址进行链接，默认带有下划线效果。
+
+## 示例
+
+### 基础使用
+
+```html
+<link theme="Info" text="'Github'" href="'https://www.github.com'"></link>
+```
+
+### 按钮型链接
+
+```html
+<link 
+    theme="Info" 
+    text="'Github'" 
+    href="'https://www.github.com'" 
+    padding="10.0 16.0" 
+    border_radius="2.0" 
+    underline_visible="false" 
+    background_visible="true">
+</link>
+```
+
+## 属性
+
+| 名称                | 说明                                    | 类型           |
+|--------------------|----------------------------------------|----------------|
+| `theme`           | 主题                                    | `Themes`       |
+| `background_color`| 背景颜色                                | `MakepadColor` |
+| `hover_color`     | 悬停颜色                                | `MakepadColor` |
+| `focus_color`     | 聚焦颜色                                | `MakepadColor` |
+| `border_color`    | 边框颜色                                | `MakepadColor` |
+| `underline_visible`| 是否显示下划线                         | `bool`         |
+| `underline_color` | 下划线颜色                              | `MakepadColor` |
+| `underline_hover_color`| 悬停时下划线颜色                     | `MakepadColor` |
+| `underline_focus_color`| 聚焦时下划线颜色                     | `MakepadColor` |
+| `underline_width` | 下划线宽度                              | `F32`          |
+| `border_radius`   | 边框圆角半径                            | `F32`          |
+| `round`           | 是否为圆形                              | `bool`         |
+| `background_visible`| 背景是否可见                           | `bool`         |
+| `text`            | 文本内容                                | `String`       |
+| `font_size`       | 字体大小                                | `F64`          |
+| `color`           | 字体颜色                                | `MakepadColor` |
+| `text_hover_color`| 悬停时字体颜色                          | `MakepadColor` |
+| `text_focus_color`| 聚焦时字体颜色                          | `MakepadColor` |
+| `font_family`     | 字体族路径                              | `LiveDependency`|
+| `cursor`          | 鼠标指针样式                            | `MouseCursor`  |
+| `href`            | 超链接地址                              | `String`       |
+| `link_type`       | 链接类型                                | `LinkType`     |
+| `visible`         | 是否可见                                | `bool`         |
+| `abs_pos`         | 绝对位置                                | `DVec2`        |
+| `margin`          | 外边距                                  | `Margin`       |
+| `width`           | 宽度                                    | `Size`         |
+| `height`          | 高度                                    | `Size`         |
+| `scroll`          | 滚动偏移                                | `DVec2`        |
+| `clip_x`          | 是否裁剪 X 轴                           | `bool`         |
+| `clip_y`          | 是否裁剪 Y 轴                           | `bool`         |
+| `padding`         | 内边距                                  | `Padding`      |
+| `align`           | 对齐方式                                | `Align`        |
+| `flow`            | 流动方式                                | `Flow`         |
+| `spacing`         | 间距                                    | `F64`          |
+| `animation_key`   | 动画键                                  | `bool`         |
+| `event_key`       | 事件键                                  | `bool`         |
+| `grab_key_focus`  | 捕获键盘焦点                            | `bool`         |
+
+
+## 事件回调
+
+| 名称                  | 说明            | 参数              |
+|-----------------------|-----------------|-------------------|
+| `hover_in`           | 鼠标悬停事件     | `GLinkHoverParam` |
+| `hover_out`          | 鼠标移出事件     | `GLinkHoverParam` |
+| `clicked`            | 点击事件         | `GLinkClickedParam`|
+| `focus`              | 聚焦事件         | `GLinkFocusParam` |
+| `focus_lost`         | 失焦事件         | `GLinkFocusLostParam`|

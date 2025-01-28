@@ -1,3 +1,22 @@
 [
-    
+  {
+    "type": "file",
+    "name": "index",
+    "label": "API Overview"
+  },
+  {
+    "type": "dir",
+    "name": "basic",
+    "label": "基础组件"
+  },
+  {
+    "type": "dir",
+    "name": "form",
+    "label": "表单组件"
+  },
+  {
+    "type": "dir",
+    "name": "data",
+    "label": "数据组件"
+  }
 ]
