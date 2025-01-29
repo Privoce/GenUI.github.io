@@ -1,0 +1,367 @@
+# 内置类型
+
+在本文档中我们提供所有您可以直接在`GenUI`项目中使用的内置类型，通常来说您很少会用到这些类型，因为`GenUI`已经帮您屏蔽了最底层的组件构建。
+
+但由于在内置组件中会涉及到这些内置类型的属性值的写法，所以我们依然提供给您较为完整的写法参考。
+
+> [!TIP]
+>
+> 如果您学习过[数据类型](zh/doc/tutorial/data)部分的值解析与写法，您应该非常容易理解如何编写。
+
+## `Align`
+
+### 写法
+
+取值范围: `[0.0, 1.0]`
+
+- `{x: 0.5}`
+- `{y: 0.2}`
+- `{x: 0.2, y: 0.9}`
+
+### 源码
+
+```rust
+pub struct Align {
+    pub x: f64,
+    pub y: f64,
+}
+```
+
+## `GChooseType`
+
+### 写法
+
+- `Round`
+- `Tick`
+- `Cross`
+- `GChooseType::Round`
+- `GChooseType::Tick`
+- `GChooseType::Cross`
+
+### 源码
+
+```rust
+pub enum GChooseType {
+    #[default]
+    Round,
+    Tick,
+    Cross,
+}
+```
+
+## `MouseCursor`
+
+### 写法
+
+- `Hidden`
+- `Hand`
+- `MouseCursor::Move`
+
+### 源码
+
+```rust
+pub enum MouseCursor {
+    Hidden,
+    /// default
+    #[default]
+    Default,
+    Crosshair,
+    Hand,
+    Arrow,
+    Move,
+    Text,
+    Wait,
+    Help,
+    NotAllowed,
+    NResize,
+    NeResize,
+    EResize,
+    SeResize,
+    SResize,
+    SwResize,
+    WResize,
+    NwResize,
+    NsResize,
+    NeswResize,
+    EwResize,
+    NwseResize,
+    ColResize,
+    RowResize,
+}
+```
+
+## `LiveDependency`
+
+### 写法
+
+- template: `dep('path')`
+- style: `dep("path")`
+
+### 源码
+
+```rust
+pub struct LiveDependency(String);
+```
+
+## `Direction`
+
+### 写法
+
+- `Horizontal`
+- `Vertical`
+- `Direction::Horizontal`
+
+### 源码
+
+```rust
+pub enum Direction {
+    #[default]
+    Horizontal,
+    Vertical,
+}
+```
+
+## `EventOrder`
+
+### 写法
+
+- `Down`
+- `Up`
+
+### 源码
+
+```rust
+pub enum EventOrder {
+    Down,
+    #[default]
+    Up,
+}
+```
+
+## `Flow`
+
+### 写法
+
+- `Right`
+- `Down`
+
+### 源码
+
+```rust
+pub enum Flow {
+    #[default]
+    Right,
+    Down,
+    Overlay,
+    RightWrap,
+}
+```
+
+## `ImageFit`
+
+### 写法
+
+- `Stretch`
+- `Horizontal`
+
+### 源码
+
+```rust
+pub enum ImageFit {
+    #[default]
+    Stretch,
+    Horizontal,
+    Vertical,
+    Smallest,
+    Biggest,
+    Size,
+}
+```
+
+## `LinkType`
+
+### 写法
+
+- `NewTab`
+
+### 源码
+
+```rust
+pub enum LinkType {
+    #[default]
+    NewTab,
+    SameTab,
+}
+```
+
+## `ViewOptimize`
+
+### 写法
+
+- `DrawList`
+- `Texture`
+
+### 源码
+
+```rust
+pub enum ViewOptimize {
+    #[default]
+    None,
+    DrawList,
+    Texture,
+}
+```
+
+## `GOsType`
+
+### 写法
+
+- `Mac`
+
+### 源码
+
+```rust
+pub enum GOsType {
+    Windows,
+    Mac,
+    #[default]
+    Linux,
+    Other,
+}
+```
+
+## `Padding`
+
+### 写法
+
+- `1.0` 表示: `{left: 1.0, top: 1.0, right: 1.0, bottom: 1.0}`
+- `1.0 2.0` 表示: `{left: 2.0, top: 1.0, right: 2.0, bottom: 1.0}`
+- `1.0 2.0 4.0 6.0` 表示: `{left: 6.0, top: 1.0, right: 2.0, bottom: 4.0}`
+
+### 源码
+
+```rust
+pub struct Padding {
+    pub left: f64,
+    pub top: f64,
+    pub right: f64,
+    pub bottom: f64,
+}
+```
+
+## `Margin`
+
+### 写法
+
+- `1.0` 表示: `{left: 1.0, top: 1.0, right: 1.0, bottom: 1.0}`
+- `1.0 2.0` 表示: `{left: 2.0, top: 1.0, right: 2.0, bottom: 1.0}`
+- `1.0 2.0 4.0 6.0` 表示: `{left: 6.0, top: 1.0, right: 2.0, bottom: 4.0}`
+
+### 源码
+
+```rust
+pub struct Margin {
+    pub left: f64,
+    pub top: f64,
+    pub right: f64,
+    pub bottom: f64,
+}
+```
+
+## `TextWrap`
+
+### 写法
+
+- `Ellipsis`
+- `Word`
+
+### 源码
+
+```rust
+pub enum TextWrap {
+    #[default]
+    Ellipsis,
+    Word,
+    Line,
+}
+```
+
+## `DVec2` ~ `DVec4`
+
+### 写法
+
+取值范围: `[0.0, 1.0]`
+
+- `{x: 0.2}`
+- `{y: 0.4, z: 0.7}`
+
+### 源码
+
+```rust
+pub struct DVec2 {
+    pub x: f64,
+    pub y: f64,
+}
+
+pub struct DVec3 {
+    pub x: f64,
+    pub y: f64,
+    pub z: f64,
+}
+
+pub struct DVec4 {
+    pub x: f64,
+    pub y: f64,
+    pub z: f64,
+    pub w: f64,
+}
+```
+
+## `Vec2` ~ `Vec4`
+
+同`DVec`
+
+## `Size`
+
+### 写法
+
+- `Fit`
+- `Fill`
+- `200.0` 表示: `Size::Fixed(200.0)`
+- `Fixed(200.0)`
+
+### 源码
+
+```rust
+pub enum Size {
+    #[default]
+    /// Fill the size of the parent widget
+    Fill,
+    /// detail size of the current widget
+    Fixed(f64),
+    /// Fit content
+    Fit,
+    All,
+}
+```
+
+## `Themes`
+
+### 写法
+
+- `Dark`
+- `Info`
+
+### 源码
+
+```rust
+pub enum Themes {
+    Dark,
+    #[default]
+    Primary,
+    Error,
+    Warning,
+    Success,
+    Info,
+}
+```
