@@ -1,4 +1,4 @@
-import { Tab, Tabs } from 'rspress/theme';
+import { Tab, Tabs } from "rspress/theme";
 
 # Quick Start
 
@@ -6,28 +6,28 @@ This is a quick start example, through which you can quickly understand the deve
 
 ## Environment Description
 
-|Name|Version|
-|--|--|
-|Mac|-|
-|Ract|0.1.0+|
+| Name | Version |
+| ---- | ------- |
+| Mac  | -       |
+| Ract | 0.1.0+  |
 
 > [!TIP]
 >
-> For more detailed Ract commands, please refer to: [Ract](/doc/tutorial/ract)
+> For more detailed Ract commands, please refer to: [Ract](/tools/ract/introduction)
 
 ## Install and configure Ract
 
 `Ract` is the first step in your journey to GenUI, please choose the latest version to download
 
 > Releases: https://github.com/Privoce/ract/releases
+>
+> cratio: https://crates.io/crates/ract
 
 ### Configuration
 
 > [!WARNING]
 >
 > Your computer may prompt security issues, please select Allow
->
-> The current Windows system packaging problem has not been resolved
 
 You can configure ract as a global command in the following ways:
 
@@ -47,48 +47,62 @@ You can configure ract as a global command in the following ways:
         # echo to .zshrc
         echo 'export PATH="/usr/local/bin/ract:$PATH"' >> ~/.zshrc
 
+        # fresh zshrc
         source ~/.zshrc
+
         # get version
         ract --version
         ```
     </Tab>
     <Tab label="Windows">
-        ```
-        You just need to set Ract into your environment variables
+        ### Download and rename
+
+        After you finish downloading, please place `ract_windows_gnu.exe` in a directory and rename it to `ract.exe`
+
+        ### Set Ract to environment variables
+        Enter the system environment variables, select `Path` and add a new directory address where `ract.exe` is located
+
+        For example: the address of ract is `E://ract/ract.exe`, then the new environment variable address is `E://ract` or `E:\ract`
+        ![](/ract/windows_env.png)
+
+        After setting, enter `powershell` and enter `ract` related commands for verification
+
+        ```shell
+        ract --version
         ```
     </Tab>
+
 </Tabs>
 
-### Usage
+## Instructions
 
-- Input｜Select End. Use `Enter` to complete the current operation
-
+- Input ｜ Select End needs to use `Enter` to complete the current operation
 - When a tab appears, use `Space` to add or switch options
-
 - You need to use the `↑` `↓` keys to switch tabs
 - You need to use the `←` `→` keys to adjust the cursor position when inputting
-- You need to enter `Yes`/`y` or `No`/`n` to indicate yes or no when a question appears
-- Please use `ctrl + c` when an error occurs or you need to undo reset or stop
+- You need to enter `Yes`/`y` or `No`/`n` to indicate yes or no when a query item appears
+- When an error occurs or you need to undo reset or stop, please use `ctrl + c`
 
 ## Create a project with Ract
 
 Run the `ract create` command, Ract will automatically help you detect the environment. When all tool chains are complete, Ract will help you build a project
 
-Ract will prompt you that the relevant tool chain is missing. If your tool chain is incomplete, you can directly use the `ract install` command to install it in response
+Ract will prompt you that the relevant tool chain is missing. If your tool chain is incomplete, you can directly use the `ract install` command to install it
 
 > [!TIP]
 >
 > If you are a novice, you may need to install:
+>
 > - rustc
 > - git
 > - makepad
->   - gen_components
->   - wasm_build
->   - default
+> - gen_components
+> - wasm_build
+> - default
 >
-> All you have to do is select the installation items
+> All you have to do is select the installation item
 
-### An example of an interactive dialog for install
+### An example of an interactive dialog box for install
 
 ```shell
 🥳 Welcome to use ract Install!
@@ -102,7 +116,7 @@ Ract will prompt you that the relevant tool chain is missing. If your tool chain
 > [ ] rustc|cargo
   [ ] git
   [x] makepad
-? What you need to (re)install?  
+? What you need to (re)install?
   [x] gen_components
   [ ] android_build
   [ ] ios_build
@@ -110,24 +124,25 @@ Ract will prompt you that the relevant tool chain is missing. If your tool chain
   [ ] makepad_studio
   [x] default
 ```
-### An example of an interactive dialog for create
+
+### Example of interactive dialog box for create
 
 ```shell
 ❤️ WELOCME TO GENUI, ract is a build tool for you!
 🔸 Current states:
         🔻 Basic Tools
-                🔹 rustc: ✅ 
-                🔹 cargo: ✅ 
-                🔹 git: ✅ 
+                🔹 rustc: ✅
+                🔹 cargo: ✅
+                🔹 git: ✅
         🔻 Makepad ToolChains:
-                🔹 makepad: ✅ 
-                🔹 gen-ui: ✅ 
+                🔹 makepad: ✅
+                🔹 gen-ui: ✅
 > Which framework template do you want to create? gen_ui
 > Input the name of the workspace: quickstart
 ============ Project1 ======================
 > Which underlayer you want to select? Makepad
 > Project name: start
-> Authors name: 
+> Authors name:
 > Project description: This project is created by ract. Repo: https://github.com/Privoce/GenUI
 > Choose LICENSE: MIT
 > Version: 0.1.0
@@ -142,9 +157,9 @@ Ract will prompt you that the relevant tool chain is missing. If your tool chain
 🎉 Your project has been created successfully!
 ```
 
-## Start the project
+## Run the project
 
-In GenUI, you need to use `ract run` to start the project
+In GenUI, you need to use `ract run` to run the project
 
 > [!TIP]
 >
@@ -155,9 +170,9 @@ In GenUI, you need to use `ract run` to start the project
 > For example, you used `ract create` to build a workspace named `quickstart` at `/Users/John/projects/gen_ui_project`.
 > You only need to `cd` to `/Users/John/projects/gen_ui_project/quickstart`. Then run `ract run` directly
 
-### Startup results
+### Result
 
-After startup, you will get the following output in the terminal:
+After startup, you will get the following input in the terminal:
 
 ```shell
 🥳 Welcome to use ract project runner!
@@ -167,13 +182,13 @@ After startup, you will get the following output in the terminal:
 🔸 If you do not know `.ract` file, please run `ract book` to search (Comming Soon)
 
 
-                                                      
-     _/_/_/  _/_/_/_/  _/      _/  _/    _/  _/_/_/   
-  _/        _/        _/_/    _/  _/    _/    _/      
- _/  _/_/  _/_/_/    _/  _/  _/  _/    _/    _/       
-_/    _/  _/        _/    _/_/  _/    _/    _/        
- _/_/_/  _/_/_/_/  _/      _/    _/_/    _/_/_/       
-                                                      
+
+     _/_/_/  _/_/_/_/  _/      _/  _/    _/  _/_/_/
+  _/        _/        _/_/    _/  _/    _/    _/
+ _/  _/_/  _/_/_/    _/  _/  _/  _/    _/    _/
+_/    _/  _/        _/    _/_/  _/    _/    _/
+ _/_/_/  _/_/_/_/  _/      _/    _/_/    _/_/_/
+
 
 GenUI-Compiler :: [2025-01-23 12:00:55] :: INFO >>> 🔧 Log Service is starting... Log entries will be available after the `app event::Change` occurs!
     Creating binary (application) `src_gen_0` package
@@ -183,10 +198,9 @@ GenUI-Compiler :: [2025-01-23 12:00:55] :: INFO >>> 🔧 Watcher Service started
 
 At this time, Ract is helping you monitor and compile your GenUI project in real time
 
-### Start the UI
+### Run the UI
 
-After starting, you will get a compiled package named `src_gen_0` in the workspace. 
-You need to add a terminal and `cd` to this directory and use `cargo run` to start the project
+After starting, you will get a compiled package named `src_gen_0` in the workspace. You need to add a terminal and `cd` to this directory and use `cargo run` to start the project
 
 ```shell
 cd src_gen_0
@@ -194,11 +208,11 @@ cd src_gen_0
 cargo run
 ```
 
-You will end up with a view:
+You will get a view:
 
 ![](/quickstart/makepad_genui.png)
 
-## Add new components to page 
+## Add new components
 
 Next, we add a text component and a multiple-select box component to the `home` page
 
@@ -217,18 +231,18 @@ The complete `<template>` code is as follows:
 
 ```html title="home.gen"
 <template>
-    <component name="Home" class="home_view">
-        <Hello id="header"></Hello>
-        <button id="my_btn" theme="Error" @clicked="click_btn()">
-            <label as_prop="slot" text="'Click Me!'" font_size="12.0"></label>
-        </button>
-        <label text="'Hello GenUI!!!'" font_size="16.0"></label>
-        <checkbox text="'I am a checkbox'"></checkbox>
-    </component>
+  <component name="Home" class="home_view">
+    <Hello id="header"></Hello>
+    <button id="my_btn" theme="Error" @clicked="click_btn()">
+      <label as_prop="slot" text="'Click Me!'" font_size="12.0"></label>
+    </button>
+    <label text="'Hello GenUI!!!'" font_size="16.0"></label>
+    <checkbox text="'I am a checkbox'"></checkbox>
+  </component>
 </template>
 ```
 
-After Ract performs incremental compilation, you will get the following output:
+After Ract performs incremental compilation, you will get the following prompt:
 
 ```shell
 GenUI-Compiler :: [2025-01-23 12:10:00] :: INFO >>> File `/Users/John/projects/gen_ui_project/quickstart/start/views/home.gen` compiled successfully.
@@ -237,4 +251,3 @@ GenUI-Compiler :: [2025-01-23 12:10:00] :: INFO >>> File `/Users/John/projects/g
 And the view will automatically update:
 
 ![](/quickstart/makepad_genui2.png)
-

@@ -1,0 +1,22 @@
+[
+  {
+    "type": "file",
+    "name": "index",
+    "label": "Components Overview"
+  },
+  {
+    "type": "dir",
+    "name": "basic",
+    "label": "Basic Components"
+  },
+  {
+    "type": "dir",
+    "name": "form",
+    "label": "Form Components"
+  },
+  {
+    "type": "dir",
+    "name": "data",
+    "label": "Data Components"
+  }
+]

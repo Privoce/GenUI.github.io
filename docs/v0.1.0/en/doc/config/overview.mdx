@@ -1,0 +1,65 @@
+import MyLinkCard from "@theme/components/LinkCard";
+import Container from "@theme/components/Container";
+
+# Overview
+
+In the configuration section, we will explain in detail the specific information and configurable items of each configuration file
+
+> [!TIP]
+>
+> Generally speaking, you rarely need to modify these configuration files manually
+
+## Ract
+
+<Container>
+  <MyLinkCard
+    href="/doc/config/env"
+    title=".env"
+    description=".env is the file that Ract points to for env.toml"
+  />
+</Container>
+<Container>
+  <MyLinkCard
+    href="/doc/config/env"
+    title="env.toml"
+    description="env.toml is the environment configuration file of Ract. From the content in this file, Ract can find the environment dependencies when the user is developing."
+  />
+</Container>
+<Container>
+  <MyLinkCard
+    href="/doc/config/ract_toml"
+    title=".ract"
+    description=".ract is the configuration file of the Ract compiler, which uses the toml format."
+  />
+</Container>
+
+## GenUI
+
+<Container>
+  <MyLinkCard
+    href="/doc/config/gen_ui_toml"
+    title="gen_ui.toml"
+    description="gen_ui.toml is the configuration file of the GenUI project. It configures the compiler with specific project information and the underlying compilation and development plugins."
+  />
+</Container>
+
+## Type mapping
+
+In most GenUI projects, `toml` is used for configuration, and `Rust` types are used to map `toml` to types.
+
+| Rust             | TOML                    | TOML FORMATTER       |
+| ---------------- | ----------------------- | -------------------- |
+| `String`         | `String`                | `"  "`               |
+| `i_type`         | `Integer`               | `0`                  |
+| `u_type`         | `Integer`               | `0`                  |
+| `f32, f64`       | `Float`                 | `0.0`                |
+| `bool`           | `Bool`                  | `true, false`        |
+| `Vec<R>`         | `Array<T>`              | `[  ]`               |
+| `enum (United)`  | `String`                | `"  "`               |
+| `enum (Named)`   | `Table` / `InlineTable` | `[[struct name]] {}` |
+| `enum (Unnamed)` | `Table` / `InlineTable` | `[[struct name]] {}` |
+| `struct`         | `Table` / `InlineTable` | `[[struct name]] {}` |
+
+> [!TIP]
+>
+> `String`always use `snake name rule`

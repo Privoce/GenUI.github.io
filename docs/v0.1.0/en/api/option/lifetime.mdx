@@ -1,0 +1,43 @@
+import { Badge } from '@theme';
+
+# Life cycle <Badge text="experiment" type="danger" />
+
+> [!WARNING]
+>
+> Currently, the complete life cycle has not been fully implemented. It is an experimental function. Open `#[before_create]`
+
+## `#[before_create]`
+
+Called immediately after the component instance is initialized. Use the `#[before_create]` annotation on a method or closure.
+
+### Usage
+
+#### Fn
+
+```rust
+#[before_create]
+fn before_create(){
+    println!("before create!");
+}
+```
+
+#### Closure
+
+```rust
+#[before_create]
+let mut before_create = || {
+    println!("before create!");
+};
+```
+
+## `#[created]`
+
+Options called after instance initialization is complete
+
+## `#[before_update]`
+
+Called before instance update
+
+## `#[updated]`
+
+Called after instance update

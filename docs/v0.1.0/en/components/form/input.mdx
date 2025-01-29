@@ -1,0 +1,79 @@
+# `input`
+
+Input characters through the mouse or keyboard
+
+> [!NOTE]
+>
+> Currently, the input box has relatively limited capabilities. We plan to launch more or more powerful input boxes in the next version
+
+## Examples
+
+### Basic usage
+
+```html
+<input
+    text="'Hello'"
+    height="36.0"
+    width="200.0">
+</input>
+```
+
+## Properties
+
+| Name                   | Description           | Type             |
+| ---------------------- | --------------------- | ---------------- |
+| `theme`                | Theme                 | `Themes`         |
+| `shadow_color`         | Shadow color          | `MakepadColor`   |
+| `spread_radius`        | Spread radius         | `F32`            |
+| `blur_radius`          | Blur radius           | `F32`            |
+| `shadow_offset`        | Shadow offset         | `Vec2`           |
+| `placeholder_color`    | Placeholder color     | `MakepadColor`   |
+| `color`                | Color                 | `MakepadColor`   |
+| `cursor_color`         | Cursor color          | `MakepadColor`   |
+| `select_color`         | Selection color       | `MakepadColor`   |
+| `background_color`     | Background color      | `MakepadColor`   |
+| `background_visible`   | Background visible    | `bool`           |
+| `visible`              | Visible               | `bool`           |
+| `hover_color`          | Hover color           | `MakepadColor`   |
+| `text_hover_color`     | Text hover color      | `MakepadColor`   |
+| `text_focus_color`     | Text focus color      | `MakepadColor`   |
+| `cursor_hover_color`   | Cursor hover color    | `MakepadColor`   |
+| `cursor_focus_color`   | Cursor focus color    | `MakepadColor`   |
+| `select_hover_color`   | Selection hover color | `MakepadColor`   |
+| `select_focus_color`   | Selection focus color | `MakepadColor`   |
+| `focus_color`          | Focus color           | `MakepadColor`   |
+| `border_color`         | Border color          | `MakepadColor`   |
+| `border_width`         | Border width          | `F32`            |
+| `border_radius`        | Border radius         | `F32`            |
+| `font_size`            | Font size             | `F64`            |
+| `height_factor`        | Height factor         | `F64`            |
+| `wrap`                 | Text wrapping method  | `TextWrap`       |
+| `font_family`          | Font family path      | `LiveDependency` |
+| `cursor_border_radius` | Cursor corner radius  | `F64`            |
+| `abs_pos`              | Absolute position     | `DVec2`          |
+| `margin`               | Margin                | `Margin`         |
+| `width`                | Width                 | `Size`           |
+| `height`               | Height                | `Size`           |
+| `scroll`               | Scroll offset         | `DVec2`          |
+| `clip_x`               | Clip X axis or not    | `bool`           |
+| `clip_y`               | Clip Y axis or not    | `bool`           |
+| `padding`              | Padding               | `Padding`        |
+| `align`                | Alignment             | `Align`          |
+| `flow`                 | Flow mode             | `Flow`           |
+| `spacing`              | Spacing               | `F64`            |
+| `cursor_width`         | Cursor width          | `F64`            |
+| `read_only`            | Read-only             | `bool`           |
+| `numeric_only`         | Numeric input only    | `bool`           |
+| `placeholder`          | Placeholder           | `String`         |
+| `text`                 | Text content          | `String`         |
+| `event_key`            | Event key             | `bool`           |
+
+## Event callback
+
+| Name                | Description               | Parameters           |
+| ------------------- | ------------------------- | -------------------- |
+| `changed`           | Input value change event  | `GInputChangedParam` |
+| `keydown_unhandled` | Unhandled key press event | `KeyEvent`           |
+| `escaped`           | Esc key press event       | `_`                  |
+| `key_focus`         | Get keyboard focus event  | `_`                  |
+| `key_focus_lost`    | Lose keyboard focus event | `_`                  |

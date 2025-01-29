@@ -1,0 +1,66 @@
+import { Tab, Tabs } from "rspress/theme";
+
+# Ract toml (.ract)
+
+`.ract` is the configuration file of the `Ract` compiler, which uses the `toml` format. This file enables Ract to identify the current project type and compilation object.
+
+## Configuration Example
+
+<Tabs>
+    <Tab label="GenUI">
+        ```toml title=".ract"
+        target = "gen_ui"
+        members = [{ source = "start", target = "src_gen_0" }]
+        ```
+    </Tab>
+    <Tab label="Makepad Project">
+        ```toml title=".ract"
+        target = "makepad"
+        ```
+    </Tab>
+    <Tab label="Makepad Workspace">
+        ```toml title=".ract"
+        target = "makepad"
+        ```
+    </Tab>
+</Tabs>
+
+## Configuration description
+
+| key        | value type            | description                                                                  |
+| ---------- | --------------------- | ---------------------------------------------------------------------------- |
+| `target`   | `FrameworkType`       | Project type                                                                 |
+| `members`  | `Option<Vec<Member>>` | Project members                                                              |
+| `compiles` | `Option<Vec<usize>>`  | Projects to be compiled. If not set, compile the first project in the member |
+
+> - [`FrameworkType`](/doc/config/types#frameworktype)
+> - [`Member`](/doc/config/types#member)
+
+### Source Code `.ract`
+
+````rust
+/// # RactToml
+/// each project has a .ract file to point the project kind and help ract to compile the project
+///
+/// **try support makepad and gen_ui**
+/// ## Example
+/// ```toml
+/// target = "gen_ui"
+/// members = [
+///    { source = "./hello", target = "./hello_makepad" },
+/// ]
+/// compiles = [0]
+/// ```
+#[derive(Debug, Clone)]
+pub struct RactToml {
+    /// target of the project
+    pub target: FrameworkType,
+    /// members of the project
+    pub members: Option<Vec<Member>>,
+    /// projects to compile, if not set, compile the first project in the members
+    /// - if compiles length is 0, not compile any project
+    /// - if compiles length is 1, compile the project in the members by index
+    /// - if compiles length is more than 1, use multiple threads to compile the projects
+    pub compiles: Option<Vec<usize>>,
+}
+````

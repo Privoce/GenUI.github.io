@@ -1,0 +1,108 @@
+# Scripts
+
+The script part of `GenUI` uses the Rust language and is wrapped in the `<script>` tag in the `.gen` file.
+
+> [!TIP]
+>
+> This document only briefly describes the use of the script part. For specific documents, please refer to: [API](/zh/api/index)
+
+## Define component properties
+
+For custom components, we need to use the `#[prop]` macro to declare the component's properties, but not all types are allowed. The types that can be used in the properties need to implement the `Default` trait.
+
+```rust
+<script>
+#[prop]
+pub struct MyView{
+    name: String
+}
+</script>
+```
+
+## Define component events
+
+Custom components do not have any events. Events need to be declared using the `#[event]` macro, and `#[derive(Debug, Clone)]` needs to be added.
+
+```rust
+#[event]
+#[derive(Debug, Clone)]
+pub enum MyViewEvent{
+    Clicked,
+    Changed(String),
+}
+```
+
+In the example above, we defined two event callbacks:
+
+1. `Clicked`
+2. `Changed`
+
+Among them, `Clicked` does not have any callback parameters, and the callback parameter of `Changed` is of `String` type.
+
+## Data Binding
+
+We have learned how to define component properties in the previous section, and data binding of component templates is also based on property definitions
+
+In this example, we define the value of the `text` property of `label` in `MyView`. For the bound value, `GenUI` will automatically generate the corresponding `get` and `set` methods.
+
+```rust
+<template>
+    <component name="MyView">
+        <label id="my_label" :text="txt"></label>
+        <button id="my_btn" @clicked="change_txt()"></button>
+    </component>
+</template>
+
+<script>
+#[prop]
+pub struct MyView{
+    txt: String
+}
+
+let mut prop = default_prop!{
+    MyView{
+        txt: "Hello".to_string()
+    }
+};
+</script>
+```
+
+In this code, the `get_txt` and `set_txt` methods are automatically generated.
+
+## Methods and callbacks
+
+For methods and callbacks, use `fn` or `closure` to declare them. In the following example, we define the `change_txt` method as the callback method for button clicks.
+
+```rust
+<template>
+    <component name="MyView">
+        <label id="my_label" :text="txt"></label>
+        <button id="my_btn" @clicked="change_txt()"></button>
+    </component>
+</template>
+
+<script>
+#[prop]
+pub struct MyView{
+    txt: String
+}
+
+let mut prop = default_prop!{
+    MyView{
+        txt: "Hello".to_string()
+    }
+};
+
+fn change_txt(){
+    prop.set_txt("World".to_string());
+}
+</script>
+```
+
+The above method can also be rewritten using `closure`
+
+```rust
+let mut change_txt = ||{
+    prop.set_txt("World".to_string());
+};
+```

@@ -1,0 +1,145 @@
+# Network
+
+## `http/https`
+
+If you need to use network requests (`http/https`) in `GenUI`, you need to use the plugin `gen_makepad_http`.
+
+> You can refer to this example: [todo example](https://github.com/Privoce/made_with_GenUI/tree/main/todo/todo_front)
+
+### Install plugins using `Ract` 
+
+```bash
+ract add gen_makepad_http
+```
+
+After the installation is complete, a `.plugins` directory will appear in your GenUI project, which contains a `gen_makepad_http/token.toml` file.
+
+### Add required dependencies
+
+Please add the following dependencies to the project's `Cargo.toml`:
+
+```toml title="Cargo.toml"
+[package]
+# ...
+
+[dependencies]
+gen_macro = "0.1.0"
+serde = "1.0.217"
+lazy_static = "1.5.0"
+serde_json = "1.0.135"
+```
+
+### Register in `main.rs`
+
+This `HttpPublisher` is registered globally, the name is set to `http1`, and the `init` function is used for initialization
+
+```rust title="main.rs"
+use gen_macro::plugin;
+
+fn init() -> HttpPublisher {
+    let mut http = HttpPublisher::new("/url/path");
+    http.basic.protocol = Protocol::Https; // default is http
+    http
+}
+
+plugin! {
+    http1: HttpPublisher => init()
+}
+```
+
+### Use in Component
+
+```rust
+#[before_create]
+fn before_create(){
+    let _ = http_get!(http_response1);
+}
+
+#[http_response]
+fn http_response1(response: &HttpResponse){
+    dbg!("response");
+    if response.status_code == 200 {
+        // ...
+    }
+}
+```
+
+### Request
+
+The following requests are currently supported:
+
+- GET: `http_get!`
+- POST: `http_post!`
+- PUT: `http_put!`
+- DELETE: `http_delete!`
+- PATCH: `http_patch!`
+
+These macros are used in the same way:
+1. `http_get!($Id: tt)`
+2. `http_get!($Id: tt, $Url: expr)`
+3. `http_get!($Id: tt, $Url: expr, $Patch: expr)`
+
+> - `$Id`: the function name corresponding to the response
+> - `$Url`: the address attached to the `basic url`, for example, `basic_url` is `localhost:8888/hello`, if this `$Url` is set to `"/user/get/1"`, then the complete `url` is: `localhost:8888/hello/user/get/1`
+> - `$Patch`: `Into<PatchRequest>`, in short, you can directly use a serializable type or `PatchRquest`
+
+
+### HttpPublisher
+
+The request publisher, where you can configure the basic request configuration (`BasicConfig`)
+
+#### BasicConfig
+
+> [!NOTE]
+>
+> default is:
+>
+> - protocol: `Protocol::Http`
+> - headers: `Content-Type: application/json`
+
+```rust
+#[derive(Debug, Clone)]
+pub struct BasicConfig {
+    pub protocol: Protocol,
+    pub url: String,
+    pub headers: HashMap<HttpRequestHeader, String>,
+}
+```
+
+If you need to add header，please use：`pub fn push_header(&mut self, header: HttpRequestHeader, value: String) ;`
+
+#### Protocol
+
+```rust
+#[derive(Debug, Clone, Copy)]
+pub enum Protocol {
+    Http,
+    Https,
+}
+```
+
+#### HttpRequestHeader
+
+```rust
+#[derive(Hash, Eq, PartialEq, Debug, Clone)]
+pub enum HttpRequestHeader {
+    ContentType,
+    Authorization,
+    Other(String),
+}
+```
+
+#### PatchRequest
+
+```rust
+#[derive(Debug, Clone, Default)]
+pub struct PatchRequest {
+    pub params: Option<HashMap<String, String>>,
+    pub headers: Option<HashMap<HttpRequestHeader, String>>,
+    pub body: Option<HttpRequestBody>,
+}
+```
+
+#### HttpRequestBody
+
+`Vec<u8>` implements data serialization, which means that you can use any data serialized by `serde` as `HttpRequestBody`

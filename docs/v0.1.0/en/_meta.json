@@ -5,7 +5,12 @@
     "activeMatch": "/doc/"
   },
   {
-    "text": "Tool",
+    "text": "Components",
+    "link": "/components/",
+    "activeMatch": "/components/"
+  },
+  {
+    "text": "Tools",
     "link": "/tools/overview",
     "activeMatch": "/tools/"
   },

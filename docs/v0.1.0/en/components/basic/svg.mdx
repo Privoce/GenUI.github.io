@@ -1,0 +1,54 @@
+# `svg`
+
+Display icon files with the suffix `.svg`
+
+## Example
+
+### Basic usage
+
+Make sure the icon address exists before use. Use the `dep` built-in function to point to the icon address. This function can use an absolute address. In the following example, `crate://self/` represents the project root directory.
+
+```html
+<svg src="dep('crate://self/resources/genui.svg')"></svg>
+```
+
+## Attributes
+
+| Name                 | Description                | Type             |
+| -------------------- | -------------------------- | ---------------- |
+| `theme`              | Theme                      | `Themes`         |
+| `brightness`         | Brightness                 | `F32`            |
+| `curve`              | Curve                      | `F32`            |
+| `linearize`          | Linearize                  | `F32`            |
+| `src`                | SVG resource path          | `LiveDependency` |
+| `scale`              | Scale                      | `F64`            |
+| `color`              | Color                      | `MakepadColor`   |
+| `draw_depth`         | Draw depth                 | `F32`            |
+| `stroke_hover_color` | Stroke color when hovering | `MakepadColor`   |
+| `stroke_focus_color` | Stroke color when focused  | `MakepadColor`   |
+| `cursor`             | Mouse pointer style        | `MouseCursor`    |
+| `grab_key_focus`     | Capture keyboard focus     | `bool`           |
+| `visible`            | Visible                    | `bool`           |
+| `animation_key`      | Animation key              | `bool`           |
+| `abs_pos`            | Absolute position          | `DVec2`          |
+| `margin`             | Margin                     | `Margin`         |
+| `width`              | Width                      | `Size`           |
+| `height`             | Height                     | `Size`           |
+| `scroll`             | Scroll offset              | `DVec2`          |
+| `clip_x`             | Clip X axis                | `bool`           |
+| `clip_y`             | Clip Y axis                | `bool`           |
+| `padding`            | Padding                    | `Padding`        |
+| `align`              | Alignment                  | `Align`          |
+| `flow`               | Flow mode                  | `Flow`           |
+| `spacing`            | Spacing                    | `F64`            |
+| `event_key`          | Event key                  | `bool`           |
+
+## Event callback
+
+| Name         | Description       | Parameters           |
+| ------------ | ----------------- | -------------------- |
+| `clicked`    | Click event       | `GSvgClickedParam`   |
+| `hover_in`   | Mouse hover event | `GSvgHoverParam`     |
+| `hover_out`  | Mouse out event   | `GSvgHoverParam`     |
+| `focus`      | Focus event       | `GSvgFocusParam`     |
+| `focus_lost` | Lost focus event  | `GSvgFocusLostParam` |

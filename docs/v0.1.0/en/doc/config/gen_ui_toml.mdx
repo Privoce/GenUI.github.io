@@ -1,0 +1,106 @@
+import { Tab, Tabs } from "rspress/theme";
+
+# Compiler Conf (gen_ui.toml)
+
+`gen_ui.toml` is the configuration file of the `GenUI` project, which configures the compiler for specific project information and compiles the underlying and development plugins.
+
+## Configuration example
+
+```toml title="gen_ui.toml"
+[compiler]
+target = "makepad"
+logo = true
+log_level = "info"
+excludes = ["Cargo.toml", "Cargo.lock", "target", ".gen_ui_cache", "gen_ui.toml", ".plugins"]
+
+[makepad]
+
+[makepad.root]
+path = "/Users/shengyifei/projects/gen_ui/made_with_GenUI/quickstart/start/views/root.gen"
+window = { height = "Fill", width = "Fill", flow = "Down", window_size = { inner_size = { x = 1080.0, y = 720.0 } } }
+
+[makepad.dependencies]
+makepad-widgets = { path = "/Users/shengyifei/projects/makepad/makepad/widgets" }
+
+[plugins]
+
+```
+
+## Configuration description
+
+| key          | value type                         | description                                     |
+| ------------ | ---------------------------------- | ----------------------------------------------- |
+| `compiler`   | `CompilerConf`                     | Compile basic configuration                     |
+| `underlayer` | `CompileUnderlayer`                | Compile underlying configuration (dynamic type) |
+| `plugins`    | `Option<HashMap<String, PathBuf>>` | GenUI plugin                                    |
+
+---
+
+### `[compiler]`
+
+| key         | value type   | description                                                    |
+| ----------- | ------------ | -------------------------------------------------------------- |
+| `target`    | `Underlayer` | Compile the underlying layer                                   |
+| `logo`      | `bool`       | Show GenUI Logo                                                |
+| `log_level` | `LogLevel`   | Log level                                                      |
+| `excludes`  | `Excludes`   | Files and directories that need to be excluded by the compiler |
+
+> - [`Underlayer`](/zh/doc/config/types#underlayer)
+> - [`LogLevel`](/zh/doc/config/types#log_level)
+> - [`Excludes`](/zh/doc/config/types#excludes)
+
+---
+
+### Underlayer
+
+<Tabs>
+    <Tab label="makepad">
+        ### `[makepad]`
+
+        |key|value type|description|
+        |--|--|--|
+        |`entry`|`Option<String>`|Entry file name|
+        |`root`|`RootConf`|Entry configuration, including UI entry address and window properties|
+        |`dependencies`|`Option<Vec<RustDependence>>`|Rust dependencies|
+        |`wasm`|`Option<WasmConf>`|wasm related configuration (compilation synchronization mode, not supported yet)|
+
+        #### `entry`
+
+        - `Option<String>`
+
+        #### `[makepad.root]`
+
+        |key|value type|description|
+        |--|--|--|
+        |`path`|`PathBuf`|address of ui root file|
+        |`window`|`Prop<WindowProps>`|the props of window|
+
+        > - [`WindowProps`](/zh/doc/config/types#window_props)
+
+        #### `[makepad.dependencies]`
+
+        Here use `Option<Vec<RustDependence>>`
+
+        > - [`RustDependence`](https://doc.rust-lang.org/cargo/commands/cargo-add.html)
+
+        #### `[makepad.wasm]`
+
+        |key|value type|description|
+        |--|--|--|
+        |`fresh`|`bool`|need to recompile after each update?|
+        |`port`|`Option<u16>`|port (default is 8010)|
+
+    </Tab>
+    <Tab label="None"></Tab>
+
+</Tabs>
+
+---
+
+### `[plugins]`
+
+- `Option<HashMap<String, PathBuf>>`: Development plugin entry
+
+This configuration is usually automatically added by the `ract add` command, unless you need to use a local plugin developed by yourself. Its writing method is very uniform, pointing to the directory where the plugin's `token.toml` is located
+
+`plugin_name = ".plugins/plugin_name"`

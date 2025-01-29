@@ -1,9 +1,37 @@
 [
-    "overview",
-    "quick-start",
-    "ract",
-    "project-structure",
-    "template",
-    "style",
-    "script"
+    {
+        "type": "file",
+        "name": "overview",
+        "label": "Overview"
+    },
+    {
+        "type": "file",
+        "name": "quick-start",
+        "label": "QuickStart"
+    },
+    {
+        "type": "file",
+        "name": "project-structure",
+        "label": "Project Structure"
+    },
+    {
+        "type": "dir",
+        "name": "template",
+        "label": "template"
+    },
+    {
+        "type": "file",
+        "name": "style",
+        "label": "style"
+    },
+    {
+        "type": "file",
+        "name": "script",
+        "label": "script"
+    },
+    {
+        "type": "file",
+        "name": "data",
+        "label": "data types"
+    }
 ]

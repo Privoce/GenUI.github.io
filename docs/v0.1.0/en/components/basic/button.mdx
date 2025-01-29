@@ -1,0 +1,67 @@
+# `button`
+
+A customizable button designed for interactive UI elements. It supports hover, focus, and click animations, and has various configurable appearance properties, including background color, shadow, and border style.
+
+## Example
+
+### Basic Usage
+
+```html
+<button>
+  <label as_prop="slot" text="'Hello'"></label>
+</button>
+```
+
+### Define inner
+
+```html
+<button>
+  <view as_prop="slot">
+    <label text="'Hello'"></label>
+    <label text="'World'"></label>
+  </view>
+</button>
+```
+
+## Properties
+
+| Name                 | Description                | Type           |
+| -------------------- | -------------------------- | -------------- |
+| `theme`              | Theme                      | `Themes`       |
+| `background_color`   | Background color           | `MakepadColor` |
+| `background_visible` | Is the background visible  | `bool`         |
+| `hover_color`        | Hover color                | `MakepadColor` |
+| `focus_color`        | Focus color                | `MakepadColor` |
+| `shadow_color`       | Shadow color               | `MakepadColor` |
+| `spread_radius`      | Shadow spread radius       | `F32`          |
+| `blur_radius`        | Shadow blur radius         | `F32`          |
+| `shadow_offset`      | Shadow offset              | `Vec2`         |
+| `border_color`       | Border color               | `MakepadColor` |
+| `border_width`       | Border width               | `F32`          |
+| `border_radius`      | Border radius              | `F32`          |
+| `cursor`             | Mouse pointer              | `MouseCursor`  |
+| `visible`            | Visible or not             | `bool`         |
+| `grab_key_focus`     | Grab keyboard focus or not | `bool`         |
+| `animation_key`      | Animation key              | `bool`         |
+| `event_key`          | Event key                  | `bool`         |
+| `abs_pos`            | Absolute position          | `DVec2`        |
+| `margin`             | Margin                     | `Margin`       |
+| `width`              | Width                      | `Size`         |
+| `height`             | Height                     | `Size`         |
+| `scroll`             | Scroll offset              | `DVec2`        |
+| `clip_x`             | Clip X axis or not         | `bool`         |
+| `clip_y`             | Clip Y axis or not         | `bool`         |
+| `padding`            | Padding                    | `Padding`      |
+| `align`              | Alignment                  | `Align`        |
+| `flow`               | Flow                       | `Flow`         |
+| `spacing`            | Spacing                    | `F64`          |
+
+## Event callback
+
+| Name         | Description       | Parameters              |
+| ------------ | ----------------- | ----------------------- |
+| `hover_in`   | Mouse enter event | `GButtonHoverParam`     |
+| `hover_out`  | Mouse leave event | `GButtonHoverParam`     |
+| `clicked`    | Click event       | `GButtonClickedParam`   |
+| `focus`      | Get focus event   | `GButtonFocusParam`     |
+| `focus_lost` | Lose focus event  | `GButtonFocusLostParam` |

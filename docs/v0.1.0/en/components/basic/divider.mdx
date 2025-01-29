@@ -1,0 +1,70 @@
+# `divider`
+
+Used to split content, it inherits from the `view` component.
+
+## Example
+
+### Basic usage
+
+```html
+<view spacing="40.0">
+  <label text="'Hello'"></label>
+  <divider theme="Info"></divider>
+  <divider theme="Error">
+    <label text="'I am a divider'"></label>
+  </divider>
+  <divider theme="Success">
+    <view height="Fit" width="Fit" padding="6.0">
+      <button></button>
+    </view>
+  </divider>
+  <divider theme="Warning"></divider>
+  <label text="'World'"></label>
+</view>
+```
+
+## Properties
+
+| Name                 | Description                | Type           |
+| -------------------- | -------------------------- | -------------- |
+| `theme`              | Theme                      | `Themes`       |
+| `background_color`   | Background color           | `MakepadColor` |
+| `hover_color`        | Hover color                | `MakepadColor` |
+| `focus_color`        | Focus color                | `MakepadColor` |
+| `border_color`       | Border color               | `MakepadColor` |
+| `border_width`       | Border width               | `F32`          |
+| `border_radius`      | Border radius              | `F32`          |
+| `visible`            | Visible or not             | `bool`         |
+| `background_visible` | Background visible or not  | `bool`         |
+| `shadow_color`       | Shadow color               | `MakepadColor` |
+| `spread_radius`      | Shadow spread radius       | `F32`          |
+| `blur_radius`        | Shadow blur radius         | `F32`          |
+| `shadow_offset`      | Shadow offset              | `Vec2`         |
+| `cursor`             | Mouse pointer style        | `MouseCursor`  |
+| `animation_key`      | Animation key              | `bool`         |
+| `grab_key_focus`     | Capture keyboard focus     | `bool`         |
+| `block_signal_event` | Block signal event         | `bool`         |
+| `abs_pos`            | Absolute position          | `DVec2`        |
+| `margin`             | Margin                     | `Margin`       |
+| `width`              | Width                      | `Size`         |
+| `height`             | Height                     | `Size`         |
+| `scroll`             | Scroll offset              | `DVec2`        |
+| `clip_x`             | Clip X axis or not         | `bool`         |
+| `clip_y`             | Clip Y axis or not         | `bool`         |
+| `padding`            | Padding                    | `Padding`      |
+| `align`              | Alignment                  | `Align`        |
+| `flow`               | Flow                       | `Flow`         |
+| `spacing`            | Spacing                    | `F64`          |
+| `event_order`        | Event order                | `EventOrder`   |
+| `dpi_factor`         | DPI scaling factor         | `F64`          |
+| `optimize`           | View optimization options  | `ViewOptimize` |
+| `capture_overload`   | Capture overload           | `bool`         |
+| `event_key`          | Event key                  | `bool`         |
+| `block_child_events` | Block child event delivery | `bool`         |
+| `deref_widget`       | Reference view properties  | `ViewProps`    |
+| `stroke_width`       | Stroke width               | `F32`          |
+| `direction`          | Divider direction          | `Direction`    |
+
+## Event callback
+
+None

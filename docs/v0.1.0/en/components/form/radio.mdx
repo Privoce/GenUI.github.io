@@ -1,0 +1,138 @@
+# `radio`
+
+We recommend that you put `radio` in `radio_group` for use
+
+> `radio_group` inherits from `view`
+
+## Example
+
+### Basic usage
+
+You may have found that `radio_group` has `selected` but `checkbox_group` does not. This is a point that needs extra attention at present. We will unify the final style in the next version
+
+> [!WARNING]
+>
+> It is unwise to set `selected` in `radio`, so the final compilation may not pass when you use the `radio_group` package
+>
+> Especially if you set multiple `radios` to `selected="true"` at the same time
+
+```html
+<radio_group selected="1">
+  <radio text="'male'"></radio>
+  <radio text="'female'"></radio>
+</radio_group>
+```
+
+## Properties
+
+### `radio` properties
+
+| Name                       | Description                             | Type             |
+| -------------------------- | --------------------------------------- | ---------------- |
+| `theme`                    | Theme                                   | `Themes`         |
+| `color`                    | Color                                   | `MakepadColor`   |
+| `text_hover_color`         | Text hover color                        | `MakepadColor`   |
+| `text_focus_color`         | Text focus color                        | `MakepadColor`   |
+| `font_size`                | Font size                               | `F64`            |
+| `height_factor`            | Height factor                           | `F64`            |
+| `wrap`                     | Text wrapping method                    | `TextWrap`       |
+| `font_family`              | Font family path                        | `LiveDependency` |
+| `text_visible`             | Is the text visible                     | `bool`           |
+| `size`                     | Size                                    | `F32`            |
+| `radio_background_color`   | Radio button background color           | `MakepadColor`   |
+| `radio_background_visible` | Is the radio button background visible? | `bool`           |
+| `radio_hover_color`        | Radio button hover color                | `MakepadColor`   |
+| `radio_selected_color`     | Radio button selected color             | `MakepadColor`   |
+| `stroke_color`             | Stroke color                            | `MakepadColor`   |
+| `stroke_hover_color`       | Stroke hover color                      | `MakepadColor`   |
+| `stroke_selected_color`    | Stroke selected color                   | `MakepadColor`   |
+| `radio_border_color`       | Radio button border color               | `MakepadColor`   |
+| `radio_border_width`       | Radio button border width               | `F32`            |
+| `scale`                    | Scale ratio                             | `F32`            |
+| `background_color`         | Background color                        | `MakepadColor`   |
+| `hover_color`              | Hover color                             | `MakepadColor`   |
+| `focus_color`              | Focus color                             | `MakepadColor`   |
+| `shadow_color`             | Shadow color                            | `MakepadColor`   |
+| `border_color`             | Border color                            | `MakepadColor`   |
+| `background_visible`       | Is the background visible?              | `bool`           |
+| `border_width`             | Border width                            | `F32`            |
+| `border_radius`            | Border radius                           | `F32`            |
+| `spread_radius`            | Spread radius                           | `F32`            |
+| `blur_radius`              | Blur radius                             | `F32`            |
+| `shadow_offset`            | Shadow offset                           | `Vec2`           |
+| `cursor`                   | Mouse cursor style                      | `MouseCursor`    |
+| `value`                    | Value                                   | `String`         |
+| `selected`                 | Is it selected?                         | `bool`           |
+| `text`                     | Text content                            | `String`         |
+| `radio_type`               | Radio button type                       | `GChooseType`    |
+| `abs_pos`                  | Absolute position                       | `DVec2`          |
+| `margin`                   | Margin                                  | `Margin`         |
+| `width`                    | Width                                   | `Size`           |
+| `height`                   | Height                                  | `Size`           |
+| `scroll`                   | Scroll offset                           | `DVec2`          |
+| `clip_x`                   | Clip X axis                             | `bool`           |
+| `clip_y`                   | Clip Y axis                             | `bool`           |
+| `padding`                  | Padding                                 | `Padding`        |
+| `align`                    | Alignment                               | `Align`          |
+| `flow`                     | Flow mode                               | `Flow`           |
+| `spacing`                  | Spacing                                 | `F64`            |
+| `visible`                  | Visible                                 | `bool`           |
+| `animation_key`            | Animation key                           | `bool`           |
+| `grab_key_focus`           | Capture keyboard focus                  | `bool`           |
+| `event_key`                | Event key                               | `bool`           |
+
+### `radio_group` properties
+
+| Name                 | Description                    | Type           |
+| -------------------- | ------------------------------ | -------------- |
+| `selected`           | Which radio button is selected | `I32`          |
+| `theme`              | Theme                          | `Themes`       |
+| `background_color`   | Background color               | `MakepadColor` |
+| `hover_color`        | Hover color                    | `MakepadColor` |
+| `focus_color`        | Focus color                    | `MakepadColor` |
+| `border_color`       | Border color                   | `MakepadColor` |
+| `border_width`       | Border width                   | `F32`          |
+| `border_radius`      | Border radius                  | `F32`          |
+| `visible`            | Is it visible                  | `bool`         |
+| `background_visible` | Is the background visible      | `bool`         |
+| `shadow_color`       | Shadow color                   | `MakepadColor` |
+| `spread_radius`      | Shadow diffusion radius        | `F32`          |
+| `blur_radius`        | Shadow blur radius             | `F32`          |
+| `shadow_offset`      | Shadow offset                  | `Vec2`         |
+| `cursor`             | Mouse pointer style            | `MouseCursor`  |
+| `animation_key`      | Animation key                  | `bool`         |
+| `grab_key_focus`     | Capture keyboard focus         | `bool`         |
+| `block_signal_event` | Block signal event             | `bool`         |
+| `abs_pos`            | Absolute position              | `DVec2`        |
+| `margin`             | Margin                         | `Margin`       |
+| `width`              | Width                          | `Size`         |
+| `height`             | Height                         | `Size`         |
+| `scroll`             | Scroll offset                  | `DVec2`        |
+| `clip_x`             | Whether to clip the X axis     | `bool`         |
+| `clip_y`             | Whether to clip the Y axis     | `bool`         |
+| `padding`            | Padding                        | `Padding`      |
+| `align`              | Alignment                      | `Align`        |
+| `flow`               | Flow mode                      | `Flow`         |
+| `spacing`            | Spacing                        | `F64`          |
+| `event_order`        | Event order                    | `EventOrder`   |
+| `dpi_factor`         | DPI scaling factor             | `F64`          |
+| `optimize`           | View optimization options      | `ViewOptimize` |
+| `capture_overload`   | Capture overload               | `bool`         |
+| `event_key`          | Event key                      | `bool`         |
+| `block_child_events` | Block child event delivery     | `bool`         |
+
+## Event callbacks
+
+### `radio` event callbacks
+
+| Name        | Description       | Parameters           |
+| ----------- | ----------------- | -------------------- |
+| `clicked`   | Click event       | `GRadioClickedParam` |
+| `hover_in`  | Mouse hover event | `GRadioHoverParam`   |
+| `hover_out` | Mouse out event   | `GRadioHoverParam`   |
+
+### `radio_group` event callbacks
+
+| Name      | Description        | Parameters              |
+| --------- | ------------------ | ----------------------- |
+| `changed` | State change event | `GRadioGroupEventParam` |

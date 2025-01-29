@@ -1,0 +1,162 @@
+# Color
+
+当前GenUI支持以下几种类型的颜色书写方式:
+
+- Hex: 16进制颜色
+- Rgb: rgb类型
+- Rgba: rgba带有透明度的rgb类型
+- LinearGradient: 线性渐变
+- RadialGradient: 径向渐变
+- Shader(`#cfg(feature="makepad")`, 专属于Makepad的绘制写法)
+
+## Hex
+
+16进制数字表示法 RGB颜色可以使用以井号开头的6位（或8位）16进制数字（0-F）表示，相当于3个或者4个字节，每个字节相当于10进制数的0至255。 三个字节分别表示红色、绿色和蓝色，第四个字节是可选的，表示Alpha通道。
+
+### 语法 
+
+1. 1位16进制: `#1`, 最终这会转换为`#111111FF`
+2. 3位16进制: `#a1f`, 最终这会转换为`#AA11FFFF`
+3. 6位16进制: `#FF00AA`, 最终这会转换为`#FF00AAFF`
+4. 8位16进制: `#AAFF0020`, 这是完整的写法
+
+### Example
+![](/color/hex.png)
+
+```html
+<style>
+#ui{
+  #main_window{
+    //...
+    background_color: #1C2128;
+  }
+}
+</style>
+```
+
+## Rgb
+
+三原色光模式（RGB color model，又称RGB表色系统、RGB颜色模型、红绿蓝颜色模型，是一种加色模型，将红（Red）、绿（Green）、蓝（Blue）三原色的色光以不同的比例相加混色，以合成产生各种色彩光。
+
+### 语法
+
+`rgb(r, g, b)`
+
+其中`r`, `g`, `b` 各为0~255的颜色表示
+
+### Example
+![](/color/rgb.png)
+```html
+<style>
+#ui{
+  #main_window{
+    //...
+    background_color: rgb(255, 112, 67);
+  }
+}
+</style>
+```
+
+## Rgba
+
+带有Alpha通道的三原色光模式，其中R，指的是红色值（Red）；G，指的是绿色值（Green）；B，指的是蓝色值（Blue）；A，指的是透明度（Alpha）。 R、G、B这三个可以为整数，取值范围为0~255。A的取值为0~1。
+
+### 语法
+
+`rgba(r, g, b, a)`
+
+其中`r`, `g`, `b` 各为`0~255`的颜色表示, a表示alpha通道百分比值，取值`0~1`
+
+### Example
+![](/color/rgb.png)
+```html
+<style>
+#ui{
+  #main_window{
+    //...
+    background_color: rgba(255, 112, 67, 0.3);
+  }
+}
+</style>
+```
+
+## Linear
+
+创建一个由两种或多种颜色沿一条直线进行线性过渡的图像
+
+### 语法
+
+`linear_gradient(angle, color [proportion], ...)`
+
+- `angle`: 角度
+- `color`: 16进制颜色值
+- `[proportion]`: 颜色占比
+
+### Example
+![](/color/linear.png)
+```html
+<style>
+#ui{
+  #main_window{
+    //...
+    background_color: linear_gradient(120deg, #FF938A, #98943F 40%, #6BC46D);
+  }
+}
+</style>
+```
+
+## Radial
+创建一个图像，该图像由从原点辐射的两种或多种颜色之间的渐进过渡组成，其形状可以是圆形或椭圆形
+
+### 语法
+`radial_gradient(color [proportion], ...)`
+
+- `color`: 16进制颜色值
+- `[proportion]`: 颜色占比
+
+### Example
+![](/color/radial.png)
+```html
+<style>
+#ui{
+  #main_window{
+    //...
+    background_color: radial_gradient(#FF938A, #98943F, #6BC46D);
+  }
+}
+</style>
+```
+
+## Shader
+专属于Makepad的shader绘制写法，采用Makepad支持的glsl写法来绘制背景，这是可扩展的，灵活的自由的绘制方式，它不仅限于能绘制简单的颜色背景。
+
+### 语法
+
+**不要在语句中添加`;`作为语句的结束，而是使用换行**
+
+```
+shader(|self|{
+  fn fn_name(self) -> vec4{
+    return #009688
+  }
+})
+```
+
+- `fn_name`: shader函数的名字，这取决于组件绘制函数的函数名
+
+### Example
+![](/color/shader.png)
+```html
+<style>
+#ui{
+  #main_window{
+    //...
+    background_color: shader(|self|{
+      fn pixel(self) -> vec4{
+        return #009688
+      }
+    });
+  }
+}
+</style>
+```

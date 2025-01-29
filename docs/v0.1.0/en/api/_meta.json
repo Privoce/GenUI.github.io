@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "type": "file",
+    "name": "index",
+    "label": "API Overview"
+  },
+  {
+    "type": "dir",
+    "name": "global",
+    "label": "Global API"
+  },
+  {
+    "type": "dir",
+    "name": "option",
+    "label": "Optional API"
+  }
+]

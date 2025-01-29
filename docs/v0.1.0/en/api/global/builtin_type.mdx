@@ -1,0 +1,370 @@
+# Built-in types
+
+In this document, we provide all the built-in types that you can use directly in the `GenUI` project. 
+Generally speaking, you will rarely use these types because `GenUI` has shielded the lowest-level component construction for you.
+
+However, since the writing of the attribute values ​​of these built-in types will be involved in the built-in components, 
+we still provide you with a relatively complete writing reference.
+
+> [!TIP]
+>
+> If you have studied the value parsing and writing in the [Data Type](/doc/tutorial/data) section, 
+> you should be able to understand how to write it very easily.
+
+## `Align`
+
+### Usage
+
+range: `[0.0, 1.0]`
+
+- `{x: 0.5}`
+- `{y: 0.2}`
+- `{x: 0.2, y: 0.9}`
+
+### Source Code
+
+```rust
+pub struct Align {
+    pub x: f64,
+    pub y: f64,
+}
+```
+
+## `GChooseType`
+
+### Usage
+
+- `Round`
+- `Tick`
+- `Cross`
+- `GChooseType::Round`
+- `GChooseType::Tick`
+- `GChooseType::Cross`
+
+### Source Code
+
+```rust
+pub enum GChooseType {
+    #[default]
+    Round,
+    Tick,
+    Cross,
+}
+```
+
+## `MouseCursor`
+
+### Usage
+
+- `Hidden`
+- `Hand`
+- `MouseCursor::Move`
+
+### Source Code
+
+```rust
+pub enum MouseCursor {
+    Hidden,
+    /// default
+    #[default]
+    Default,
+    Crosshair,
+    Hand,
+    Arrow,
+    Move,
+    Text,
+    Wait,
+    Help,
+    NotAllowed,
+    NResize,
+    NeResize,
+    EResize,
+    SeResize,
+    SResize,
+    SwResize,
+    WResize,
+    NwResize,
+    NsResize,
+    NeswResize,
+    EwResize,
+    NwseResize,
+    ColResize,
+    RowResize,
+}
+```
+
+## `LiveDependency`
+
+### Usage
+
+- template: `dep('path')`
+- style: `dep("path")`
+
+### Source Code
+
+```rust
+pub struct LiveDependency(String);
+```
+
+## `Direction`
+
+### Usage
+
+- `Horizontal`
+- `Vertical`
+- `Direction::Horizontal`
+
+### Source Code
+
+```rust
+pub enum Direction {
+    #[default]
+    Horizontal,
+    Vertical,
+}
+```
+
+## `EventOrder`
+
+### Usage
+
+- `Down`
+- `Up`
+
+### Source Code
+
+```rust
+pub enum EventOrder {
+    Down,
+    #[default]
+    Up,
+}
+```
+
+## `Flow`
+
+### Usage
+
+- `Right`
+- `Down`
+
+### Source Code
+
+```rust
+pub enum Flow {
+    #[default]
+    Right,
+    Down,
+    Overlay,
+    RightWrap,
+}
+```
+
+## `ImageFit`
+
+### Usage
+
+- `Stretch`
+- `Horizontal`
+
+### Source Code
+
+```rust
+pub enum ImageFit {
+    #[default]
+    Stretch,
+    Horizontal,
+    Vertical,
+    Smallest,
+    Biggest,
+    Size,
+}
+```
+
+## `LinkType`
+
+### Usage
+
+- `NewTab`
+
+### Source Code
+
+```rust
+pub enum LinkType {
+    #[default]
+    NewTab,
+    SameTab,
+}
+```
+
+## `ViewOptimize`
+
+### Usage
+
+- `DrawList`
+- `Texture`
+
+### Source Code
+
+```rust
+pub enum ViewOptimize {
+    #[default]
+    None,
+    DrawList,
+    Texture,
+}
+```
+
+## `GOsType`
+
+### Usage
+
+- `Mac`
+
+### Source Code
+
+```rust
+pub enum GOsType {
+    Windows,
+    Mac,
+    #[default]
+    Linux,
+    Other,
+}
+```
+
+## `Padding`
+
+### Usage
+
+- `1.0` means: `{left: 1.0, top: 1.0, right: 1.0, bottom: 1.0}`
+- `1.0 2.0` means: `{left: 2.0, top: 1.0, right: 2.0, bottom: 1.0}`
+- `1.0 2.0 4.0 6.0` means: `{left: 6.0, top: 1.0, right: 2.0, bottom: 4.0}`
+
+### Source Code
+
+```rust
+pub struct Padding {
+    pub left: f64,
+    pub top: f64,
+    pub right: f64,
+    pub bottom: f64,
+}
+```
+
+## `Margin`
+
+### Usage
+
+- `1.0` means: `{left: 1.0, top: 1.0, right: 1.0, bottom: 1.0}`
+- `1.0 2.0` means: `{left: 2.0, top: 1.0, right: 2.0, bottom: 1.0}`
+- `1.0 2.0 4.0 6.0` means: `{left: 6.0, top: 1.0, right: 2.0, bottom: 4.0}`
+
+### Source Code
+
+```rust
+pub struct Margin {
+    pub left: f64,
+    pub top: f64,
+    pub right: f64,
+    pub bottom: f64,
+}
+```
+
+## `TextWrap`
+
+### Usage
+
+- `Ellipsis`
+- `Word`
+
+### Source Code
+
+```rust
+pub enum TextWrap {
+    #[default]
+    Ellipsis,
+    Word,
+    Line,
+}
+```
+
+## `DVec2` ~ `DVec4`
+
+### Usage
+
+range: `[0.0, 1.0]`
+
+- `{x: 0.2}`
+- `{y: 0.4, z: 0.7}`
+
+### Source Code
+
+```rust
+pub struct DVec2 {
+    pub x: f64,
+    pub y: f64,
+}
+
+pub struct DVec3 {
+    pub x: f64,
+    pub y: f64,
+    pub z: f64,
+}
+
+pub struct DVec4 {
+    pub x: f64,
+    pub y: f64,
+    pub z: f64,
+    pub w: f64,
+}
+```
+
+## `Vec2` ~ `Vec4`
+
+same as `DVec`
+
+## `Size`
+
+### Usage
+
+- `Fit`
+- `Fill`
+- `200.0` means: `Size::Fixed(200.0)`
+- `Fixed(200.0)`
+
+### Source Code
+
+```rust
+pub enum Size {
+    #[default]
+    /// Fill the size of the parent widget
+    Fill,
+    /// detail size of the current widget
+    Fixed(f64),
+    /// Fit content
+    Fit,
+    All,
+}
+```
+
+## `Themes`
+
+### Usage
+
+- `Dark`
+- `Info`
+
+### Source Code
+
+```rust
+pub enum Themes {
+    Dark,
+    #[default]
+    Primary,
+    Error,
+    Warning,
+    Success,
+    Info,
+}
+```

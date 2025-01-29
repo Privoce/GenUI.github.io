@@ -1,0 +1,83 @@
+import { Tab, Tabs } from 'rspress/theme';
+
+# Installation and Configuration
+
+Currently `Ract` has been released to [crate.io](https://crates.io/) and [Github](https://github.com/), you can choose either installation method
+
+## crate.io
+
+We have released it to `crate.io`, so you can also install it directly using cargo
+
+> [!NOTE]
+>
+> Although you may find that the current `Ract` version on `crate.io` is `v0.1.2`, it is actually `v0.1.1` released on Github
+
+```shell
+cargo install ract
+```
+
+That's pretty simple, right? If you installed the rust toolchain correctly, this is what it will look like. You can just use it.
+
+```shell
+ract --version
+```
+
+## Github Releases
+
+Please select the latest version in [Ract Releases](https://github.com/Privoce/ract/releases) and install it according to your operating system
+
+![](/ract/install_type.png)
+
+> [!TIP]
+>
+> If there is no corresponding operating system, please select the source package and install `Rust toolchain` to compile it yourself
+>
+> Linux corresponds to `Ubuntu`
+
+> [!WARNING]
+>
+> Your computer may prompt security issues, please select Allow
+
+You can configure ract as a global command in the following ways:
+
+<Tabs>
+    <Tab label="Macos | Linux">
+        ```shell
+        # copy download ract to /usr/local/bin
+        sudo cp /path/to/download/ract /usr/local/bin/ract/ract
+
+        # add permission
+        sudo chmod 755 /usr/local/bin/ract
+        sudo chmod 755 /usr/local/bin/ract/ract
+
+        # confirm permission
+        sudo chown -R $(whoami) /usr/local/bin/ract
+
+        # echo to .zshrc
+        echo 'export PATH="/usr/local/bin/ract:$PATH"' >> ~/.zshrc
+
+        # fresh zshrc
+        source ~/.zshrc
+
+        # get version
+        ract --version
+        ```
+    </Tab>
+    <Tab label="Windows">
+        ### Download and rename
+
+        After you finish downloading, please place `ract_windows_gnu.exe` in a directory and rename it to `ract.exe`
+
+        ### Set Ract to environment variables
+        Enter the system environment variables, select `Path` and add a new directory address where `ract.exe` is located
+
+        For example: the address of ract is `E://ract/ract.exe`, then the new environment variable address is `E://ract` or `E:\ract`
+        ![](/ract/windows_env.png)
+
+        After setting, enter `powershell` and enter `ract` related commands for verification
+        
+        ```shell
+        ract --version
+        ```
+    </Tab>
+</Tabs>

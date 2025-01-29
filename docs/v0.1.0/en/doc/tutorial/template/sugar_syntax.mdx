@@ -1,0 +1,53 @@
+import { Badge } from '@theme';
+
+# Syntax Sugar
+
+This doc describes the use of built-in component prop syntax sugar in GenUI
+
+## `For`
+
+`for` syntax sugar allows users to quickly build iterable component templates through the passed iterator
+
+### Syntax
+
+```html
+<label :for="($($index)?, $item) in $iter_ident"></label>
+```
+
+The followings are details:
+
+1. `:for="($index, $item) in $iter_ident"`
+2. `:for="$item in $iter_ident"`
+3. `:for="($index, ($item1, $item2, ...)) in $iter_ident"`
+4. `:for="($index, ()) in $iter_ident"`
+5. `:for="($index, _) in $iter_ident"`
+
+> - `$index`: index
+> - `$item`: iterator element
+> - `$iter_ident`: iterator ident
+
+### Examples
+
+#### Single for
+
+```html
+<label :for="item in label_list" :text="item"></label>
+```
+
+#### Nested use
+
+```html
+<view :for="item in label_list">
+    <label :text="item"></label>
+</view>
+```
+
+#### Nested for
+
+```html
+<view :for="(index, item) in label_list">
+    <label :for="item1 in item[index]" :text="item1"></label>
+</view>
+```
+
+## `If_ElseIf_Else` <Badge text="Comming Soon" type="warning" />

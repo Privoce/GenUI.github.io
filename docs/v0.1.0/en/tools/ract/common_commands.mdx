@@ -1,0 +1,101 @@
+# Basic usage
+
+> [!NOTE]
+>
+> Whether it is Makepad or GenUI, the usage of `init`, `check`, `install`, `config`, `run`, `wasm` commands are the same
+>
+> You only need to pay attention to: `create`, `studio`, `pkg`
+>
+> And `init`, `check`, `config` are all automatic
+
+## `init` - Initialize Ract
+
+Initialize or reset the CLI. Ract will generate:
+
+1. `.env`
+
+2. `chain/`
+- `chain/env.toml`
+
+```bash
+ract init
+```
+
+Output:
+```plaintext
+🚀 Start to init ract...
+✅ Chain init successfully!
+🎉 Init ract successfully!
+```
+
+## `check` - Check the toolchain
+
+Check if the required tools and dependencies are installed. Options include:
+- **Basic**: `[cargo, rustc, git]`
+- **Underlayer**: `[makepad (gen_ui, makepad)]`
+- **All**: Combines basic tools and low-level tools.
+
+```bash
+ract check
+```
+
+Interactive dialog example:
+```plaintext
+🥳 Welcome to use ract checker!
+? Which you need to check?
+> Basic
+Underlayer
+All
+```
+
+## `install` - Install toolchain
+
+Install tools and dependencies required for development. Available options:
+- **Rust tools**: `rustc`, `cargo`
+- **Version control**: `git`
+- **Makepad-specific tools**: Including components such as `gen_components`, `wasm_build`.
+
+```bash
+ract install
+```
+
+Interactive dialog example:
+```plaintext
+🥳 Welcome to use ract Install!
+
+🔸 Select the tools to install:
+- rustc
+- cargo
+- git
+- makepad tools (default or custom options)
+? What tools you want to (re)install?
+> [ ] rustc|cargo
+[ ] git
+[x] makepad
+```
+
+## `config` - Configure the CLI
+
+Set or update environment variables and CLI configuration.
+
+> [!TIP]
+>
+> In most cases, you don't need to configure anything unless you already have Ract-related dependencies and need to point to them
+
+```bash
+ract config
+```
+
+Interactive dialog example:
+```plaintext
+🥳 Welcome to use ract config!
+
+🔸 env: Set the `path` for the chain env.toml file
+🔸 chain_env_toml: Set the rust dependency for GenUI toolchain
+
+> Which env file do you want to config? chain_env_toml
+> Get or Set Config? set
+> Which one do you want to config? makepad-widgets
+> Path: /Users/shengyifei/projects/makepad/makepad
+🎉 Config finish!
+```

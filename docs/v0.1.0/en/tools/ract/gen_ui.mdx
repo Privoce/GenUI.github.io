@@ -1,0 +1,89 @@
+# Ract for GenUI
+
+> [!TIP]
+> 
+> You don't need to `cd` to the source project code directory, just `cd` to the GenUI project root directory
+>
+> The GenUI project is a typical Rust Workspace project, and the project root directory is the Workspace directory
+>
+> For example, you used `ract create` to build a workspace named `quickstart` at `/Users/John/projects/gen_ui_project`.
+> You only need to `cd` to `/Users/John/projects/gen_ui_project/quickstart`. Then run `ract run` directly
+
+## `create` - Create a GenUI project
+
+Ract will build the **GenUI** project template according to the configuration entered by the user
+
+**create will help you check the current environment status**
+
+```bash
+ract create
+```
+
+Interactive dialog example:
+
+```plaintext
+❤️ WELOCME TO GENUI, ract is a build tool for you!
+
+> Which framework template do you want to create? gen_ui
+> Input the name of the workspace: quickstart
+============ Project1 ======================
+> Which underlayer you want to select? Makepad
+> Project name: start
+> Authors name: John
+> ...
+🎉 Your project has been created successfully!
+```
+
+## `run` - Run the project
+
+Run the **GenUI** project.
+
+```bash
+ract run
+```
+
+## `add` - add dev plugins
+
+```bash
+# add gen_makepad_http for network http(s)
+ract add gen_makepad_http
+```
+
+## `wasm` - Run WASM projects in the browser
+
+Build and run WASM projects directly from the CLI.
+
+```bash
+ract wasm
+```
+
+Interactive dialog example: 
+```plaintext
+🥳 Welcome to use ract wasm!
+
+🔸 Port for the web studio 8888
+📦 wasm is being packaged
+🚀 wasm is being started...
+Starting webserver on 127.0.0.1:8888
+```
+
+## `pkg` - Package a Project  
+
+Package a project using `cargo-packager`.  
+
+```bash
+# cd the compiled package
+cd src_gen_0
+
+ract pkg
+```
+
+Interactive dialog example:
+```plaintext
+🥳 Welcome to use ract packager!
+
+🔸 gpiler will check and install `cargo-packager` if not present.
+🔸 Basic packaging configuration is auto-generated.
+? Select how to package the project: init
+🎉 Package resources have been generated!
+```

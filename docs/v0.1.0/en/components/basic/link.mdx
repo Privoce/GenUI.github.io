@@ -1,0 +1,77 @@
+# `link`
+
+Used to link to an address, with an underline effect by default.
+
+## Example
+
+### Basic usage
+
+```html
+<link theme="Info" text="'Github'" href="'https://www.github.com'"></link>
+```
+
+### Button link
+
+```html
+<link
+    theme="Info"
+    text="'Github'"
+    href="'https://www.github.com'"
+    padding="10.0 16.0"
+    border_radius="2.0"
+    underline_visible="false"
+    background_visible="true">
+</link>
+```
+
+## Properties
+
+| Name                    | Description                   | Type             |
+| ----------------------- | ----------------------------- | ---------------- |
+| `theme`                 | Theme                         | `Themes`         |
+| `background_color`      | Background color              | `MakepadColor`   |
+| `hover_color`           | Hover color                   | `MakepadColor`   |
+| `focus_color`           | Focus color                   | `MakepadColor`   |
+| `border_color`          | Border color                  | `MakepadColor`   |
+| `underline_visible`     | Whether to display underline  | `bool`           |
+| `underline_color`       | Underline color               | `MakepadColor`   |
+| `underline_hover_color` | Underline color when hovering | `MakepadColor`   |
+| `underline_focus_color` | Underline color when focusing | `MakepadColor`   |
+| `underline_width`       | Underline width               | `F32`            |
+| `border_radius`         | Border corner radius          | `F32`            |
+| `round`                 | Is it a circle                | `bool`           |
+| `background_visible`    | Is the background visible     | `bool`           |
+| `text`                  | Text content                  | `String`         |
+| `font_size`             | Font size                     | `F64`            |
+| `color`                 | Font color                    | `MakepadColor`   |
+| `text_hover_color`      | Font color when hovering      | `MakepadColor`   |
+| `text_focus_color`      | Font color when focused       | `MakepadColor`   |
+| `font_family`           | Font family path              | `LiveDependency` |
+| `cursor`                | Mouse pointer style           | `MouseCursor`    |
+| `href`                  | Hyperlink address             | `String`         |
+| `link_type`             | Link type                     | `LinkType`       |
+| `visible`               | Is it visible                 | `bool`           |
+| `abs_pos`               | Absolute position             | `DVec2`          |
+| `margin`                | margin                        | `Margin`         |
+| `width`                 | width                         | `Size`           |
+| `height`                | height                        | `Size`           |
+| `scroll`                | scroll offset                 | `DVec2`          |
+| `clip_x`                | clip X axis or not            | `bool`           |
+| `clip_y`                | clip Y axis or not            | `bool`           |
+| `padding`               | padding                       | `Padding`        |
+| `align`                 | alignment                     | `Align`          |
+| `flow`                  | flow                          | `Flow`           |
+| `spacing`               | spacing                       | `F64`            |
+| `animation_key`         | animation key                 | `bool`           |
+| `event_key`             | event key                     | `bool`           |
+| `grab_key_focus`        | capture keyboard focus        | `bool`           |
+
+## Event callback
+
+| Name         | Description       | Parameters            |
+| ------------ | ----------------- | --------------------- |
+| `hover_in`   | Mouse hover event | `GLinkHoverParam`     |
+| `hover_out`  | Mouse out event   | `GLinkHoverParam`     |
+| `clicked`    | Click event       | `GLinkClickedParam`   |
+| `focus`      | Focus event       | `GLinkFocusParam`     |
+| `focus_lost` | Lost focus event  | `GLinkFocusLostParam` |

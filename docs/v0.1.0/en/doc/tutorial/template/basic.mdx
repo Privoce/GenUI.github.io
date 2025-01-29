@@ -1,0 +1,169 @@
+import { Tab, Tabs } from "rspress/theme";
+
+# Component template
+
+Component template refers to the part of the file with the suffix `.gen` that is wrapped by the `<template>` tag and used to describe the page structure.
+
+## Basic syntax
+
+```html
+<template>
+    <$component_name
+        $($($static_prop="$prop_value")*)?
+        $($(:$bind_prop="$bind_ident")*)?
+        $($(@callback="$callback_ident($($arg),*)")*)?
+    >
+        // ...
+    </$component_name>
+</template>
+```
+
+> - `$component_name`: component name
+> - `$static_prop`: static property
+> - `$prop_value`: property value
+> - `$bind_prop`: binding property
+> - `$bind_ident`: binding variable identifier
+> - `$callback`: callback
+> - `$callback_ident`: callback method identifier
+> - `$arg`: parameter
+> - `$()*`: many1, 1 or more
+> - `$()?`: recognize, 0 or 1
+
+### Example
+
+```html title="root.gen"
+<template>
+  <view id="UiRoot">
+    <label text="'Hello GenUI!'"></label>
+    <view height="100.0" width="100.0" theme="Info"></view>
+  </view>
+</template>
+```
+
+## Syntax rules
+
+In the syntax rules section, we will explain in detail the rules for writing component templates
+
+### Root component
+
+The root component refers to the root component of the component template part in each `.gen` file, that is, the first tag wrapped by the `<template>` tag
+
+```html
+<template>
+  <view id="UiRoot"></view>
+</template>
+```
+
+In this example, the root component is `<view id="UiRoot"></view>`
+
+#### Unique root principle
+
+Any component template has one and only one unique root component, and the root component must have a unique name
+
+<Tabs>
+  <Tab label="Static unique root">
+    ```html
+    <view id="SpecialName"></view>
+    ```
+  </Tab>
+  <Tab label="Dynamic unique root">
+    ```html
+    <component name="SpecialName"></component>
+    ```
+  </Tab>
+</Tabs>
+
+> [!TIP]
+>
+> You may have discovered that the unique naming attributes used statically and dynamically are different. Static uses `id` and dynamic uses `name`
+
+#### Naming reference principle
+
+1. This principle is only valid for the root component. For the root component only, the unique name is the component name when it is referenced externally. For example, when the unique name is `Hello`, use `<Hello></Hello>` in other components to represent the component
+
+2. You can also use `snake name rule` to name the root component, for example: `my_view1`, but when it is introduced in other components, it will still be converted to `camel name rule`, that is: `<MyView1></MyView1>`
+
+3. The naming reference principle is only valid for external references
+
+#### Default inheritance principle
+
+For the root component, the `view` view component is inherited by default and cannot be changed. We hope that each encapsulated component can appear as an independent single view.
+
+### Internal and external principles
+
+The above description of the root component `id` and `name` is called the internal principle and the external principle. `id` is internal and `name` is external, which means:
+
+- `id` is only valid for the current encapsulated component. The external cannot obtain the internal component through the internal `id`
+
+- `name` is only valid for the external, and is the way to use the encapsulated component externally. The component cannot be obtained by `name` internally, and `name` only exists in `<component>`
+
+### Static properties
+
+The writing method of static properties is: `$static_prop="$prop_value"`, and multiple properties are separated by `spaces`, for example:
+
+```html
+<view height="100.0" width="200.0"></view>
+```
+
+The property value of the component is typed, **wrong type cannot be compiled**
+
+> [!TIP]
+>
+> For the type of property value, please refer to: [Data Type](/doc/tutorial/data)
+
+#### id
+
+`id` is the unique identifier of a component. Each component has this attribute. `id` can be used to obtain the corresponding component. It is also the attribute identifier of the component
+
+```html
+<label id="my_label"></label>
+```
+
+> [!TIP]
+>
+> If you can't understand, please read [Inside and Outside Principles](#Inside and Outside Principles) first
+
+#### class
+
+`class` is the attribute (style) identifier of a component. `class` can be used to merge the style (`<style>`) part into the component
+
+- `class` is not unique
+- A component can have multiple `class`s, but cannot declare multiple `class`s
+
+```html
+<label class="common_label"></label>
+
+<label class="[common_label, bold_label, font_smaller]"></label>
+```
+
+#### `as_prop` property component
+
+`as_prop` property converts a component into a property of its parent component, which comes from a way to build slots in `Makepad`
+
+Currently only involved in `button` and `view` components
+
+### Binding properties
+
+For properties that need to be bound, use `:` as the property prefix, and the property value is of `Bind::Ident` type, as follows:
+
+```html
+<view id="my_view" :height="view_h"></view>
+```
+
+> [!TIP]
+>
+> Please note that if the component is data bound, you must add `id` as an identifier
+
+### Callback
+
+Callback means a method called after a component triggers an event, using `@` as the callback prefix, as follows:
+
+```html
+<button id="my_btn" @clicked="click_btn()"></button>
+```
+
+> [!TIP]
+>
+> There may not be any parameters in the callback, but you still need to add `()`
+>
+> If the component uses a callback, you must add `id` as an identifier

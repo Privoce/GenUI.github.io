@@ -1,0 +1,131 @@
+# `checkbox`
+
+We recommend that you use `checkbox` in `checkbox_group`
+
+> `checkbox_group` inherits from `view`
+
+## Example
+
+### Basic usage
+
+If you want to indicate the selected state, use `selected` to specify
+
+```html
+<checkbox_group>
+  <checkbox text="'rap'"></checkbox>
+  <checkbox text="'play basketball'" selected="true"></checkbox>
+</checkbox_group>
+```
+
+## Properties
+
+### `checkbox` properties
+
+| Name                          | Description                         | Type             |
+| ----------------------------- | ----------------------------------- | ---------------- |
+| `theme`                       | Theme                               | `Themes`         |
+| `color`                       | Color                               | `MakepadColor`   |
+| `text_hover_color`            | Text hover color                    | `MakepadColor`   |
+| `text_focus_color`            | Text focus color                    | `MakepadColor`   |
+| `font_size`                   | Font size                           | `F64`            |
+| `height_factor`               | Height factor                       | `F64`            |
+| `wrap`                        | Text wrapping method                | `TextWrap`       |
+| `font_family`                 | Font family path                    | `LiveDependency` |
+| `text_visible`                | Is the text visible                 | `bool`           |
+| `size`                        | Size                                | `F32`            |
+| `checkbox_background_color`   | Checkbox background color           | `MakepadColor`   |
+| `checkbox_background_visible` | Is the checkbox background visible? | `bool`           |
+| `checkbox_hover_color`        | Checkbox hover color                | `MakepadColor`   |
+| `checkbox_selected_color`     | Checkbox selected color             | `MakepadColor`   |
+| `stroke_color`                | Stroke color                        | `MakepadColor`   |
+| `stroke_hover_color`          | Stroke hover color                  | `MakepadColor`   |
+| `stroke_selected_color`       | Stroke selected color               | `MakepadColor`   |
+| `checkbox_border_color`       | Checkbox border color               | `MakepadColor`   |
+| `checkbox_border_width`       | Checkbox border width               | `F32`            |
+| `scale`                       | Scale ratio                         | `F32`            |
+| `background_color`            | Background color                    | `MakepadColor`   |
+| `hover_color`                 | Hover color                         | `MakepadColor`   |
+| `focus_color`                 | Focus color                         | `MakepadColor`   |
+| `shadow_color`                | Shadow color                        | `MakepadColor`   |
+| `border_color`                | Border color                        | `MakepadColor`   |
+| `background_visible`          | Background visible or not           | `bool`           |
+| `border_width`                | Border width                        | `F32`            |
+| `border_radius`               | Border radius                       | `F32`            |
+| `spread_radius`               | Spread radius                       | `F32`            |
+| `blur_radius`                 | Blur radius                         | `F32`            |
+| `shadow_offset`               | Shadow offset                       | `Vec2`           |
+| `cursor`                      | Mouse cursor style                  | `MouseCursor`    |
+| `value`                       | Value                               | `String`         |
+| `selected`                    | Selected or not                     | `bool`           |
+| `text`                        | Text content                        | `String`         |
+| `checkbox_type`               | Checkbox type                       | `GChooseType`    |
+| `abs_pos`                     | absolute position                   | `DVec2`          |
+| `margin`                      | margin                              | `Margin`         |
+| `width`                       | width                               | `Size`           |
+| `height`                      | height                              | `Size`           |
+| `scroll`                      | scroll offset                       | `DVec2`          |
+| `clip_x`                      | clip X axis or not                  | `bool`           |
+| `clip_y`                      | clip Y axis or not                  | `bool`           |
+| `padding`                     | padding                             | `Padding`        |
+| `align`                       | alignment                           | `Align`          |
+| `flow`                        | flow mode                           | `Flow`           |
+| `spacing`                     | spacing                             | `F64`            |
+| `visible`                     | visible or not                      | `bool`           |
+| `animation_key`               | animation key                       | `bool`           |
+| `grab_key_focus`              | Capture keyboard focus              | `bool`           |
+| `event_key`                   | event key                           | `bool`           |
+
+### `checkbox_group` properties
+
+| Name                 | Description                | Type           |
+| -------------------- | -------------------------- | -------------- |
+| `theme`              | Theme                      | `Themes`       |
+| `background_color`   | Background color           | `MakepadColor` |
+| `hover_color`        | Hover color                | `MakepadColor` |
+| `focus_color`        | Focus color                | `MakepadColor` |
+| `border_color`       | Border color               | `MakepadColor` |
+| `border_width`       | Border width               | `F32`          |
+| `border_radius`      | Border radius              | `F32`          |
+| `visible`            | Visible or not             | `bool`         |
+| `background_visible` | Background visible or not  | `bool`         |
+| `shadow_color`       | Shadow color               | `MakepadColor` |
+| `spread_radius`      | Shadow spread radius       | `F32`          |
+| `blur_radius`        | Shadow blur radius         | `F32`          |
+| `shadow_offset`      | Shadow offset              | `Vec2`         |
+| `cursor`             | Mouse pointer style        | `MouseCursor`  |
+| `animation_key`      | Animation key              | `bool`         |
+| `grab_key_focus`     | Capture keyboard focus     | `bool`         |
+| `block_signal_event` | Block signal event         | `bool`         |
+| `abs_pos`            | Absolute position          | `DVec2`        |
+| `margin`             | Margin                     | `Margin`       |
+| `width`              | Width                      | `Size`         |
+| `height`             | Height                     | `Size`         |
+| `scroll`             | Scroll offset              | `DVec2`        |
+| `clip_x`             | Clip X axis or not         | `bool`         |
+| `clip_y`             | Clip Y axis or not         | `bool`         |
+| `padding`            | Padding                    | `Padding`      |
+| `align`              | Alignment                  | `Align`        |
+| `flow`               | Flow                       | `Flow`         |
+| `spacing`            | Spacing                    | `F64`          |
+| `event_order`        | Event order                | `EventOrder`   |
+| `dpi_factor`         | DPI scaling factor         | `F64`          |
+| `optimize`           | View optimization options  | `ViewOptimize` |
+| `capture_overload`   | Capture overload           | `bool`         |
+| `event_key`          | Event key                  | `bool`         |
+| `block_child_events` | Block child event delivery | `bool`         |
+
+## Event callback
+
+### `checkbox` event callback
+
+| Name        | Description       | Parameters              |
+| ----------- | ----------------- | ----------------------- |
+| `clicked`   | Click event       | `GCheckboxClickedParam` |
+| `hover_in`  | Mouse hover event | `GCheckboxHoverParam`   |
+| `hover_out` | Mouse out event   | `GCheckboxHoverParam`   |
+
+### `checkbox_group` event callback
+
+| Name      | Description        | Parameters                 |
+| --------- | ------------------ | -------------------------- |
+| `changed` | State change event | `GCheckboxGroupEventParam` |

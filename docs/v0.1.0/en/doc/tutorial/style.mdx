@@ -1,0 +1,103 @@
+# Prop (style)
+
+Component Prop (style), wrapped by `<style></style>` tags in the `.gen` file, are used to write component Prop.
+
+The prop part will be merged into the component during compilation and indexed by `id` or `class`.
+
+## Syntax
+
+```html
+<style>
+  $($($style_ident{
+      $prop_key: $prop_value;
+  })*)?
+</style>
+```
+
+> - `$style_ident`: property identifier (`id` or `class`)
+> - `$prop_key`: property
+> - `$prop_value`: property value
+
+## use `<style>`
+
+```html
+<template>
+  <view id="my_view">
+    <label class="my_label"></label>
+  </view>
+</template>
+
+<style>
+  #my_view {
+    height: 100;
+    width: 100;
+    background_visible: true;
+    theme: Error;
+    .my_label {
+      text: "Hello World";
+      color: #f4b177;
+    }
+  }
+</style>
+```
+
+## Indexing principle
+
+In `<style>`
+
+- `#` index component `id`
+- `.` index component `class`
+- Support and recommend nesting
+
+## Weighting principle
+
+The weighting principle of attributes is very simple. The deeper the nesting, the greater the weight value. The greater the weight value, the higher the attribute priority.
+
+```html
+<style>
+  #my_view{
+      .my_label{    2️⃣
+          text: "Hello World";
+          color: #f4b177;
+      }
+  }
+
+  .my_label{   1️⃣
+      color: #FF0000;
+  }
+</style>
+```
+
+In the above example, there are two `.my_label`, of which 2️⃣ has a greater weight value than 1️⃣ and a higher priority. Therefore, when they have the same attribute `color`, `color: #f4b177;` is used, which has a higher priority.
+
+## Merge Principle
+
+The attribute merging principle applies to `class`. When there are multiple `class`s with the same name, the attributes in these `class`s will be merged into one `class` and also follow the weight principle.
+
+```html
+<style>
+  #my_view {
+    .my_label {
+      text: "Hello World";
+      color: #f4b177;
+    }
+  }
+
+  .my_label {
+    font_size: 16;
+    color: #ff0000;
+  }
+</style>
+```
+
+As above, according to the merging principle, all the attributes of `.my_label` are finally:
+
+```html
+<style>
+  .my_label {
+    font_size: 16;
+    text: "Hello World";
+    color: #f4b177;
+  }
+</style>
+```

@@ -24,11 +24,11 @@ In the GenUI project, plugins consist of the following two parts:
 
 ### Dynamic loading configuration
 
-Each plugin needs to include a file called `token.toml`. The GenUI compiler provides syntax enhancements for Rust scripts by dynamically loading this file.
+Each plugin needs to contain a file named `token.toml`. The GenUI compiler provides syntax enhancements for Rust scripts by dynamically loading this file.
 
-### Example Configuration File
+### Example configuration file
 
-Here is an example of a complete `token.toml` configuration file:
+Here is a complete example of a `token.toml` configuration file:
 
 ```toml title="token.toml"
 [plugin]
@@ -52,7 +52,7 @@ lazy_static = "1.5.0"
 serde_json = "1.0.135"
 ```
 
-## Detailed explanation of configuration items
+## Detailed explanation of configuration
 
 ### Basic plugin configuration
 
@@ -68,14 +68,14 @@ category = "network"
 repo = { git = "https://github.com/Privoce/genui_plugins/tree/main/projects/gen_makepad_http" }
 ```
 
-| Field        | Type        |        Description                |
-|--------------|-------------|-----------------------------------|
-| `name` | `String` | Plugin name (unique identifier).           |
-| `authors` | `Vec<String>` | Plugin author list.                |
-| `version` | `String` | Plugin version number.                  |
-| `description`| `String` | Plugin functional description.       |
-| `category` | `String` | Plugin category (such as network, UI, etc.). |
-| `repo` | `Object` | Plugin code repository information.        |
+| Field         | Type          | Description                                  |
+| ------------- | ------------- | -------------------------------------------- |
+| `name`        | `String`      | Plugin name (unique identifier).             |
+| `authors`     | `Vec<String>` | Plugin author list.                          |
+| `version`     | `String`      | Plugin version number.                       |
+| `description` | `String`      | Plugin functional description.               |
+| `category`    | `String`      | Plugin category (such as network, UI, etc.). |
+| `repo`        | `Object`      | Plugin code repository information.          |
 
 ### Dynamic code block
 
@@ -91,10 +91,10 @@ http_get = {
 }
 ```
 
-| Field | Type | Description |
-|--------------|-------------|-----------------------------------|
+| Field      | Type     | Description                                                |
+| ---------- | -------- | ---------------------------------------------------------- |
 | `category` | `String` | Indicates the category of the macro, such as `prop_macro`. |
-| `stmts` | `String` | Dynamic code block used to process the logic of the macro. |
+| `stmts`    | `String` | Dynamic code block used to process the logic of the macro. |
 
 **Functional Description**:
 When the compiler encounters the `http_get!` macro in the script, it will execute the code in `stmts` for dynamic processing. The purpose of the above code is to expand a `cx` parameter to the syntax tree (tt) inside the macro, and return `true` if the processing is successful.
@@ -112,22 +112,24 @@ lazy_static = "1.5.0"
 serde_json = "1.0.135"
 ```
 
-| Field | Type | Description |
-|---------------|-------------|-----------------------------------|
-| `serde` | `String` | Library for serialization and deserialization. |
-| `lazy_static` | `String` | Library for defining static variables. |
-| `serde_json` | `String` | Library for processing JSON data. |
+| Field         | Type     | Description                                    |
+| ------------- | -------- | ---------------------------------------------- |
+| `serde`       | `String` | Library for serialization and deserialization. |
+| `lazy_static` | `String` | Library for defining static variables.         |
+| `serde_json`  | `String` | Library for processing JSON data.              |
 
 ## Notes on using plugins
 
 1. **Ensure the completeness of the plugin configuration file**:
+
 - `token.toml` must contain `[plugin]`, `[macros]`, and `[dependencies]` sections.
 
 2. **Version management**:
+
 - Ensure that the versions of the plugin and its dependencies are compatible with the version of the project.
 
 3. **Correctness of dynamic code blocks**:
+
 - Ensure that the macro processing logic (`stmts`) meets the project requirements to avoid potential compilation errors.
 
 Through the above configuration and usage instructions, developers can efficiently integrate and use GenUI's plugin system.
-

@@ -1,0 +1,202 @@
+# Component API
+
+This document introduces the core API of the component system, including component import, property declaration, event management, etc., to help developers build and manage custom components more efficiently.
+
+## `import!`
+
+The `import!` macro is used to import custom components so that they can be used in the current scope.
+
+### Usage
+
+```rust
+import! {
+    crate::moudle::to::component;
+}
+```
+
+### Example
+
+Import Rust components into your structure using `import!`:
+
+```html
+<template>
+    <component name="MyView2">
+        <Header></Header>
+        <MyView1></MyView1>
+    </component>
+</template>
+
+<script>
+import! {
+    crate::views::my_view1::*;
+    crate::components::header::*;
+}
+</script>
+```
+
+## `#[prop]`
+
+The `#[prop]` macro is used to define the properties (Props) of a component. For custom components, we need to use the `#[prop]` macro to declare properties so that they can be assigned when the component is instantiated.
+
+### Limitations
+
+**Not all types can be used as `prop`. Only types that implement the `Default` trait can be used for property declaration.**
+
+### Example
+
+```rust
+<script>
+#[prop]
+pub struct MyView {
+    name: String,
+}
+</script>
+```
+
+### `get|set` method
+
+All `#[prop]` marked properties will automatically generate corresponding `get` and `set` methods. It is recommended to use `get|set` methods to access and modify property values, otherwise two-way binding may fail.
+
+For example, the above `MyView` structure will automatically generate the following methods:
+
+- `fn get_name(&self) -> String;`
+- `fn set_name(&mut self, value: String) -> ();`
+
+
+## `default_prop!`
+
+The `default_prop!` macro is used to initialize the property values ​​of a component instance.
+
+### Example
+
+```rust {7-11}
+<script>
+#[prop]
+pub struct MyView {
+    name: String,
+}
+
+let mut prop = default_prop! {
+    MyView {
+        name: "John".to_string(),
+    }
+};
+</script>
+```
+
+In subsequent code, you can use `prop` to access `get|set` methods, for example:
+
+```rust
+let name = prop.get_name();
+prop.set_name("Alice".to_string());
+```
+
+> [!DANGER]
+>
+> The `get|set` methods of `prop` are currently not supported in `macro_expr` (macro expression), for example:
+>
+> ```rust
+> println!("name is: {}", prop.get_name());
+> ```
+
+
+## `#[event]`
+
+Custom components do not trigger any events by default. To use the event system, you need to use the `#[event]` macro to declare events.
+
+### Addention
+
+- Events must be marked with `#[event]`.
+- Event types must derive from the `Debug` and `Clone` traits.
+
+### Example
+
+```rust
+#[event]
+#[derive(Debug, Clone)]
+pub enum MyViewEvent {
+    Clicked,
+    Changed(String),
+}
+```
+
+In the above example, we define the `MyViewEvent` event type, where:
+
+1. `Clicked`: a click event without parameters.
+2. `Changed(String)`: a change event with a `String` parameter.
+
+## `c_ref!`
+
+The `c_ref!` macro is used to obtain a component reference based on the component `id`, making it easier to directly manipulate the reference of a component instance.
+
+### Example
+
+```html
+<template>
+    <component name="MyView">
+        <label id="my_label" text="'Hello'"></label>
+        <button id="my_btn" @clicked="get_label_text()">
+            <label as_prop="slot" text="'get my label text'"></label>
+        </button>
+    </component>
+</template>
+
+<script>
+fn get_label_text() {
+    let label = c_ref!(my_label);
+    let label_text = label.get_text();
+    println!("label text is: {}", label_text);
+}
+</script>
+```
+
+## `active!`
+
+The `active!` macro is used to trigger an event defined inside a component and pass it to an external component for callback processing.
+
+### Example
+
+#### `MyView` Component
+
+```rust
+#[event]
+#[derive(Debug, Clone)]
+pub enum MyViewEvent {
+    Clicked,
+    Changed(String),
+}
+
+fn click_view() {
+    let _ = active!(MyViewEvent::Clicked);
+}
+
+fn change_view() {
+    active!(MyViewEvent::Changed, "changed!".to_string());
+}
+```
+
+#### `FatherView` Component
+
+The `FatherView` component listens to the events of `MyView`:
+
+```html
+<template>
+    <component name="FatherView">
+        <MyView 
+            @clicked="my_view_clicked()" 
+            @changed="my_view_changed()">
+        </MyView>
+    </component>
+</template>
+
+<script>
+fn my_view_clicked() {
+    dbg!("my_view_clicked!");
+}
+
+fn my_view_changed(param: impl EventParam) {
+    dbg!(param);
+}
+</script>
+```
+

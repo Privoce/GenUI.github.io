@@ -1,0 +1,45 @@
+import { Badge } from "@theme";
+
+# GenUI data types
+
+`GenUI` abstracts data types and divides them into 11 types:
+
+- `USize`: unsigned integer
+- `ISize`: signed integer
+- `Double`: floating point type, including `f32` and `f64`
+- `Bool`: Boolean type
+- `Vec`: vector
+- `String`: string
+- `Bind`: binding
+- `Function`: method
+- `Struct`: structure
+- `Enum`: enumeration
+- `Unknown`: unknown
+
+This does not mean that you need to use these types, but `GenUI` will abstract the types of the attribute values ​​involved when parsing. You only need to pay attention to how to use them in the template.
+
+> [!TIP]
+>
+> For more specific built-in data types, please refer to: [Data API](/api/index)
+
+## Value parsing and writing
+
+> - <Badge text="template" type="info" />: Indicates how to use it in the `<template>` tag
+> - <Badge text="style" type="info" />: Indicates how to use it in the `<style>` tag
+
+| value                                                          | parsed type                                                                     |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `10`                                                           | `USize(10)`                                                                     |
+| `-10`                                                          | `ISize(-10)`                                                                    |
+| `10.0`                                                         | `Double(10.0)`                                                                  |
+| `true`                                                         | `Bool(true)`                                                                    |
+| `[10, 12]`                                                     | `Vec[USize(10), USize(12)]`                                                     |
+| `'Hello'` <Badge text="template" type="info" />                | `String("Hello")`                                                               |
+| `"Hello"` <Badge text="style" type="info" />                   | `String("Hello")`                                                               |
+| `:age="user_age"` <Badge text="template" type="info" />        | `Bind([Ident("user_age")])`                                                     |
+| `@clicked="click_btn()"` <Badge text="template" type="info" /> | `Function{ name:"click_btn", params: None}`                                     |
+| `color: rgb(12, 0, 255)` <Badge text="style" type="info" />    | `Function{ name:"rgb", params: [USize(12), USize(0), USize(255)]}`              |
+| `{x: 0.5}`                                                     | `Struct{ name: None, fields: {"x": Double(0.5)} }`                              |
+| `Dark`                                                         | `Enum{ field_chain: [EnumItem::Leaf("Dark", None)] }`                           |
+| `Themes::Dark`                                                 | `Enum{ field_chain: [EnumItem::Root("Themes"), EnumItem::Leaf("Dark", None)] }` |
+| `12.0 10.0`                                                    | `Unknown("12.0 10.0")`                                                          |

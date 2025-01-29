@@ -1,0 +1,167 @@
+# Color
+
+Currently GenUI supports the following types of color writing:
+
+- Hex: hexadecimal color
+- Rgb: rgb type
+- Rgba: rgb type with transparency
+- LinearGradient: linear gradient
+- RadialGradient: radial gradient
+- Shader(`#cfg(feature="makepad")`, a drawing method exclusive to Makepad)
+
+## Hex
+
+Hexadecimal digital representation RGB color can be represented by 6-bit (or 8-bit) hexadecimal numbers (0-F) starting with a pound sign, 
+equivalent to 3 or 4 bytes, each byte is equivalent to 0 to 255 in decimal. The three bytes represent red, green and blue respectively, 
+and the fourth byte is optional, representing the alpha channel.
+
+### Syntax
+
+1. 1-digit hexadecimal: `#1`, this will eventually convert to `#111111FF`
+2. 3-digit hexadecimal: `#a1f`, this will eventually convert to `#AA11FFFF`
+3. 6-digit hexadecimal: `#FF00AA`, this will eventually convert to `#FF00AAFF`
+4. 8-digit hexadecimal: `#AAFF0020`, this is the complete way to write it
+
+### Example
+![](/color/hex.png)
+
+```html
+<style>
+#ui{
+  #main_window{
+    //...
+    background_color: #1C2128;
+  }
+}
+</style>
+```
+
+## Rgb
+
+The RGB color model (also known as the RGB color system, RGB color model, red, green, and blue color model) is an additive color model 
+that mixes the three primary colors of red, green, and blue in different proportions to produce various colors of light.
+
+### Syntax
+
+`rgb(r, g, b)`
+
+Among them, `r`, `g`, `b` are color representations of 0~255 respectively
+
+### Example
+![](/color/rgb.png)
+```html
+<style>
+#ui{
+  #main_window{
+    //...
+    background_color: rgb(255, 112, 67);
+  }
+}
+</style>
+```
+
+## Rgba
+
+Three primary color light mode with alpha channel, where R refers to the red value (Red); G refers to the green value (Green); B refers to the blue value (Blue); A refers to the transparency (Alpha). R, G, and B can be integers with a range of 0 to 255. The value of A is 0 to 1.
+
+### Syntax
+
+`rgba(r, g, b, a)`
+
+Among them, `r`, `g`, `b` are color representations of `0~255`, and a represents the percentage value of the alpha channel, with a value of `0~1`
+
+### Example
+![](/color/rgb.png)
+```html
+<style>
+#ui{
+  #main_window{
+    //...
+    background_color: rgba(255, 112, 67, 0.3);
+  }
+}
+</style>
+```
+
+## Linear
+
+Create an image with a linear transition between two or more colors along a straight line
+
+### Syntax
+
+`linear_gradient(angle, color [proportion], ...)`
+
+- `angle`: angle
+- `color`: hex color value
+- `[proportion]`: color proportion
+
+### Example
+![](/color/linear.png)
+```html
+<style>
+#ui{
+  #main_window{
+    //...
+    background_color: linear_gradient(120deg, #FF938A, #98943F 40%, #6BC46D);
+  }
+}
+</style>
+```
+
+## Radial
+
+Creates an image consisting of a gradual transition between two or more colors radiating from an origin, which can be in the shape of a circle or an ellipse.
+
+### Syntax
+`radial_gradient(color [proportion], ...)`
+
+- `color`: hex color value
+- `[proportion]`: color proportion
+
+### Example
+![](/color/radial.png)
+```html
+<style>
+#ui{
+  #main_window{
+    //...
+    background_color: radial_gradient(#FF938A, #98943F, #6BC46D);
+  }
+}
+</style>
+```
+
+## Shader
+
+The shader drawing method exclusive to Makepad uses the glsl writing method supported by Makepad to draw the background. This is an extensible, flexible and free drawing method, which is not limited to drawing simple color backgrounds.
+
+### Syntax
+
+**Don't add `;` to end the statement, use newline instead**
+
+```
+shader(|self|{
+  fn fn_name(self) -> vec4{
+    return #009688
+  }
+})
+```
+
+- `fn_name`: the name of the shader function, which depends on the function name of the component drawing function
+
+### Example
+![](/color/shader.png)
+```html
+<style>
+#ui{
+  #main_window{
+    //...
+    background_color: shader(|self|{
+      fn pixel(self) -> vec4{
+        return #009688
+      }
+    });
+  }
+}
+</style>
+```

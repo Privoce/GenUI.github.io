@@ -1,30 +1,31 @@
 import Container from "@theme/components/Container";
-import { Badge } from '@theme';
+import { Badge } from "@theme";
+import { normalizeImagePath } from "rspress/runtime";
 
 # Introduction
 
 <Container>
-    <img src="/genui.png" height="60px" width="60px" />
+  <img src={normalizeImagePath("/genui.png")} height="60px" width="60px" />
 </Container>
 
-[GenUI](https://github.com/Privoce/GenUI)is an innovative SFP front-end framework developed in the Rust language, was originally inspired by Vue3 and Makepad. Intended to help users write front-end projects using Rust more efficiently.
+[GenUI](https://github.com/Privoce/GenUI) is an innovative SFP front-end framework developed in Rust language, originally inspired by Vue3 and Makepad. It aims to help users write front-end projects in Rust more effectively.
 
-## Related Projects
+## Related Ecosystem
 
-|name|description|
-|--|--|
-|Ract| act is a conversational CLI tool written in Rust, providing an all-in-one solution for integrating dependencies, setting up environments, generating project templates, running, and packaging projects with frameworks like GenUI and Makepad. Simplify your development workflow with minimal arguments and intuitive dialogs. 🚀  |
-|GenUI Builtin Components|GenUI Builtin Components is a Makepad component library that can be directly integrated into Makepad projects. As the core component library of GenUI, it serves as the foundational building blocks within GenUI projects, accelerating the development process for both front-end and back-end developers.|
-|Makepad|The ultimate vision of Makepad is to build a livecoding/design hybrid IDE. Similar to how tools like Visual Basic or Delphi once unified developers and designers, Makepad, implemented in Rust, offers functionalities akin to design tools like Figma.|
-|GenUI VSCode Plugin <Badge text="Comming Soon" type="warning" />|GenUI's VSCode plug-in includes: code coloring, syntax support, icons, AIGC, version updates, and other functions.|
-|Remote Services <Badge text="Comming Soon" type="warning" />|Remote services, including remote packaging, remote project building, AIGC, online code, plug-in warehouse, etc. (similar to V0)|
+| Name                                                             | Introduction                                                                                                                                                                                                                                                                                                                         |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Ract                                                             | Ract is a conversational CLI tool written in Rust, providing an all-in-one solution for integrating dependencies, setting up environments, generating project templates, running, and packaging projects with frameworks like GenUI and Makepad. Simplify your development workflow with minimal arguments and intuitive dialogs. 🚀 |
+| GenUI Builtin Components                                         | GenUI Builtin Components is a Makepad component library that can be directly integrated into Makepad projects. As the core component library of GenUI, it can be used as the basic building block of GenUI projects to accelerate the development process of front-end developers.                                                   |
+| Makepad                                                          | The ultimate vision of Makepad is to build a real-time coding/design hybrid IDE. Similar to the way tools such as Visual Basic or Delphi once unified developers and designers, Makepad implemented in Rust provides features similar to design tools such as Figma.                                                                 |
+| GenUI VSCode Plugin <Badge text="Comming Soon" type="warning" /> | GenUI's VSCode plugin, including: code coloring, syntax support, icons, AIGC, version updates, and other features.                                                                                                                                                                                                                   |
+| Remote Services <Badge text="Comming Soon" type="warning" />     | Remote services, including remote packaging, remote project building, AIGC, online code, plug-in warehouse, etc. (similar to V0)                                                                                                                                                                                                     |
 
 ## SFP
 
-GenUI's SFP feature refers to its pluggable design, which can adjust and use different underlying technologies or frameworks according to the needs of developers. We currently use Makepad as the underlying layer. This design allows GenUI to extend and customize its functions through plug-ins designed specifically for these underlying frameworks, thereby better adapting to various development scenarios.
+GenUI's SFP function refers to its pluggable design, which can adjust and use different underlying technologies or frameworks according to the needs of developers. We currently use Makepad as the underlying layer. This design allows GenUI to extend and customize its functions through plug-ins designed specifically for these underlying frameworks, so as to better adapt to various development scenarios.
 
 1. Provide powerful capabilities through plugins
-2. Not limited by inherent underlying layers
+2. Not limited by inherent underlying systems
 3. Also a challenge
 
 ## Advantages
