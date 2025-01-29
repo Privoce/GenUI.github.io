@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "type": "file",
+    "name": "index",
+    "label": "API总览"
+  },
+  {
+    "type": "dir",
+    "name": "global",
+    "label": "全局API"
+  },
+  {
+    "type": "dir",
+    "name": "option",
+    "label": "选项式API"
+  }
+]

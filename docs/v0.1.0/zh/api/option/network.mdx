@@ -1,0 +1,145 @@
+# 网络请求
+
+## `http/https`
+
+如果您需要在`GenUI`中使用网络请求`(http/https)`需要使用插件`gen_makepad_http`。
+
+> 您可以参考这个例子: [todo待办事项例子](/zh/examples/todo)
+
+### 使用Ract安装插件
+
+```bash
+ract add gen_makepad_http
+```
+
+安装完成后您的GenUI项目中会出现一个`.plugins`目录，其中包含一个`gen_makepad_http/token.toml`文件。
+
+### 添加所需的依赖
+
+请在项目的`Cargo.toml`中添加如下依赖：
+
+```toml title="Cargo.toml"
+[package]
+# ...
+
+[dependencies]
+gen_macro = "0.1.0"
+serde = "1.0.217"
+lazy_static = "1.5.0"
+serde_json = "1.0.135"
+```
+
+### 在`main.rs`中注册
+
+其中这个`HttpPublisher`就被注册到了全局，设置名称为`http1`，使用`init`函数进行初始化
+
+```rust title="main.rs"
+use gen_macro::plugin;
+
+fn init() -> HttpPublisher {
+    let mut http = HttpPublisher::new("/url/path");
+    http.basic.protocol = Protocol::Https; // default is http
+    http
+}
+
+plugin! {
+    http1: HttpPublisher => init()
+}
+```
+
+### 在组件中使用
+
+```rust
+#[before_create]
+fn before_create(){
+    let _ = http_get!(http_response1);
+}
+
+#[http_response]
+fn http_response1(response: &HttpResponse){
+    dbg!("response");
+    if response.status_code == 200 {
+        // ...
+    }
+}
+```
+
+### 请求
+
+当前支持以下几种请求
+
+- GET: `http_get!`
+- POST: `http_post!`
+- PUT: `http_put!`
+- DELETE: `http_delete!`
+- PATCH: `http_patch!`
+
+这些宏的使用方式都是一样的: 
+1. `http_get!($Id: tt)`
+2. `http_get!($Id: tt, $Url: expr)`
+3. `http_get!($Id: tt, $Url: expr, $Patch: expr)`
+
+> - `$Id`: 对应响应的函数名
+> - `$Url`: 附加到`basic url`的地址，例如`basic_url`是`localhost:8888/hello`，若这个`$Url`您设置为`"/user/get/1"`，那么完整的`url`为: `localhost:8888/hello/user/get/1`
+> - `$Patch`: `Into<PatchRequest>`，简单来说您可以直接使用某个可序列化的类型或`PatchRquest`
+
+
+### HttpPublisher
+
+请求发布者，其中您可以配置基本请求配置(`BasicConfig`)
+
+#### BasicConfig
+
+> [!NOTE]
+>
+> 默认情况下:
+>
+> - protocol: `Protocol::Http`
+> - headers: `Content-Type: application/json`
+
+```rust
+#[derive(Debug, Clone)]
+pub struct BasicConfig {
+    pub protocol: Protocol,
+    pub url: String,
+    pub headers: HashMap<HttpRequestHeader, String>,
+}
+```
+
+若您需要添加header，请使用：`pub fn push_header(&mut self, header: HttpRequestHeader, value: String) ;`
+
+#### Protocol
+
+```rust
+#[derive(Debug, Clone, Copy)]
+pub enum Protocol {
+    Http,
+    Https,
+}
+```
+
+#### HttpRequestHeader
+
+```rust
+#[derive(Hash, Eq, PartialEq, Debug, Clone)]
+pub enum HttpRequestHeader {
+    ContentType,
+    Authorization,
+    Other(String),
+}
+```
+
+#### PatchRequest
+
+```rust
+#[derive(Debug, Clone, Default)]
+pub struct PatchRequest {
+    pub params: Option<HashMap<String, String>>,
+    pub headers: Option<HashMap<HttpRequestHeader, String>>,
+    pub body: Option<HttpRequestBody>,
+}
+```
+
+#### HttpRequestBody
+
+`Vec<u8>` 实现了数据序列化，意思是您只要使用任何被serde进行序列化的数据都可以作为`HttpRequestBody`

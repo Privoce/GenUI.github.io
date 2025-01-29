@@ -1,4 +1,27 @@
 [
-    "overview"
-
+    {
+        "type": "file",
+        "name": "index",
+        "label": "示例总览"
+    },
+    {
+        "type": "dir",
+        "name": "quickstart",
+        "label": "快速入门"
+    },
+    {
+        "type": "dir",
+        "name": "c_ref",
+        "label": "组件引用"
+    },
+    {
+        "type": "dir",
+        "name": "for",
+        "label": "for循环语法糖"
+    },
+    {
+        "type": "dir",
+        "name": "todo",
+        "label": "待办"
+    }
 ]

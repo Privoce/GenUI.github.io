@@ -1,0 +1,44 @@
+import { Badge } from '@theme';
+
+# 生命周期 <Badge text="experiment" type="danger" />
+
+> [!WARNING]
+>
+> 当前完整的生命周期还未全部实现，属于实验性功能，开放`#[before_create]`
+
+## `#[before_create]`
+
+在组件实例初始化完成之后立即调用。使用`#[before_create]`标注在方法或闭包上。
+
+### 写法
+
+#### Fn
+
+```rust
+#[before_create]
+fn before_create(){
+    println!("before create!");
+}
+```
+
+#### Closure
+
+```rust
+#[before_create]
+let mut before_create = || {
+    println!("before create!");
+};
+```
+
+## `#[created]`
+
+实例初始化完成后调用的选项
+
+## `#[before_update]`
+
+在实例更新前调用
+
+## `#[updated]`
+
+在实例更新后调用
+

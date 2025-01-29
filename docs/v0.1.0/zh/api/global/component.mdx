@@ -1,0 +1,203 @@
+# 组件 API
+
+本文档介绍了组件系统的核心 API，包括组件的导入、属性声明、事件管理等，帮助开发者更高效地构建和管理自定义组件。
+
+## `import!`
+
+`import!` 宏用于引入自定义组件，使其可以在当前作用域内使用。
+
+### 用法
+
+```rust
+import! {
+    crate::moudle::to::component;
+}
+```
+
+### 示例
+
+在结构中使用 `import!` 引入 Rust 组件：
+
+```html
+<template>
+    <component name="MyView2">
+        <Header></Header>
+        <MyView1></MyView1>
+    </component>
+</template>
+
+<script>
+import! {
+    crate::views::my_view1::*;
+    crate::components::header::*;
+}
+</script>
+```
+
+## `#[prop]`
+
+`#[prop]` 宏用于定义组件的属性（Props）。对于自定义组件，我们需要使用 `#[prop]` 宏来声明属性，以便实例化组件时进行赋值。
+
+### 限制
+
+**不是所有的类型都可以作为 `prop` 使用，只有实现了 `Default` trait 的类型才能用于属性声明。**
+
+### 示例
+
+```rust
+<script>
+#[prop]
+pub struct MyView {
+    name: String,
+}
+</script>
+```
+
+### `get|set` 方法
+
+所有 `#[prop]` 标记的属性都会自动生成对应的 `get` 和 `set` 方法。建议使用 `get|set` 方法来访问和修改属性值，否则可能会导致双向绑定失效。
+
+例如，上述 `MyView` 结构体会自动生成以下方法：
+
+- `fn get_name(&self) -> String;`
+- `fn set_name(&mut self, value: String) -> ();`
+
+
+## `default_prop!`
+
+`default_prop!` 宏用于初始化组件实例的属性值。
+
+### 示例
+
+```rust {7-11}
+<script>
+#[prop]
+pub struct MyView {
+    name: String,
+}
+
+let mut prop = default_prop! {
+    MyView {
+        name: "John".to_string(),
+    }
+};
+</script>
+```
+
+在后续的代码中，您可以使用 `prop` 访问 `get|set` 方法，例如：
+
+```rust
+let name = prop.get_name();
+prop.set_name("Alice".to_string());
+```
+
+> [!DANGER]
+>
+> `prop` 的 `get|set` 方法目前不支持在 `macro_expr`（宏表达式）中使用，例如：
+>
+> ```rust
+> println!("name is: {}", prop.get_name());
+> ```
+
+
+## `#[event]`
+
+自定义组件默认情况下不会触发任何事件，若要使用事件系统，需要使用 `#[event]` 宏进行事件声明。
+
+### 要求
+
+- 事件必须使用 `#[event]` 进行标记。
+- 事件类型必须派生 `Debug` 和 `Clone` trait。
+
+### 示例
+
+```rust
+#[event]
+#[derive(Debug, Clone)]
+pub enum MyViewEvent {
+    Clicked,
+    Changed(String),
+}
+```
+
+在上述示例中，我们定义了 `MyViewEvent` 事件类型，其中：
+
+1. `Clicked`：无参数的点击事件。
+2. `Changed(String)`：携带 `String` 参数的变更事件。
+
+
+## `c_ref!`
+
+`c_ref!` 宏用于根据组件 `id` 获取组件引用，便于直接操作组件实例的引用。
+
+### 示例
+
+```html
+<template>
+    <component name="MyView">
+        <label id="my_label" text="'Hello'"></label>
+        <button id="my_btn" @clicked="get_label_text()">
+            <label as_prop="slot" text="'get my label text'"></label>
+        </button>
+    </component>
+</template>
+
+<script>
+fn get_label_text() {
+    let label = c_ref!(my_label);
+    let label_text = label.get_text();
+    println!("label text is: {}", label_text);
+}
+</script>
+```
+
+## `active!`
+
+`active!` 宏用于触发组件内部定义的事件，并将其传递给外部组件进行回调处理。
+
+### 示例
+
+#### 组件 `MyView`
+
+```rust
+#[event]
+#[derive(Debug, Clone)]
+pub enum MyViewEvent {
+    Clicked,
+    Changed(String),
+}
+
+fn click_view() {
+    let _ = active!(MyViewEvent::Clicked);
+}
+
+fn change_view() {
+    active!(MyViewEvent::Changed, "changed!".to_string());
+}
+```
+
+#### 组件 `FatherView`
+
+`FatherView` 组件监听 `MyView` 的事件：
+
+```html
+<template>
+    <component name="FatherView">
+        <MyView 
+            @clicked="my_view_clicked()" 
+            @changed="my_view_changed()">
+        </MyView>
+    </component>
+</template>
+
+<script>
+fn my_view_clicked() {
+    dbg!("my_view_clicked!");
+}
+
+fn my_view_changed(param: impl EventParam) {
+    dbg!(param);
+}
+</script>
+```
+

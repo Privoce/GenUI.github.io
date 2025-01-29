@@ -1,0 +1,62 @@
+# views
+
+## `root.gen`
+
+## `home.gen`
+
+```rust
+<template>
+    <component name="Home" class="home_view">
+        <Hello id="header"></Hello>
+        <button id="my_btn" theme="Error" @clicked="click_btn()">
+            <label as_prop="slot" text="'Click Me!'" font_size="12.0"></label>
+        </button>
+        <label text="'Hello GenUI!!!'" font_size="16.0"></label>
+        <checkbox text="'I am a checkbox'"></checkbox>
+    </component>
+</template>
+
+<script>
+import!{
+    crate::components::hello::*;
+}
+
+#[prop]
+pub struct Home{
+    num: u32
+}
+
+// init instance prop
+let mut prop = default_prop!{
+    Home{
+        num: 0
+    }
+};
+
+fn click_btn(){
+    let mut num = prop.get_num();
+    num += 1;
+    prop.set_num(num);
+    // use c_ref! you can get component ref
+    let header = c_ref!(header);
+    let num = prop.get_num();
+    header.set_my_text(format!("Clicked: {}", num));
+}
+</script>
+
+<style>
+.home_view{
+    height: Fit;
+    flow: Down;
+    align: {
+        x: 0.5,
+        y: 0.5
+    };
+    spacing: 16.0;
+    padding: 12.0;
+}
+</style>
+
+```
+
+## `mod.gen`
