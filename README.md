@@ -1,31 +1,20 @@
 # GenUI Book
 
-**👷The document is under rapid construction... Expected to be completed on January 30, 2025**
+🥳 GenUI v0.1.0 has been released
 
-## Guide
+- [GenUI](https://github.com/Privoce/GenUI/releases/tag/v0.1.0)
+- [Ract](https://github.com/Privoce/ract/releases/tag/v0.1.1)
+- [GenUI Builtin Component](https://github.com/Privoce/GenUI-Builtin-Component/releases/tag/v0.2.0)
+- [GenUI Book](https://privoce.github.io/GenUI.github.io)
 
-- [x] overview
-- [x] introduction
-- [x] tools
-- [x] plugins
+## Contact & Feedback
 
-## Tutorial
+> [!TIP]
+> 
+> GenUI is currently in the early stages of development, and many features are still being planned and implemented. We welcome feedback and collaboration from the community! If you have any suggestions for the framework, need to report an issue, or would like to see a feature added, please contact us through the following channels:
+> 
 
-- [x] overview
-- [x] quick-start
-- [x] ract
-- [x] project-structure
-- [ ] template
-- [ ] style
-- [ ] script
-
-## Config
-
-
-## Components
-
-## Examples
-
-## Tools
-
-## API
+- **GitHub**: [https://github.com/Privoce/GenUI](https://github.com/Privoce/GenUI)
+- **Discord**: [https://discord.gg/jVEJDhE75Y](https://discord.gg/jVEJDhE75Y)
+- **Email**: `syf20020816@outlook.com`
+- **Collaboration Email**: `han@privoce.com`

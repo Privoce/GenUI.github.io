@@ -1,7 +1,7 @@
 export const EN_US = {
     // hero
     logo: '/genui.png',
-    header: '👷The document is under rapid construction... Expected to be completed on January 30, 2025',
+    header: '🥳 GenUI v0.1.0 has been released',
     rs: '/rs.png',
     heroTitle: 'GenUI',
     heroSlogan: 'An innovative SFP Rust front-end framework!',
