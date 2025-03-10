@@ -34,10 +34,22 @@ import! {
 </script>
 ```
 
+## `#[component]`
+
+For custom components, we need to use the `#[component]` macro to declare the component's properties, but not all types are allowed. Types that can be used in properties need to implement the `Default` trait, and custom structs and enums need to be annotated with `#[prop]`.
+
+```rust
+<script>
+#[component]
+pub struct MyView{
+    name: String
+}
+</script>
+```
+
 ## `#[prop]`
 
-The `#[prop]` macro is used to define the properties (Props) of a component. For custom components, we need to use the `#[prop]` macro to declare properties so that they can be assigned when the component is instantiated.
-
+The `#[prop]` macro is used to define the properties (Props) of a component. We need to use the `#[prop]` macro to declare properties so that they can be assigned when the component is instantiated.
 ### Limitations
 
 **Not all types can be used as `prop`. Only types that implement the `Default` trait can be used for property declaration.**
@@ -46,59 +58,80 @@ The `#[prop]` macro is used to define the properties (Props) of a component. For
 
 ```rust
 <script>
+#[component]
+pub struct MyView{
+    user: User,
+    auth: Auth
+}
+
 #[prop]
-pub struct MyView {
-    name: String,
+#[derive(Debug, Clone)]
+pub struct User{
+    name: String
+}
+
+impl Default for User{
+    fn default() -> Self{
+        Self{ name: "John" }
+    }
+}
+
+#[prop]
+#[derive(Default, Clone, Copy, Debug)]
+pub enum Auth{
+    #[default]
+    Custom,
+    User,
+    Remote,
+    Other
 }
 </script>
 ```
 
 ### `get|set` method
 
-All `#[prop]` marked properties will automatically generate corresponding `get` and `set` methods. It is recommended to use `get|set` methods to access and modify property values, otherwise two-way binding may fail.
+All properties declared in components and bound in templates will automatically generate corresponding `get` and `set` methods. Please use the `get|set` methods to access and modify property values, otherwise the two-way binding will fail.
 
 For example, the above `MyView` structure will automatically generate the following methods:
 
-- `fn get_name(&self) -> String;`
-- `fn set_name(&mut self, value: String) -> ();`
+- `fn get_user(&self) -> User;`
+- `fn set_user(&mut self, value: User) -> ();`
+- `fn get_auth(&self) -> Auth;`
+- `fn set_auth(&self, value: Auth) -> ();`
 
+## `Default trait`
 
-## `default_prop!`
-
-The `default_prop!` macro is used to initialize the property values ​​of a component instance.
+The `Default` trait is used to initialize the property values ​​of a component instance.
 
 ### Example
 
 ```rust {7-11}
 <script>
-#[prop]
+#[component]
 pub struct MyView {
     name: String,
 }
 
-let mut prop = default_prop! {
-    MyView {
-        name: "John".to_string(),
+impl Default for MyView{
+    fn default() -> Self{
+        Self{
+            name: "John".to_string(),
+        }
     }
-};
+}
 </script>
 ```
 
-In subsequent code, you can use `prop` to access `get|set` methods, for example:
+In subsequent code, you can implement component methods and callback functions just like implementing impl, for example:
 
 ```rust
-let name = prop.get_name();
-prop.set_name("Alice".to_string());
+impl MyView{
+    fn click_btn(&mut self) -> (){
+        let name = self.get_name();
+        self.set_name("Alice".to_string());
+    }
+}
 ```
-
-> [!DANGER]
->
-> The `get|set` methods of `prop` are currently not supported in `macro_expr` (macro expression), for example:
->
-> ```rust
-> println!("name is: {}", prop.get_name());
-> ```
-
 
 ## `#[event]`
 
@@ -142,10 +175,15 @@ The `c_ref!` macro is used to obtain a component reference based on the componen
 </template>
 
 <script>
-fn get_label_text() {
-    let label = c_ref!(my_label);
-    let label_text = label.get_text();
-    println!("label text is: {}", label_text);
+#[component]
+struct MyView{}
+
+impl MyView{
+    fn get_label_text(&mut self) {
+        let label = c_ref!(my_label);
+        let label_text = label.get_text();
+        println!("label text is: {}", label_text);
+    }
 }
 </script>
 ```
@@ -166,12 +204,14 @@ pub enum MyViewEvent {
     Changed(String),
 }
 
-fn click_view() {
-    let _ = active!(MyViewEvent::Clicked);
-}
+impl MyView{
+    fn click_view(&self) {
+        let _ = active!(MyViewEvent::Clicked);
+    }
 
-fn change_view() {
-    active!(MyViewEvent::Changed, "changed!".to_string());
+    fn change_view(&self) {
+        active!(MyViewEvent::Changed, "changed!".to_string());
+    }
 }
 ```
 
@@ -190,13 +230,17 @@ The `FatherView` component listens to the events of `MyView`:
 </template>
 
 <script>
-fn my_view_clicked() {
-    dbg!("my_view_clicked!");
-}
+#[component]
+struct FatherView{}
 
-fn my_view_changed(param: impl EventParam) {
-    dbg!(param);
+impl FatherView{
+    fn my_view_clicked(&self) {
+        dbg!("my_view_clicked!");
+    }
+
+    fn my_view_changed(&self, param: impl EventParam) {
+        dbg!(param);
+    }
 }
 </script>
 ```
-

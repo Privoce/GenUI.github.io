@@ -4,35 +4,37 @@ import { Badge } from '@theme';
 
 > [!WARNING]
 >
-> 当前完整的生命周期还未全部实现，属于实验性功能，开放`#[before_create]`
+> 当前完整的生命周期还未全部实现，属于实验性功能，开放`#[before_mount]`, `#[mounted]`
 
-## `#[before_create]`
+## `#[before_mount]`
 
-在组件实例初始化完成之后立即调用。使用`#[before_create]`标注在方法或闭包上。
+在组件实例初始化完成之后立即调用。使用`#[before_mount]`标注在方法上。
 
 ### 写法
 
-#### Fn
-
 ```rust
-#[before_create]
-fn before_create(){
-    println!("before create!");
+impl MyView{
+    #[before_mount]
+    fn before_mount(){
+        println!("before mount!");
+    }
 }
 ```
 
-#### Closure
-
-```rust
-#[before_create]
-let mut before_create = || {
-    println!("before create!");
-};
-```
-
-## `#[created]`
+## `#[mounted]`
 
 实例初始化完成后调用的选项
+
+### 写法
+
+```rust
+impl MyView{
+    #[mounted]
+    fn mounted(){
+        println!("mounted!");
+    }
+}
+```
 
 ## `#[before_update]`
 

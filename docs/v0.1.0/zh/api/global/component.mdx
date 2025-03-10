@@ -34,9 +34,23 @@ import! {
 </script>
 ```
 
+## `#[component]`
+
+对于自定义组件，我们需要使用`#[component]`宏进行组件的属性声明，但并不是所有的类型都是允许的，能够在属性中使用的类型需要实现`Default`trait，
+自定义struct和enum则需要使用`#[prop]`进行标注。
+
+```rust
+<script>
+#[component]
+pub struct MyView{
+    name: String
+}
+</script>
+```
+
 ## `#[prop]`
 
-`#[prop]` 宏用于定义组件的属性（Props）。对于自定义组件，我们需要使用 `#[prop]` 宏来声明属性，以便实例化组件时进行赋值。
+`#[prop]` 宏用于定义组件的属性（Props）。我们需要使用 `#[prop]` 宏来声明属性，以便实例化组件时进行赋值。
 
 ### 限制
 
@@ -46,59 +60,80 @@ import! {
 
 ```rust
 <script>
+#[component]
+pub struct MyView{
+    user: User,
+    auth: Auth
+}
+
 #[prop]
-pub struct MyView {
-    name: String,
+#[derive(Debug, Clone)]
+pub struct User{
+    name: String
+}
+
+impl Default for User{
+    fn default() -> Self{
+        Self{ name: "John" }
+    }
+}
+
+#[prop]
+#[derive(Default, Clone, Copy, Debug)]
+pub enum Auth{
+    #[default]
+    Custom,
+    User,
+    Remote,
+    Other
 }
 </script>
 ```
 
 ### `get|set` 方法
 
-所有 `#[prop]` 标记的属性都会自动生成对应的 `get` 和 `set` 方法。建议使用 `get|set` 方法来访问和修改属性值，否则可能会导致双向绑定失效。
+所有组件内声明的并在模版中进行绑定的属性都会自动生成对应的 `get` 和 `set` 方法。请使用 `get|set` 方法来访问和修改属性值，否则会导致双向绑定失效。
 
 例如，上述 `MyView` 结构体会自动生成以下方法：
 
-- `fn get_name(&self) -> String;`
-- `fn set_name(&mut self, value: String) -> ();`
+- `fn get_user(&self) -> User;`
+- `fn set_user(&mut self, value: User) -> ();`
+- `fn get_auth(&self) -> Auth;`
+- `fn set_auth(&self, value: Auth) -> ();`
 
+## `Default trait`
 
-## `default_prop!`
-
-`default_prop!` 宏用于初始化组件实例的属性值。
+`Default` trait 用于初始化组件实例的属性值。
 
 ### 示例
 
 ```rust {7-11}
 <script>
-#[prop]
+#[component]
 pub struct MyView {
     name: String,
 }
 
-let mut prop = default_prop! {
-    MyView {
-        name: "John".to_string(),
+impl Default for MyView{
+    fn default() -> Self{
+        Self{
+            name: "John".to_string(),
+        }
     }
-};
+}
 </script>
 ```
 
-在后续的代码中，您可以使用 `prop` 访问 `get|set` 方法，例如：
+在后续的代码中，您可以像实现impl一样实现组件方法和回调函数，例如：
 
 ```rust
-let name = prop.get_name();
-prop.set_name("Alice".to_string());
+impl MyView{
+    fn click_btn(&mut self) -> (){
+        let name = self.get_name();
+        self.set_name("Alice".to_string());
+    }
+}
 ```
-
-> [!DANGER]
->
-> `prop` 的 `get|set` 方法目前不支持在 `macro_expr`（宏表达式）中使用，例如：
->
-> ```rust
-> println!("name is: {}", prop.get_name());
-> ```
-
 
 ## `#[event]`
 
@@ -143,10 +178,15 @@ pub enum MyViewEvent {
 </template>
 
 <script>
-fn get_label_text() {
-    let label = c_ref!(my_label);
-    let label_text = label.get_text();
-    println!("label text is: {}", label_text);
+#[component]
+struct MyView{}
+
+impl MyView{
+    fn get_label_text(&mut self) {
+        let label = c_ref!(my_label);
+        let label_text = label.get_text();
+        println!("label text is: {}", label_text);
+    }
 }
 </script>
 ```
@@ -167,12 +207,14 @@ pub enum MyViewEvent {
     Changed(String),
 }
 
-fn click_view() {
-    let _ = active!(MyViewEvent::Clicked);
-}
+impl MyView{
+    fn click_view(&self) {
+        let _ = active!(MyViewEvent::Clicked);
+    }
 
-fn change_view() {
-    active!(MyViewEvent::Changed, "changed!".to_string());
+    fn change_view(&self) {
+        active!(MyViewEvent::Changed, "changed!".to_string());
+    }
 }
 ```
 
@@ -191,13 +233,17 @@ fn change_view() {
 </template>
 
 <script>
-fn my_view_clicked() {
-    dbg!("my_view_clicked!");
-}
+#[component]
+struct FatherView{}
 
-fn my_view_changed(param: impl EventParam) {
-    dbg!(param);
+impl FatherView{
+    fn my_view_clicked(&self) {
+        dbg!("my_view_clicked!");
+    }
+
+    fn my_view_changed(&self, param: impl EventParam) {
+        dbg!(param);
+    }
 }
 </script>
 ```
-

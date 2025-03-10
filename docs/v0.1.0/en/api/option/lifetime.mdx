@@ -4,35 +4,37 @@ import { Badge } from '@theme';
 
 > [!WARNING]
 >
-> Currently, the complete life cycle has not been fully implemented. It is an experimental function. Open `#[before_create]`
+> Currently, the complete life cycle has not been fully implemented. It is an experimental function. Open `#[before_mount]`, `#mounted`
 
-## `#[before_create]`
+## `#[before_mount]`
 
-Called immediately after the component instance is initialized. Use the `#[before_create]` annotation on a method or closure.
+Called immediately after the component instance is initialized. Use the `#[before_mount]` annotation on a method or closure.
 
 ### Usage
 
-#### Fn
-
 ```rust
-#[before_create]
-fn before_create(){
-    println!("before create!");
+impl MyView{
+    #[before_mount]
+    fn before_mount(){
+        println!("before mount!");
+    }
 }
 ```
 
-#### Closure
-
-```rust
-#[before_create]
-let mut before_create = || {
-    println!("before create!");
-};
-```
-
-## `#[created]`
+## `#[mounted]`
 
 Options called after instance initialization is complete
+
+### Usage
+
+```rust
+impl MyView{
+    #[mounted]
+    fn mounted(){
+        println!("mounted!");
+    }
+}
+```
 
 ## `#[before_update]`
 
