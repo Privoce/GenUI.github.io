@@ -37,6 +37,24 @@ pub struct Member {
 }
 ```
 
+
+### Resource
+
+- `String`: resource path
+- `Obj`:
+    - `src`: source resource path
+    - `target`: `target path`
+
+#### Source Code
+
+```
+#[derive(Debug, Clone)]
+pub enum Resource {
+    String(String),
+    Obj { src: PathBuf, target: String },
+}
+```
+
 ## `gen_ui.toml`
 
 ### CompilerConf

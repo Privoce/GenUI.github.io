@@ -32,9 +32,11 @@ import { Tab, Tabs } from "rspress/theme";
 | `target`   | `FrameworkType`       | Project type                                                                 |
 | `members`  | `Option<Vec<Member>>` | Project members                                                              |
 | `compiles` | `Option<Vec<usize>>`  | Projects to be compiled. If not set, compile the first project in the member |
+|`resources`|`Resource`|Package resource pointer|
 
 > - [`FrameworkType`](/doc/config/types#frameworktype)
 > - [`Member`](/doc/config/types#member)
+> - [`Resource`](/doc/config/types#resources)
 
 ### Source Code `.ract`
 
@@ -62,5 +64,6 @@ pub struct RactToml {
     /// - if compiles length is 1, compile the project in the members by index
     /// - if compiles length is more than 1, use multiple threads to compile the projects
     pub compiles: Option<Vec<usize>>,
+    pub resources: Vec<Resource>,
 }
 ````

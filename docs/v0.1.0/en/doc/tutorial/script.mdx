@@ -6,15 +6,52 @@ The script part of `GenUI` uses the Rust language and is wrapped in the `<script
 >
 > This document only briefly describes the use of the script part. For specific documents, please refer to: [API](/zh/api/index)
 
-## Define component properties
+## Define components
 
-For custom components, we need to use the `#[prop]` macro to declare the component's properties, but not all types are allowed. The types that can be used in the properties need to implement the `Default` trait.
+For custom components, we need to use the `#[component]` macro to declare the component's properties, but not all types are allowed. Types that can be used in properties need to implement the `Default` trait.
+Custom structs and enums need to be annotated with `#[prop]`.
 
 ```rust
 <script>
-#[prop]
+#[component]
 pub struct MyView{
     name: String
+}
+</script>
+```
+
+## Define component properties
+
+When you want to build a custom struct or enum in a component, you need to use `#[prop]` to annotate it and implement the `Default` trait
+
+```rust
+<script>
+#[component]
+pub struct MyView{
+    user: User,
+    auth: Auth
+}
+
+#[prop]
+#[derive(Debug, Clone)]
+pub struct User{
+    name: String
+}
+
+impl Default for User{
+    fn default() -> Self{
+        Self{ name: "John" }
+    }
+}
+
+#[prop]
+#[derive(Default, Clone, Copy, Debug)]
+pub enum Auth{
+    #[default]
+    Custom,
+    User,
+    Remote,
+    Other
 }
 </script>
 ```
@@ -54,16 +91,18 @@ In this example, we define the value of the `text` property of `label` in `MyVie
 </template>
 
 <script>
-#[prop]
+#[component]
 pub struct MyView{
     txt: String
 }
 
-let mut prop = default_prop!{
-    MyView{
-        txt: "Hello".to_string()
+impl Default for MyView{
+    fn default() -> Self{
+        Self{
+            txt: "Hello".to_string()
+        }
     }
-};
+}
 </script>
 ```
 
@@ -71,8 +110,7 @@ In this code, the `get_txt` and `set_txt` methods are automatically generated.
 
 ## Methods and callbacks
 
-For methods and callbacks, use `fn` or `closure` to declare them. In the following example, we define the `change_txt` method as the callback method for button clicks.
-
+Methods and callbacks need to be defined in the component structure using `impl`. In the following example, we define the `change_txt` method as the callback method for button clicks.
 ```rust
 <template>
     <component name="MyView">
@@ -82,27 +120,23 @@ For methods and callbacks, use `fn` or `closure` to declare them. In the followi
 </template>
 
 <script>
-#[prop]
+#[component]
 pub struct MyView{
     txt: String
 }
 
-let mut prop = default_prop!{
-    MyView{
-        txt: "Hello".to_string()
+impl Default for MyView{
+    fn default() -> Self{
+        Self{
+            txt: "Hello".to_string()
+        }
     }
-};
+}
 
-fn change_txt(){
-    prop.set_txt("World".to_string());
+impl MyView{
+    fn change_txt(&mut self){
+        self.set_txt("World".to_string());
+    }
 }
 </script>
-```
-
-The above method can also be rewritten using `closure`
-
-```rust
-let mut change_txt = ||{
-    prop.set_txt("World".to_string());
-};
 ```

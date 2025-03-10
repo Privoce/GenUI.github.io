@@ -22,7 +22,7 @@ pub enum FrameworkType {
 
 ```
 {
-    source = "需要编译的源项目",
+    src = "需要编译的源项目",
     target = "编译后的项目"
 }
 ```
@@ -32,8 +32,25 @@ pub enum FrameworkType {
 ```rust
 #[derive(Debug, Clone)]
 pub struct Member {
-    pub source: PathBuf,
+    pub src: PathBuf,
     pub target: PathBuf,
+}
+```
+
+### Resource
+
+- `String`: 资源路径
+- `Obj`: 
+    - `src`: 源资源路径
+    - `target`: `目标路径`
+
+#### 源码
+
+```
+#[derive(Debug, Clone)]
+pub enum Resource {
+    String(String),
+    Obj { src: PathBuf, target: String },
 }
 ```
 

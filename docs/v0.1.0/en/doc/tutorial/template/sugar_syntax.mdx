@@ -28,25 +28,31 @@ The followings are details:
 
 ### Examples
 
+> [!DANGER]
+>
+> When using syntax sugar, you need to bind the id just like the bind type
+>
+> We plan to introduce an automatic id strategy in the `v0.1.3` version (automatically generate an id for each component that does not have an id added during static compilation)
+
 #### Single for
 
 ```html
-<label :for="item in label_list" :text="item"></label>
+<label id="mv_label" :for="item in label_list" :text="item"></label>
 ```
 
 #### Nested use
 
 ```html
-<view :for="item in label_list">
-    <label :text="item"></label>
+<view id="my_view" :for="item in label_list">
+    <label id="mv_label" :text="item"></label>
 </view>
 ```
 
 #### Nested for
 
 ```html
-<view :for="(index, item) in label_list">
-    <label :for="item1 in item[index]" :text="item1"></label>
+<view id="mv_view" :for="(index, item) in label_list">
+    <label id="mv_label" :for="item1 in item[index]" :text="item1"></label>
 </view>
 ```
 

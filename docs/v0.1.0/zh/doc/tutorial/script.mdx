@@ -6,15 +6,52 @@
 >
 > 本文档仅简单说明脚本部分的使用，具体文档请参看：[API](/zh/api/index)
 
-## 定义组件属性
+## 定义组件
 
-对于自定义组件，我们需要使用`#[prop]`宏进行组件的属性声明，但并不是所有的类型都是允许的，能够在属性中使用的类型需要实现`Default`trait。
+对于自定义组件，我们需要使用`#[component]`宏进行组件的属性声明，但并不是所有的类型都是允许的，能够在属性中使用的类型需要实现`Default`trait，
+自定义struct和enum则需要使用`#[prop]`进行标注。
 
 ```rust
 <script>
-#[prop]
+#[component]
 pub struct MyView{
     name: String
+}
+</script>
+```
+
+## 定义组件属性
+
+当你希望在组件中构建自定义结构体或枚举时，需要使用`#[prop]`进行标注并实现`Default` trait
+
+```rust
+<script>
+#[component]
+pub struct MyView{
+    user: User,
+    auth: Auth
+}
+
+#[prop]
+#[derive(Debug, Clone)]
+pub struct User{
+    name: String
+}
+
+impl Default for User{
+    fn default() -> Self{
+        Self{ name: "John" }
+    }
+}
+
+#[prop]
+#[derive(Default, Clone, Copy, Debug)]
+pub enum Auth{
+    #[default]
+    Custom,
+    User,
+    Remote,
+    Other
 }
 </script>
 ```
@@ -54,16 +91,18 @@ pub enum MyViewEvent{
 </template>
 
 <script>
-#[prop]
+#[component]
 pub struct MyView{
     txt: String
 }
 
-let mut prop = default_prop!{
-    MyView{
-        txt: "Hello".to_string()
+impl Default for MyView{
+    fn default() -> Self{
+        Self{
+            txt: "Hello".to_string()
+        }
     }
-};
+}
 </script>
 ```
 
@@ -71,7 +110,7 @@ let mut prop = default_prop!{
 
 ## 方法与回调
 
-对于方法和回调而言使用`fn`或`closure`进行声明，以下例子中我们定义了`change_txt`方法作为按钮的点击的回调方法。
+对于方法和回调而言需要使用`impl`定义在组件结构体内，以下例子中我们定义了`change_txt`方法作为按钮的点击的回调方法。
 
 ```rust
 <template>
@@ -82,27 +121,23 @@ let mut prop = default_prop!{
 </template>
 
 <script>
-#[prop]
+#[component]
 pub struct MyView{
     txt: String
 }
 
-let mut prop = default_prop!{
-    MyView{
-        txt: "Hello".to_string()
+impl Default for MyView{
+    fn default() -> Self{
+        Self{
+            txt: "Hello".to_string()
+        }
     }
-};
+}
 
-fn change_txt(){
-    prop.set_txt("World".to_string());
+impl MyView{
+    fn change_txt(&mut self){
+        self.set_txt("World".to_string());
+    }
 }
 </script>
-```
-
-以上方法还可以使用`closure`来改写
-
-```rust
-let mut change_txt = ||{
-    prop.set_txt("World".to_string());
-};
 ```

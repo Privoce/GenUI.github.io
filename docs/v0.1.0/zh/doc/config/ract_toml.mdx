@@ -10,17 +10,20 @@ import { Tab, Tabs } from 'rspress/theme';
     <Tab label="GenUI">
         ```toml title=".ract"
         target = "gen_ui"
-        members = [{ source = "start", target = "src_gen_0" }]
+        members = [{ src = "start", target = "src_gen_0" }]
+        resources = [{ src = "gen_components", target = "../dist/resources/gen_components" }, { src = "makepad-widgets", target = "../dist/resources/makepad_widgets" }]
         ```
     </Tab>
     <Tab label="Makepad Project">
         ```toml title=".ract"
         target = "makepad"
+        resources = [{ src = "makepad-widgets", target = "./dist/resources/makepad_widgets" }]
         ```
     </Tab>
     <Tab label="Makepad Workspace">
         ```toml title=".ract"
         target = "makepad"
+        resources = [{ src = "makepad-widgets", target = "./dist/resources/makepad_widgets" }]
         ```
     </Tab>
 </Tabs>
@@ -32,9 +35,11 @@ import { Tab, Tabs } from 'rspress/theme';
 |`target`|`FrameworkType`|项目类型|
 |`members`|`Option<Vec<Member>>`|项目成员|
 |`compiles`|`Option<Vec<usize>>`|需要编译的项目，如果未设置，则编译成员中的第一个项目|
+|`resources`|`Resource`|打包资源指向|
 
 > - [`FrameworkType`](/zh/doc/config/types#frameworktype)
 > - [`Member`](/zh/doc/config/types#member)
+> - [`Resource`](/zh/doc/config/types#resources)
 
 ### .ract源码
 
@@ -62,5 +67,6 @@ pub struct RactToml {
     /// - if compiles length is 1, compile the project in the members by index
     /// - if compiles length is more than 1, use multiple threads to compile the projects
     pub compiles: Option<Vec<usize>>,
+    pub resources: Vec<Resource>,
 }
 ```
