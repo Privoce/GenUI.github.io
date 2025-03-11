@@ -1,0 +1,83 @@
+# `tag` 标签
+
+用于标记和选择
+
+## Example
+
+### 基础用法
+
+```html
+<tag text="'tag 1'"></tag>
+<tag text="'hello'" color="#ff0000" theme="Error"></tag>
+```
+
+### 可关闭
+
+```html
+<tag text="'hello'" closeable></tag>
+```
+
+## 属性
+
+| 名称                 | 说明             | 类型             |
+| -------------------- | ---------------- | ---------------- |
+| `theme`              | 主题             | `Themes`         |
+| `background_color`   | 背景颜色         | `MakepadColor`   |
+| `background_visible` | 是否显示背景     | `bool`           |
+| `hover_color`        | 悬停颜色         | `MakepadColor`   |
+| `stroke_hover_color` | 边框悬停颜色     | `MakepadColor`   |
+| `text_hover_color`   | 文本悬停颜色     | `MakepadColor`   |
+| `focus_color`        | 聚焦颜色         | `MakepadColor`   |
+| `stroke_focus_color` | 边框聚焦颜色     | `MakepadColor`   |
+| `text_focus_color`   | 文本聚焦颜色     | `MakepadColor`   |
+| `border_color`       | 边框颜色         | `MakepadColor`   |
+| `border_width`       | 边框宽度         | `F32`            |
+| `border_radius`      | 边框圆角         | `F32`            |
+| `shadow_color`       | 阴影颜色         | `MakepadColor`   |
+| `spread_radius`      | 阴影扩散半径     | `F32`            |
+| `blur_radius`        | 阴影模糊半径     | `F32`            |
+| `shadow_offset`      | 阴影偏移量       | `Vec2`           |
+| `text`               | 文本内容         | `String`         |
+| `font_size`          | 字体大小         | `F64`            |
+| `color`              | 字体颜色         | `MakepadColor`   |
+| `font_family`        | 字体系列         | `LiveDependency` |
+| `height_factor`      | 高度因子         | `F64`            |
+| `line_scale`         | 行距比例         | `F64`            |
+| `cursor`             | 鼠标指针         | `MouseCursor`    |
+| `closeable`          | 是否可关闭       | `bool`           |
+| `src`                | 资源路径         | `LiveDependency` |
+| `icon_brightness`    | 图标亮度         | `F32`            |
+| `icon_curve`         | 图标曲线         | `F32`            |
+| `icon_linearize`     | 图标线性化       | `F32`            |
+| `icon_scale`         | 图标缩放         | `F64`            |
+| `icon_color`         | 图标颜色         | `MakepadColor`   |
+| `icon_draw_depth`    | 图标绘制深度     | `F32`            |
+| `visible`            | 是否可见         | `bool`           |
+| `text_walk`          | 文本排版参数     | `TextWalk`       |
+| `grab_key_focus`     | 是否获取键盘焦点 | `bool`           |
+| `icon_walk`          | 图标布局参数     | `Walk`           |
+| `icon_layout`        | 图标布局         | `Layout`         |
+| `abs_pos`            | 绝对位置         | `DVec2`          |
+| `margin`             | 外边距           | `Margin`         |
+| `width`              | 宽度             | `Size`           |
+| `height`             | 高度             | `Size`           |
+| `scroll`             | 滚动偏移         | `DVec2`          |
+| `clip_x`             | 是否裁剪 X       | `bool`           |
+| `clip_y`             | 是否裁剪 Y       | `bool`           |
+| `padding`            | 内边距           | `Padding`        |
+| `align`              | 对齐方式         | `Align`          |
+| `flow`               | 流动方式         | `Flow`           |
+| `spacing`            | 间距             | `F64`            |
+| `animation_key`      | 是否启用动画     | `bool`           |
+| `event_key`          | 事件标识符       | `bool`           |
+
+## 事件回调
+
+| 名称         | 说明     | 参数                 |
+| ------------ | -------- | -------------------- |
+| `clicked`    | 点击事件 | `GTagClickedParam`   |
+| `hover_in`   | 悬停进入 | `GTagHoverParam`     |
+| `hover_out`  | 悬停离开 | `GTagHoverParam`     |
+| `closed`     | 关闭事件 | `GTagClosedParam`    |
+| `focus`      | 获取焦点 | `GTagFocusParam`     |
+| `focus_lost` | 失去焦点 | `GTagFocusLostParam` |

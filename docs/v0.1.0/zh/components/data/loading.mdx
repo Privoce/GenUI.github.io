@@ -1,0 +1,41 @@
+# `loading` 加载中
+
+加载数据时显示动效。
+
+## 示例
+
+### 基础用法
+
+```
+<loading theme="Error"></loading>
+<loading loading_type="DotLine"></loading>
+```
+
+## 属性
+
+| 名称            | 说明         | 类型           |
+| --------------- | ------------ | -------------- |
+| `theme`         | 主题         | `Themes`       |
+| `stroke_color`  | 轮廓颜色     | `MakepadColor` |
+| `loading_type`  | 加载类型     | `GLoadingType` |
+| `visible`       | 是否可见     | `bool`         |
+| `animation_key` | 是否启用动画 | `bool`         |
+| `event_key`     | 事件标识符   | `bool`         |
+| `abs_pos`       | 绝对位置     | `DVec2`        |
+| `margin`        | 外边距       | `Margin`       |
+| `width`         | 宽度         | `Size`         |
+| `height`        | 高度         | `Size`         |
+| `scroll`        | 滚动偏移     | `DVec2`        |
+| `clip_x`        | 是否裁剪 X   | `bool`         |
+| `clip_y`        | 是否裁剪 Y   | `bool`         |
+| `padding`       | 内边距       | `Padding`      |
+| `align`         | 对齐方式     | `Align`        |
+| `flow`          | 流动方式     | `Flow`         |
+| `spacing`       | 间距         | `F64`          |
+
+## 事件回调
+
+| 名称     | 说明     | 参数                 |
+| -------- | -------- | -------------------- |
+| `opened` | 打开事件 | `GLoadingEventParam` |
+| `closed` | 关闭事件 | `GLoadingEventParam` |

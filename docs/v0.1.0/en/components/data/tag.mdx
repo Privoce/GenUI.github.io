@@ -1,0 +1,83 @@
+# `tag`
+
+Used for marking and selection
+
+## Example
+
+### Basic usage
+
+```html
+<tag text="'tag 1'"></tag>
+<tag text="'hello'" color="#ff0000" theme="Error"></tag>
+```
+
+### Closeable
+
+```html
+<tag text="'hello'" closeable></tag>
+```
+
+## Attributes
+
+| Name                 | Description                       | Type             |
+| -------------------- | --------------------------------- | ---------------- |
+| `theme`              | Themes                            | `Themes`         |
+| `background_color`   | Background color                  | `MakepadColor`   |
+| `background_visible` | Whether to display the background | `bool`           |
+| `hover_color`        | Hover color                       | `MakepadColor`   |
+| `stroke_hover_color` | Border hover color                | `MakepadColor`   |
+| `text_hover_color`   | Text hover color                  | `MakepadColor`   |
+| `focus_color`        | Focus color                       | `MakepadColor`   |
+| `stroke_focus_color` | Border focus color                | `MakepadColor`   |
+| `text_focus_color`   | Text focus color                  | `MakepadColor`   |
+| `border_color`       | Border color                      | `MakepadColor`   |
+| `border_width`       | Border width                      | `F32`            |
+| `border_radius`      | Border radius                     | `F32`            |
+| `shadow_color`       | Shadow color                      | `MakepadColor`   |
+| `spread_radius`      | Shadow spread radius              | `F32`            |
+| `blur_radius`        | Shadow blur radius                | `F32`            |
+| `shadow_offset`      | Shadow offset                     | `Vec2`           |
+| `text`               | Text content                      | `String`         |
+| `font_size`          | Font size                         | `F64`            |
+| `color`              | Font color                        | `MakepadColor`   |
+| `font_family`        | Font family                       | `LiveDependency` |
+| `height_factor`      | Height factor                     | `F64`            |
+| `line_scale`         | Line spacing ratio                | `F64`            |
+| `cursor`             | Mouse pointer                     | `MouseCursor`    |
+| `closeable`          | Closeable                         | `bool`           |
+| `src`                | Resource path                     | `LiveDependency` |
+| `icon_brightness`    | Icon brightness                   | `F32`            |
+| `icon_curve`         | Icon curve                        | `F32`            |
+| `icon_linearize`     | Icon linearization                | `F32`            |
+| `icon_scale`         | Icon scaling                      | `F64`            |
+| `icon_color`         | Icon color                        | `MakepadColor`   |
+| `icon_draw_depth`    | Icon drawing depth                | `F32`            |
+| `visible`            | Visible or not                    | `bool`           |
+| `text_walk`          | Text layout parameters            | `TextWalk`       |
+| `grab_key_focus`     | Whether to get keyboard focus     | `bool`           |
+| `icon_walk`          | Icon layout parameters            | `Walk`           |
+| `icon_layout         | Icon layout                       | `Layout`         |
+| `abs_pos`            | Absolute position                 | `DVec2`          |
+| `margin`             | Margin                            | `Margin`         |
+| `width`              | Width                             | `Size`           |
+| `height`             | Height                            | `Size`           |
+| `scroll`             | Scroll offset                     | `DVec2`          |
+| `clip_x`             | whether to clip X                 | `bool`           |
+| `clip_y`             | whether to clip Y                 | `bool`           |
+| `padding`            | inner margin                      | `Padding`        |
+| `align`              | alignment                         | `Align`          |
+| `flow`               | flow                              | `Flow`           |
+| `spacing`            | spacing                           | `F64`            |
+| `animation_key`      | whether to enable animation       | `bool`           |
+| `event_key`          | event identifier                  | `bool`           |
+
+## event callback
+
+| name         | description  | parameter            |
+| ------------ | ------------ | -------------------- |
+| `clicked`    | click event  | `GTagClickedParam`   |
+| `hover_in`   | hover in     | `GTagHoverParam`     |
+| `hover_out`  | hover out    | `GTagHoverParam`     |
+| `closed`     | closed event | `GTagClosedParam`    |
+| `focus`      | get focus    | `GTagFocusParam`     |
+| `focus_lost` | lose focus   | `GTagFocusLostParam` |

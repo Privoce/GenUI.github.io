@@ -18,5 +18,10 @@
     "type": "dir",
     "name": "data",
     "label": "数据组件"
+  },
+  {
+    "type": "dir",
+    "name": "feedback",
+    "label": "反馈组件"
   }
 ]

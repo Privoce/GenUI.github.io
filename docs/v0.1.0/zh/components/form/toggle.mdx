@@ -1,0 +1,54 @@
+# `toggle` 开关
+
+表示两种相互对立的状态间的切换，多用于触发开关事件。
+
+## 示例
+
+### 基础使用
+
+```html
+<toggle theme="Error" selected="true"></toggle>
+```
+
+## 属性
+
+| 名称                  | 说明             | 类型         |
+| --------------------- | ---------------- | ------------ |
+| theme                 | 主题             | Themes       |
+| background_color      | 背景颜色         | MakepadColor |
+| background_visible    | 背景可见         | bool         |
+| hover_color           | 悬停颜色         | MakepadColor |
+| selected_color        | 选中颜色         | MakepadColor |
+| stroke_color          | 线条颜色         | MakepadColor |
+| stroke_hover_color    | 悬停线条颜色     | MakepadColor |
+| stroke_selected_color | 选中线条颜色     | MakepadColor |
+| border_color          | 边框颜色         | MakepadColor |
+| border_width          | 边框宽度         | F32          |
+| border_radius         | 边框圆角         | F32          |
+| scale                 | 缩放比例         | F32          |
+| cursor                | 光标类型         | MouseCursor  |
+| selected              | 是否选中         | bool         |
+| grab_key_focus        | 是否获取键盘焦点 | bool         |
+| toggle_type           | 切换类型         | GToggleType  |
+| visible               | 是否可见         | bool         |
+| animation_key         | 是否启用动画     | bool         |
+| event_key             | 事件标识符       | bool         |
+| abs_pos               | 绝对位置         | DVec2        |
+| margin                | 外边距           | Margin       |
+| width                 | 宽度             | Size         |
+| height                | 高度             | Size         |
+| scroll                | 滚动偏移         | DVec2        |
+| clip_x                | 是否裁剪 X       | bool         |
+| clip_y                | 是否裁剪 Y       | bool         |
+| padding               | 内边距           | Padding      |
+| align                 | 对齐方式         | Align        |
+| flow                  | 流动方式         | Flow         |
+| spacing               | 间距             | F64          |
+
+## 事件回调
+
+| 名称      | 说明     | 参数                |
+| --------- | -------- | ------------------- |
+| clicked   | 点击事件 | GToggleClickedParam |
+| hover_in  | 悬停进入 | GToggleHoverParam   |
+| hover_out | 悬停离开 | GToggleHoverParam   |

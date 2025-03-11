@@ -6,14 +6,13 @@
 >
 > 目前输入框的能力较为单一，我们预计在下个版本推出更多或更强大的输入框
 
-
 ## 示例
 
 ### 基础使用
 
 ```html
-<input 
-    text="'Hello'" 
+<input
+    text="'Hello'"
     height="36.0"
     width="200.0">
 </input>
@@ -21,60 +20,60 @@
 
 ## 属性
 
-| 名称                | 说明                                    | 类型           |
-|--------------------|----------------------------------------|----------------|
-| `theme`           | 主题                                    | `Themes`       |
-| `shadow_color`    | 阴影颜色                                | `MakepadColor` |
-| `spread_radius`   | 扩散半径                                | `F32`          |
-| `blur_radius`     | 模糊半径                                | `F32`          |
-| `shadow_offset`   | 阴影偏移                                | `Vec2`         |
-| `placeholder_color`| 占位符颜色                             | `MakepadColor` |
-| `color`           | 颜色                                    | `MakepadColor` |
-| `cursor_color`    | 光标颜色                                | `MakepadColor` |
-| `select_color`    | 选区颜色                                | `MakepadColor` |
-| `background_color`| 背景颜色                                | `MakepadColor` |
-| `background_visible`| 背景是否可见                           | `bool`         |
-| `visible`         | 是否可见                                | `bool`         |
-| `hover_color`     | 悬停颜色                                | `MakepadColor` |
-| `text_hover_color`| 文本悬停颜色                            | `MakepadColor` |
-| `text_focus_color`| 文本聚焦颜色                            | `MakepadColor` |
-| `cursor_hover_color`| 光标悬停颜色                          | `MakepadColor` |
-| `cursor_focus_color`| 光标聚焦颜色                          | `MakepadColor` |
-| `select_hover_color`| 选区悬停颜色                          | `MakepadColor` |
-| `select_focus_color`| 选区聚焦颜色                          | `MakepadColor` |
-| `focus_color`     | 聚焦颜色                                | `MakepadColor` |
-| `border_color`    | 边框颜色                                | `MakepadColor` |
-| `border_width`    | 边框宽度                                | `F32`          |
-| `border_radius`   | 边框圆角半径                            | `F32`          |
-| `font_size`       | 字体大小                                | `F64`          |
-| `height_factor`   | 高度因子                                | `F64`          |
-| `wrap`            | 文本换行方式                            | `TextWrap`     |
-| `font_family`     | 字体族路径                              | `LiveDependency`|
-| `cursor_border_radius`| 光标圆角半径                        | `F64`          |
-| `abs_pos`         | 绝对位置                                | `DVec2`        |
-| `margin`          | 外边距                                  | `Margin`       |
-| `width`           | 宽度                                    | `Size`         |
-| `height`          | 高度                                    | `Size`         |
-| `scroll`          | 滚动偏移                                | `DVec2`        |
-| `clip_x`          | 是否裁剪 X 轴                           | `bool`         |
-| `clip_y`          | 是否裁剪 Y 轴                           | `bool`         |
-| `padding`         | 内边距                                  | `Padding`      |
-| `align`           | 对齐方式                                | `Align`        |
-| `flow`            | 流动方式                                | `Flow`         |
-| `spacing`         | 间距                                    | `F64`          |
-| `cursor_width`    | 光标宽度                                | `F64`          |
-| `read_only`       | 是否只读                                | `bool`         |
-| `numeric_only`    | 是否仅限数字输入                        | `bool`         |
-| `placeholder`     | 占位符                                  | `String`       |
-| `text`            | 文本内容                                | `String`       |
-| `event_key`       | 事件键                                  | `bool`         |
+| 名称                   | 说明             | 类型             |
+| ---------------------- | ---------------- | ---------------- |
+| `theme`                | 主题             | `Themes`         |
+| `shadow_color`         | 阴影颜色         | `MakepadColor`   |
+| `spread_radius`        | 扩散半径         | `F32`            |
+| `blur_radius`          | 模糊半径         | `F32`            |
+| `shadow_offset`        | 阴影偏移         | `Vec2`           |
+| `placeholder_color`    | 占位符颜色       | `MakepadColor`   |
+| `color`                | 颜色             | `MakepadColor`   |
+| `cursor_color`         | 光标颜色         | `MakepadColor`   |
+| `select_color`         | 选区颜色         | `MakepadColor`   |
+| `background_color`     | 背景颜色         | `MakepadColor`   |
+| `background_visible`   | 背景是否可见     | `bool`           |
+| `visible`              | 是否可见         | `bool`           |
+| `hover_color`          | 悬停颜色         | `MakepadColor`   |
+| `text_hover_color`     | 文本悬停颜色     | `MakepadColor`   |
+| `text_focus_color`     | 文本聚焦颜色     | `MakepadColor`   |
+| `cursor_hover_color`   | 光标悬停颜色     | `MakepadColor`   |
+| `cursor_focus_color`   | 光标聚焦颜色     | `MakepadColor`   |
+| `select_hover_color`   | 选区悬停颜色     | `MakepadColor`   |
+| `select_focus_color`   | 选区聚焦颜色     | `MakepadColor`   |
+| `focus_color`          | 聚焦颜色         | `MakepadColor`   |
+| `border_color`         | 边框颜色         | `MakepadColor`   |
+| `border_width`         | 边框宽度         | `F32`            |
+| `border_radius`        | 边框圆角半径     | `F32`            |
+| `font_size`            | 字体大小         | `F64`            |
+| `height_factor`        | 高度因子         | `F64`            |
+| `wrap`                 | 文本换行方式     | `TextWrap`       |
+| `font_family`          | 字体族路径       | `LiveDependency` |
+| `cursor_border_radius` | 光标圆角半径     | `F64`            |
+| `abs_pos`              | 绝对位置         | `DVec2`          |
+| `margin`               | 外边距           | `Margin`         |
+| `width`                | 宽度             | `Size`           |
+| `height`               | 高度             | `Size`           |
+| `scroll`               | 滚动偏移         | `DVec2`          |
+| `clip_x`               | 是否裁剪 X 轴    | `bool`           |
+| `clip_y`               | 是否裁剪 Y 轴    | `bool`           |
+| `padding`              | 内边距           | `Padding`        |
+| `align`                | 对齐方式         | `Align`          |
+| `flow`                 | 流动方式         | `Flow`           |
+| `spacing`              | 间距             | `F64`            |
+| `cursor_width`         | 光标宽度         | `F64`            |
+| `read_only`            | 是否只读         | `bool`           |
+| `numeric_only`         | 是否仅限数字输入 | `bool`           |
+| `placeholder`          | 占位符           | `String`         |
+| `text`                 | 文本内容         | `String`         |
+| `event_key`            | 事件键           | `bool`           |
 
 ## 事件回调
 
-| 名称                  | 说明            | 参数              |
-|-----------------------|-----------------|-------------------|
-| `changed`            | 输入值变更事件   | `GInputChangedParam`|
-| `keydown_unhandled`  | 未处理键按下事件 | `KeyEvent`        |
-| `escaped`            | 按下 Esc 键事件  | `_`               |
-| `key_focus`          | 获得键盘焦点事件 | `_`               |
-| `key_focus_lost`     | 失去键盘焦点事件 | `_`               |
+| 名称                | 说明             | 参数                 |
+| ------------------- | ---------------- | -------------------- |
+| `changed`           | 输入值变更事件   | `GInputChangedParam` |
+| `keydown_unhandled` | 未处理键按下事件 | `KeyEvent`           |
+| `escaped`           | 按下 Esc 键事件  | `KeyEvent`           |
+| `key_focus`         | 获得键盘焦点事件 | `KeyFocusEvent`      |
+| `key_focus_lost`    | 失去键盘焦点事件 | `KeyFocusEvent`      |

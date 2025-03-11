@@ -1,0 +1,54 @@
+# `collapse`
+
+Use the folding panel to store content area
+
+## Example
+
+### Basic usage
+
+```html
+<collapse height="180.0" width="300.0" position="Bottom" opened="false">
+  <view as_prop="header" theme="Info" height="40.0">
+    <label text="'default collapse'"></label>
+  </view>
+  <view as_prop="body" theme="Error" height="140.0"></view>
+</collapse>
+```
+
+## Properties
+
+| Name             | Description                   | Type          |
+| ---------------- | ----------------------------- | ------------- |
+| `rect_size`      | Rectangle size                | `F64`         |
+| `opened`         | Whether to open               | `bool`        |
+| `fold`           | Folding degree                | `F64`         |
+| `cursor`         | Cursor type                   | `MouseCursor` |
+| `grab_key_focus` | Whether to get keyboard focus | `bool`        |
+| `visible`        | Is it visible                 | `bool`        |
+| `animation_key`  | Is animation enabled          | `bool`        |
+| `position`       | Position parameter            | `Position4`   |
+| `event_key`      | Event identifier              | `bool`        |
+| `abs_pos`        | Absolute position             | `DVec2`       |
+| `margin`         | Margin                        | `Margin`      |
+| `width`          | Width                         | `Size`        |
+| `height`         | Height                        | `Size`        |
+| `scroll`         | Scroll offset                 | `DVec2`       |
+| `clip_x`         | Clip X axis or not            | `bool`        |
+| `clip_y`         | Clip Y axis or not            | `bool`        |
+| `padding`        | Padding                       | `Padding`     |
+| `align`          | Alignment                     | `Align`       |
+| `flow`           | Flow                          | `Flow`        |
+| `spacing`        | Spacing                       | `F64`         |
+
+## Event callback
+
+| Name     | Description | Parameters         |
+| -------- | ----------- | ------------------ |
+| `hover`  | Hover event | `FingerHoverEvent` |
+| `opened` | Open event  | `FingerUpEvent`    |
+| `closed` | Close event | `FingerUpEvent`    |
+
+## Slots
+
+- header
+- body

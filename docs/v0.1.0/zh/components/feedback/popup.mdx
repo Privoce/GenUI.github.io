@@ -1,0 +1,56 @@
+# `popup` 弹出
+
+一种弹出组件，是 dialog, tooltip, drawer
+
+## 示例
+
+### 基础使用
+
+```html
+<popup as_prop="popup">
+    <popup_container as_prop="container" height="220.0" width="360.0" flow="Down" theme="Info">
+        <label text="'Container'"></label>
+    </popup_container>
+</popup>
+```
+
+## 属性
+
+| 名称               | 说明          | 类型         |
+| ------------------ | ------------- | ------------ |
+| theme              | 主题          | Themes       |
+| opacity            | 不透明度      | F32          |
+| background_color   | 背景颜色      | MakepadColor |
+| hover_color        | 悬停颜色      | MakepadColor |
+| focus_color        | 聚焦颜色      | MakepadColor |
+| border_color       | 边框颜色      | MakepadColor |
+| border_width       | 边框宽度      | F32          |
+| border_radius      | 边框圆角      | F32          |
+| visible            | 是否可见      | bool         |
+| background_visible | 背景是否可见  | bool         |
+| cursor             | 光标样式      | MouseCursor  |
+| mode               | 弹出框模式    | PopupMode    |
+| close_mode         | 关闭模式      | CloseMode    |
+| shadow_color       | 阴影颜色      | MakepadColor |
+| spread_radius      | 阴影扩散半径  | F32          |
+| blur_radius        | 阴影模糊半径  | F32          |
+| shadow_offset      | 阴影偏移      | Vec2         |
+| `margin`           | 外边距        | `Margin`     |
+| `width`            | 宽度          | `Size`       |
+| `height`           | 高度          | `Size`       |
+| `abs_pos`          | 绝对位置      | `DVec2`      |
+| `clip_x`           | 是否裁剪 X 轴 | `bool`       |
+| `clip_y`           | 是否裁剪 Y 轴 | `bool`       |
+| `padding`          | 内边距        | `Padding`    |
+| `align`            | 对齐方式      | `Align`      |
+| `flow`             | 流动方式      | `Flow`       |
+| `spacing`          | 间距          | `F64`        |
+| `scroll`           | 滚动偏移      | `DVec2`      |
+
+## 事件回调
+
+None
+
+## 插槽
+
+- container

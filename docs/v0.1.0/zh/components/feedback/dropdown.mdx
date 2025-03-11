@@ -1,0 +1,44 @@
+# `drop_down` 下拉
+
+## 示例
+
+### 基础使用
+
+使用dialog作为下拉选项
+
+```html
+<drop_down>
+    <button id="trigger">
+        <label as_prop="slot" text="'Open Dialog'"></label>
+    </button>
+    <dialog as_prop="popup">
+        <popup_container as_prop="container" height="220.0" width="360.0" flow="Down" theme="Info">
+            <label text="'Container'"></label>
+        </popup_container>
+    </dialog>
+</drop_down>
+```
+
+### Props Table  
+
+| 名称         | 说明          | 类型         |  
+|-------------|--------------|-------------|  
+| position    | 位置          | Position    |  
+| trigger_mode | 触发模式     | TriggerMode |  
+| opened      | 是否打开      | bool        |  
+| offset      | 偏移量        | F32         |  
+| offset_x    | X 轴偏移      | F32         |  
+| offset_y    | Y 轴偏移      | F32         |  
+| visible     | 是否可见      | bool        |  
+| proportion  | 比例          | F32         |  
+| event_key   | 事件标识符    | bool        |  
+
+### Events Table  
+
+| 名称      | 说明        | 参数                    |  
+|----------|------------|------------------------|  
+| changed  | 选项更改事件 | GDropDownChangedParam |  
+
+## 插槽
+
+- popup

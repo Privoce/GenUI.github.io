@@ -1,0 +1,54 @@
+# `toggle` switch
+
+Indicates the switch between two opposing states, mostly used to trigger switch events.
+
+## Example
+
+### Basic usage
+
+```html
+<toggle theme="Error" selected="true"></toggle>
+```
+
+## Attributes
+
+| Name                  | Description                   | Type         |
+| --------------------- | ----------------------------- | ------------ |
+| theme                 | Themes                        |
+| background_color      | Background color              | MakepadColor |
+| background_visible    | Background visible            | bool         |
+| hover_color           | Hover color                   | MakepadColor |
+| selected_color        | Selected color                | MakepadColor |
+| stroke_color          | Line color                    | MakepadColor |
+| stroke_hover_color    | Hover line color              | MakepadColor |
+| stroke_selected_color | Selected line color           | MakepadColor |
+| border_color          | Border color                  | MakepadColor |
+| border_width          | Border width                  | F32          |
+| border_radius         | Border radius                 | F32          |
+| scale                 | Scale ratio                   | F32          |
+| cursor                | cursor type                   | MouseCursor  |
+| selected              | selected                      | bool         |
+| grab_key_focus        | whether to get keyboard focus | bool         |
+| toggle_type           | toggle type                   | GToggleType  |
+| visible               | visible                       | bool         |
+| animation_key         | whether to enable animation   | bool         |
+| event_key             | event identifier              | bool         |
+| abs_pos               | absolute position             | DVec2        |
+| margin                | margin                        | Margin       |
+| width                 | width                         | Size         |
+| height                | height                        | Size         |
+| scroll                | scroll offset                 | DVec2        |
+| clip_x                | whether to clip X             | bool         |
+| clip_y                | whether to clip Y             | bool         |
+| padding               | inner margin                  | Padding      |
+| align                 | alignment                     | Align        |
+| flow                  | flow                          | Flow         |
+| spacing               | spacing                       | F64          |
+
+## event callback
+
+| name      | Description | Parameters          |
+| --------- | ----------- | ------------------- |
+| clicked   | Click event | GToggleClickedParam |
+| hover_in  | Hover in    | GToggleHoverParam   |
+| hover_out | Hover out   | GToggleHoverParam   |

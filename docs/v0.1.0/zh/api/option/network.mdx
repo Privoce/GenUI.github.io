@@ -50,16 +50,17 @@ plugin! {
 ### 在组件中使用
 
 ```rust
-#[before_create]
-fn before_create(){
-    let _ = http_get!(http_response1);
-}
+impl MyView{
+    #[before_mount]
+    fn before_create(&mut self){
+        let _ = http_get!(http_response1);
+    }
 
-#[http_response]
-fn http_response1(response: &HttpResponse){
-    dbg!("response");
-    if response.status_code == 200 {
-        // ...
+    #[http_response]
+    fn http_response1(&mut self, response: &HttpResponse){
+        if response.status_code == 200 {
+            // ...
+        }
     }
 }
 ```

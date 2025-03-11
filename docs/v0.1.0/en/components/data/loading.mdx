@@ -1,0 +1,41 @@
+# `loading`
+
+Display animation while loading data.
+
+## Example
+
+### Basic usage
+
+```
+<loading theme="Error"></loading>
+<loading loading_type="DotLine"></loading>
+```
+
+## Properties
+
+| Name            | Description        | Type           |
+| --------------- | ------------------ | -------------- |
+| `theme`         | Themes             | `Themes`       |
+| `stroke_color`  | Outline color      | `MakepadColor` |
+| `loading_type`  | Loading type       | `GLoadingType` |
+| `visible`       | Visible            | `bool`         |
+| `animation_key` | Enable animation   | `bool`         |
+| `event_key`     | Event identifier   | `bool`         |
+| `abs_pos`       | Absolute position  | `DVec2`        |
+| `margin`        | Margin             | `Margin`       |
+| `width`         | Width              | `Size`         |
+| `height`        | Height             | `Size`         |
+| `scroll`        | Scroll offset      | `DVec2`        |
+| `clip_x`        | Clip X axis or not | `bool`         |
+| `clip_y`        | Clip Y axis or not | `bool`         |
+| `padding`       | Padding            | `Padding`      |
+| `align`         | Alignment          | `Align`        |
+| `flow`          | Flow               | `Flow`         |
+| `spacing`       | Spacing            | `F64`          |
+
+## Event callback
+
+| Name     | Description | Parameters           |
+| -------- | ----------- | -------------------- |
+| `opened` | Open event  | `GLoadingEventParam` |
+| `closed` | Close event | `GLoadingEventParam` |

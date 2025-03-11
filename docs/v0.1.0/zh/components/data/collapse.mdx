@@ -1,0 +1,54 @@
+# `collapse` 折叠面板
+
+通过折叠面板收纳内容区域
+
+## 示例
+
+### 基础使用
+
+```html
+<collapse height="180.0" width="300.0" position="Bottom" opened="false">
+  <view as_prop="header" theme="Info" height="40.0">
+    <label text="'default collapse'"></label>
+  </view>
+  <view as_prop="body" theme="Error" height="140.0"></view>
+</collapse>
+```
+
+## 属性
+
+| 名称             | 说明             | 类型          |
+| ---------------- | ---------------- | ------------- |
+| `rect_size`      | 矩形尺寸         | `F64`         |
+| `opened`         | 是否打开         | `bool`        |
+| `fold`           | 折叠程度         | `F64`         |
+| `cursor`         | 光标类型         | `MouseCursor` |
+| `grab_key_focus` | 是否获取键盘焦点 | `bool`        |
+| `visible`        | 是否可见         | `bool`        |
+| `animation_key`  | 是否启用动画     | `bool`        |
+| `positionv       | 位置参数         | `Position4`   |
+| `event_key`      | 事件标识符       | `bool`        |
+| `abs_pos`        | 绝对位置         | `DVec2`       |
+| `margin`         | 外边距           | `Margin`      |
+| `width`          | 宽度             | `Size`        |
+| `height`         | 高度             | `Size`        |
+| `scrollv         | 滚动偏移         | `DVec2`       |
+| `clip_x`         | 是否裁剪 X       | `bool`        |
+| `clip_y`         | 是否裁剪 Y       | `bool`        |
+| `padding`        | 内边距           | `Padding`     |
+| `align`          | 对齐方式         | `Align`       |
+| `flow`           | 流动方式         | `Flow`        |
+| `spacing`        | 间距             | `F64`         |
+
+## 事件回调
+
+| 名称     | 说明     | 参数               |
+| -------- | -------- | ------------------ |
+| `hover`  | 悬停事件 | `FingerHoverEvent` |
+| `opened` | 打开事件 | `FingerUpEvent`    |
+| `closed` | 关闭事件 | `FingerUpEvent`    |
+
+## 插槽
+
+- header
+- body

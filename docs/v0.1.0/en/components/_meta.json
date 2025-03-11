@@ -18,5 +18,10 @@
     "type": "dir",
     "name": "data",
     "label": "Data Components"
+  },
+  {
+    "type": "dir",
+    "name": "feedback",
+    "label": "Feedback Components"
   }
 ]

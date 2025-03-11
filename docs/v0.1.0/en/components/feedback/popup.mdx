@@ -1,0 +1,62 @@
+# `popup` popup
+
+A popup component, which is a dialog, tooltip, drawer
+
+## Example
+
+### Basic usage
+
+```html
+<popup as_prop="popup">
+  <popup_container
+    as_prop="container"
+    height="220.0"
+    width="360.0"
+    flow="Down"
+    theme="Info"
+  >
+    <label text="'Container'"></label>
+  </popup_container>
+</popup>
+```
+
+## Properties
+
+| Name               | Description                | Type         |
+| ------------------ | -------------------------- | ------------ |
+| theme              | Themes                     |
+| opacity            | F32                        |
+| background_color   | Background color           | MakepadColor |
+| hover_color        | Hover color                | MakepadColor |
+| focus_color        | Focus color                | MakepadColor |
+| border_color       | Border color               | MakepadColor |
+| border_width       | Border width               | F32          |
+| border_radius      | Border radius              | F32          |
+| visible            | Visible                    | bool         |
+| background_visible | Background visible         | bool         |
+| cursor             | Cursor style               | MouseCursor  |
+| mode               | Popup mode                 | PopupMode    |
+| close_mode         | Close mode                 | CloseMode    |
+| shadow_color       | Shadow color               | MakepadColor |
+| spread_radius      | Shadow spread radius       | F32          |
+| blur_radius        | Shadow blur radius         | F32          |
+| shadow_offset      | Shadow offset              | Vec2         |
+| `margin`           | Margin                     | `Margin`     |
+| `width`            | Width                      | `Size`       |
+| `height`           | Height                     | `Size`       |
+| `abs_pos`          | Absolute position          | `DVec2`      |
+| `clip_x`           | Clip X axis                | `bool`       |
+| `clip_y`           | Whether to crop the Y axis | `bool`       |
+| `padding`          | Padding                    | `Padding`    |
+| `align`            | Alignment                  | `Align`      |
+| `flow`             | Flow                       | `Flow`       |
+| `spacing`          | Spacing                    | `F64`        |
+| `scroll`           | Scroll offset              | `DVec2`      |
+
+## Event callback
+
+None
+
+## Slot
+
+- container

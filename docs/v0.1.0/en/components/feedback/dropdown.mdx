@@ -1,0 +1,50 @@
+# `drop_down`
+
+## Example
+
+### Basic usage
+
+Use dialog as drop-down option
+
+```html
+<drop_down>
+  <button id="trigger">
+    <label as_prop="slot" text="'Open Dialog'"></label>
+  </button>
+  <dialog as_prop="popup">
+    <popup_container
+      as_prop="container"
+      height="220.0"
+      width="360.0"
+      flow="Down"
+      theme="Info"
+    >
+      <label text="'Container'"></label>
+    </popup_container>
+  </dialog>
+</drop_down>
+```
+
+### Props Table
+
+| Name           | Description      | Type          |
+| -------------- | ---------------- | ------------- |
+| `position`     | Position         | `Position`    |
+| `trigger_mode` | Trigger mode     | `TriggerMode` |
+| `opened`       | Opened or not    | `bool`        |
+| `offset`       | Offset           | `F32`         |
+| `offset_x`     | X-axis offset    | `F32`         |
+| `offset_y`     | Y-axis offset    | `F32`         |
+| `visible`      | Visible or not   | `bool`        |
+| `proportionv   | Proportion       | `F32`         |
+| `event_key`    | Event identifier | `bool`        |
+
+### Events Table
+
+| Name      | Description         | Parameters              |
+| --------- | ------------------- | ----------------------- |
+| `changed` | Option change event | `GDropDownChangedParamv |
+
+## Slots
+
+- popup
