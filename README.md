@@ -1,8 +1,8 @@
 # GenUI Book
 
-🥳 GenUI v0.1.1 has been released
+🥳 GenUI v0.1.2 has been released
 
-- [GenUI](https://github.com/Privoce/GenUI/releases/tag/v0.1.1)
+- [GenUI](https://github.com/Privoce/GenUI/releases/tag/v0.1.2)
 - [Ract](https://github.com/Privoce/ract/releases/tag/v0.1.6)
 - [GenUI Builtin Component](https://github.com/Privoce/GenUI-Builtin-Component/releases/tag/v0.2.1)
 - [GenUI Book](https://privoce.github.io/GenUI.github.io)

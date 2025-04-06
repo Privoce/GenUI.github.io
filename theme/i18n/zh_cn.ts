@@ -2,7 +2,7 @@ import type { EN_US } from './en_us';
 
 export const ZH_CN: Record<keyof typeof EN_US, string> = {
     logo: '/genui.png',
-    header: '🥳 GenUI v0.1.1已发布',
+    header: '🥳 GenUI v0.1.2已发布 (2025-04-06)',
     rs: '/rs.png',
     heroTitle: 'GenUI',
     heroSlogan: '一款创新的SFP前端框架!',

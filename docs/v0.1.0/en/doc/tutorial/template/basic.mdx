@@ -2,9 +2,27 @@ import { Tab, Tabs } from "rspress/theme";
 
 # Component template
 
-Component template refers to the part of the file with the suffix `.gen` that is wrapped by the `<template>` tag and used to describe the page structure.
+The component template is the core part of the `.gen` file, which is used to describe the page structure.
+It is contained in the `<template>` tag, and its syntax style is similar to HTML,
+but it combines the enhanced syntax of the component system.
 
 ## Basic syntax
+
+There are two ways to declare components: **regular tags** and **self-close tags**.
+
+### Regular tags
+
+- Wrapped by a pair of `<$component_name></$component_name>`
+- Supports setting component properties, binding values, and event callbacks
+- Supports nested subcomponents
+
+### Self-close tags
+
+- The form is `<$component_name />`
+- Subcomponents are not allowed
+- Also supports setting properties, bindings, and events
+
+### Syntax examples
 
 ```html
 <template>
@@ -13,6 +31,11 @@ Component template refers to the part of the file with the suffix `.gen` that is
         $($(:$bind_prop="$bind_ident")*)?
         $($(@callback="$callback_ident($($arg),*)")*)?
     >
+        <$component_name
+            $($($static_prop="$prop_value")*)?
+            $($(:$bind_prop="$bind_ident")*)?
+            $($(@callback="$callback_ident($($arg),*)")*)?
+        />
         // ...
     </$component_name>
 </template>
@@ -36,6 +59,7 @@ Component template refers to the part of the file with the suffix `.gen` that is
   <view id="UiRoot">
     <label text="'Hello GenUI!'"></label>
     <view height="100.0" width="100.0" theme="Info"></view>
+    <tag text="'hello'" />
   </view>
 </template>
 ```
@@ -76,6 +100,8 @@ Any component template has one and only one unique root component, and the root 
 > [!TIP]
 >
 > You may have discovered that the unique naming attributes used statically and dynamically are different. Static uses `id` and dynamic uses `name`
+>
+> The difference between them is that you cannot do any script-level code manipulation when using a static unique root, i.e. using `<script>`
 
 #### Naming reference principle
 
@@ -140,7 +166,7 @@ The property value of the component is typed, **wrong type cannot be compiled**
 
 `as_prop` property converts a component into a property of its parent component, which comes from a way to build slots in `Makepad`
 
-Currently only involved in `button` and `view` components
+Currently involved in `button`, `view`, `popup` components
 
 ### Binding properties
 
@@ -150,9 +176,26 @@ For properties that need to be bound, use `:` as the property prefix, and the pr
 <view id="my_view" :height="view_h"></view>
 ```
 
+### Computed Properties
+
+Computed properties are values ​​dynamically calculated based on existing properties. In GenUI, computed properties do not store state, but are automatically updated based on changes in their dependencies.
+
+| Features           | Computed                           | Two-way Binding       |
+| ------------------ | ---------------------------------- | --------------------- |
+| Store state?       | ❌ No                              | ✅ Yes                |
+| Mutable?           | ✅ Update when dependencies change | ✅ Yes                |
+| Manually editable? | ✅ But cannot use set_xxx method   | ✅ Modify via set_xxx |
+| Dependent data     | ✅ Requires dependencies           | ✅ Component state    |
+
+Computed properties are written by declaring them using methods when binding properties:
+
+```html
+<view id="my_view" :height="view_h()"></view>
+```
+
 > [!TIP]
 >
-> Please note that if the component is data bound, you must add `id` as an identifier
+> For a detailed description of computed properties, see [Api: `#[computed]`](/api/global/component#computed)
 
 ### Callback
 

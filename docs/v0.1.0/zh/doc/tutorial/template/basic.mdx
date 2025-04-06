@@ -1,18 +1,39 @@
-import { Tab, Tabs } from 'rspress/theme';
+import { Tab, Tabs } from "rspress/theme";
 
 # 组件模版
 
-组件模版指的是以`.gen`为后缀名的文件中由`<template>`标签包裹的用来描述页面结构的部分。
+组件模板是 `.gen` 文件中的核心部分，用于描述页面结构。它包含在 `<template>` 标签中，语法风格类似 HTML，但结合了组件系统的增强语法。
 
 ## 基本语法
 
+组件的声明方式分为两种：**常规标签** 和 **自闭合标签**。
+
+### 常规标签
+
+- 由一对 `<$component_name></$component_name>` 包裹
+- 支持设置组件属性、绑定值、事件回调
+- 支持嵌套子组件
+
+### 自闭合标签
+
+- 形式为 `<$component_name />`
+- 不允许有子组件
+- 同样支持设置属性、绑定和事件
+
+### 语法示例
+
 ```html
 <template>
-    <$component_name 
+    <$component_name
         $($($static_prop="$prop_value")*)?
         $($(:$bind_prop="$bind_ident")*)?
         $($(@callback="$callback_ident($($arg),*)")*)?
     >
+        <$component_name
+            $($($static_prop="$prop_value")*)?
+            $($(:$bind_prop="$bind_ident")*)?
+            $($(@callback="$callback_ident($($arg),*)")*)?
+        />
         // ...
     </$component_name>
 </template>
@@ -26,18 +47,18 @@ import { Tab, Tabs } from 'rspress/theme';
 > - `$callback`: 回调
 > - `$callback_ident`: 回调方法标识符
 > - `$arg`: 参数
-> - `$()*`: many1，1个或多个
-> - `$()?`: recognize，0个或1个
-
+> - `$()*`: many1，1 个或多个
+> - `$()?`: recognize，0 个或 1 个
 
 ### 示例
 
 ```html title="root.gen"
 <template>
-    <view id="UiRoot">
-        <label text="'Hello GenUI!'"></label>
-        <view height="100.0" width="100.0" theme="Info"></view>
-    </view>
+  <view id="UiRoot">
+    <label text="'Hello GenUI!'"></label>
+    <view height="100.0" width="100.0" theme="Info"></view>
+    <tag text="'hello'" />
+  </view>
 </template>
 ```
 
@@ -51,7 +72,7 @@ import { Tab, Tabs } from 'rspress/theme';
 
 ```html
 <template>
-    <view id="UiRoot"></view>
+  <view id="UiRoot"></view>
 </template>
 ```
 
@@ -62,25 +83,27 @@ import { Tab, Tabs } from 'rspress/theme';
 任何组件模版有且只有一个唯一的根组件，且根组件必须有一个唯一名称
 
 <Tabs>
-    <Tab label="静态唯一根">
+  <Tab label="静态唯一根">
     ```html
     <view id="SpecialName"></view>
     ```
-    </Tab>
-    <Tab label="动态唯一根">
+  </Tab>
+  <Tab label="动态唯一根">
     ```html
     <component name="SpecialName"></component>
     ```
-    </Tab>
+  </Tab>
 </Tabs>
 
 > [!TIP]
 >
 > 您可能发现了静态和动态使用的唯一命名属性是不同的，静态使用`id`动态使用`name`
+>
+> 它们之间的区别在于，使用静态唯一根时您无法进行任何脚本级代码操作，即使用`<script>`
 
 #### 命名引用原则
 
-1. 该原则只对根组件生效，对根组件而已，唯一名称就是外部引用时的组件名，例如当唯一名称为`Hello`时，在其他组件中使用`<Hello></Hello>`表示该组件
+1. 该原则只对根组件生效，对根组件而言，唯一名称就是外部引用时的组件名，例如当唯一名称为`Hello`时，在其他组件中使用`<Hello></Hello>`表示该组件
 2. 您也可以使用`snake name rule`进行根组件的命名，例如： `my_view1`，但在其他组件中引入时依然会转为`camel name rule`，即：`<MyView1></MyView1>`
 3. 命名引用原则只对外部引用有效
 
@@ -118,7 +141,7 @@ import { Tab, Tabs } from 'rspress/theme';
 ```
 
 > [!TIP]
-> 
+>
 > 如果您无法理解，请先阅读[内外原则](#内外原则)
 
 #### class
@@ -129,7 +152,7 @@ import { Tab, Tabs } from 'rspress/theme';
 - 一个组件可以有多个`class`，但不能声明多个`class`
 
 ```html
-<label class="common_label" ></label>
+<label class="common_label"></label>
 
 <label class="[common_label, bold_label, font_smaller]"></label>
 ```
@@ -138,19 +161,36 @@ import { Tab, Tabs } from 'rspress/theme';
 
 `as_prop`属性会把某个组件转为其父组件的属性，源自于`Makepad`中构建插槽的一种方式
 
-目前仅在`button`和`view`组件中涉及
+目前在`button`, `view`, `popup` 等组件中涉及
 
-### 绑定属性
+### 绑定属性 (自动双向绑定)
 
-对于需要绑定的属性使用`:`作为属性的前缀，属性值为`Bind::Ident`类型，写法如下：
+对于需要绑定的属性使用`:`作为属性的前缀，在模版中使用绑定属性的前提是在`<script>`中的根组件声明中对绑定的属性进行声明，写法如下：
 
 ```html
 <view id="my_view" :height="view_h"></view>
 ```
 
+### 计算属性
+
+计算属性（Computed Property）是基于现有属性动态计算出的值，在 GenUI 中，计算属性不会存储状态，而是根据其依赖项的变化自动更新。
+
+| 特性           | 计算属性 (Computed)         | 双向绑定 (Two-way Binding) |
+| ------------- | -------------------------- | ------------------------- |
+| 是否存储状态    | ❌ 否                      | ✅ 是                     |
+| 是否可变       | ✅ 依赖项变化时更新           | ✅ 是                     |
+| 是否可手动修改  | ✅ 但不能使用 set_xxx 方法    | ✅ 通过 set_xxx 修改       |
+| 依赖数据       | ✅ 需要依赖项                | ✅ 组件状态                |
+
+计算属性的写法为在属性绑定时使用方法进行声明:
+
+```html
+<view id="my_view" :height="view_h()"></view>
+```
+
 > [!TIP]
 >
-> 请注意，若组件进行了数据绑定一定要添加`id`作为标识符
+> 对计算属性的详细说明见 [Api: `#[computed]`](/zh/api/global/component#computed)
 
 ### 回调
 
