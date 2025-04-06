@@ -27,12 +27,6 @@ import { Badge } from '@theme';
 
 ### 例子
 
-> [!DANGER]
-> 
-> 在使用语法糖时和bind类型一样都需要进行id绑定
->
-> 我们计划在`v0.1.3`版本引入自动id策略 (在静态编译时为每个没有添加id的组件自动生成id)
-
 #### 单个
 
 ```html
@@ -55,4 +49,48 @@ import { Badge } from '@theme';
 </view>
 ```
 
-## `If_ElseIf_Else` <Badge text="Comming Soon" type="warning" />
+## `If_ElseIf_Else`
+
+`if_else`语法糖允许使用者条件性地渲染组件。该组件只会在表达式返回`true`时才被渲染。
+
+### 语法
+
+```html
+<label :if="$if_bind_condition"></label>
+$($(<label :else_if="$else_if_bind_condition"></label>)*)?
+$(<label else></label>)?
+```
+
+> - `$if_bind_condition`: if条件语句条件
+> - `$else_if_bind_condition`: else_if条件语句条件
+> - `$()*`: many1，1 个或多个
+> - `$()?`: recognize，0 个或 1 个
+
+> [!NOTE]
+>
+> 其中`$($(<label :else_if="$else_if_bind_condition"></label>)*)?`表示`else_if`可以有也可以没有，如果有也可以有多个
+
+### 例子
+
+具体写法与示例见: [if_sugar tests](https://github.com/Privoce/made_with_GenUI/tree/main/tests/if_sugar/views)
+
+#### 单个if
+
+```html
+<label :if="vis" text="'hello'"></label>
+```
+
+#### if else
+
+```html
+<label :if="vis" text="'hello'"></label>
+<label else text="'world'"></label>
+```
+
+#### if else_if else
+
+```html
+<label :if="is_a()" text="'Vis A'"></label>
+<label :else_if="is_b()" text="'Vis B'"></label>
+<label else text="'world'"></label>
+```

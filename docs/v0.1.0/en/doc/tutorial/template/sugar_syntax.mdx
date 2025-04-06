@@ -28,12 +28,6 @@ The followings are details:
 
 ### Examples
 
-> [!DANGER]
->
-> When using syntax sugar, you need to bind the id just like the bind type
->
-> We plan to introduce an automatic id strategy in the `v0.1.3` version (automatically generate an id for each component that does not have an id added during static compilation)
-
 #### Single for
 
 ```html
@@ -56,4 +50,48 @@ The followings are details:
 </view>
 ```
 
-## `If_ElseIf_Else` <Badge text="Comming Soon" type="warning" />
+## `If_ElseIf_Else`
+
+The `if_else` syntax sugar allows users to conditionally render components. The component will only be rendered if the expression returns `true`.
+
+### Syntax
+
+```html
+<label :if="$if_bind_condition"></label>
+$($(<label :else_if="$else_if_bind_condition"></label>)*)?
+$(<label else></label>)?
+```
+
+> - `$if_bind_condition`: if conditional statement condition
+> - `$else_if_bind_condition`: else_if conditional statement condition
+> - `$()*`: many1, 1 or more
+> - `$()?`: recognize, 0 or 1
+
+> [!NOTE]
+>
+> Among them, `$($(<label :else_if="$else_if_bind_condition"></label>)*)?` means that `else_if` can be present or absent, and if present, it can be multiple
+
+### Example
+
+For specific writing and examples, see: [if_sugar tests](https://github.com/Privoce/made_with_GenUI/tree/main/tests/if_sugar/views)
+
+#### Only if
+
+```html
+<label :if="vis" text="'hello'"></label>
+```
+
+#### if else
+
+```html
+<label :if="vis" text="'hello'"></label>
+<label else text="'world'"></label>
+```
+
+#### if else_if else
+
+```html
+<label :if="is_a()" text="'Vis A'"></label>
+<label :else_if="is_b()" text="'Vis B'"></label>
+<label else text="'world'"></label>
+```

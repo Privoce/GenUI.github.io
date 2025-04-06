@@ -210,3 +210,24 @@ Callback means a method called after a component triggers an event, using `@` as
 > There may not be any parameters in the callback, but you still need to add `()`
 >
 > If the component uses a callback, you must add `id` as an identifier
+
+### Automatic ID strategy
+
+Since `v0.1.2`, GenUI has introduced the **automatic ID allocation strategy**. During the component construction process, the system automatically checks whether each component has explicitly specified an `id`. If not, a random unique ID will be generated for it.
+
+This mechanism is extremely useful in many scenarios, including:
+
+- Property binding (`:prop="..."`)
+- Event callback (`@event="..."`)
+- Computed property association
+- Various syntax sugar processing
+
+The introduction of automatic ID greatly reduces the tediousness of manual identifier management and improves the simplicity and maintainability of template code.
+
+#### ID generation rules
+
+Instead of using `ulid` or other third-party libraries, we generate IDs according to the following custom strategy:
+
+1. **Start with an English letter**: Ensure that the variable naming specification is met to avoid potential syntax conflicts.
+2. **Length limit**: The ID length is controlled between `6 ~ 12` characters to avoid conflicts caused by being too short or redundant due to being too long.
+3. **Character composition**: only contain **English letters and numbers**, no special characters, to maintain compatibility and readability.
