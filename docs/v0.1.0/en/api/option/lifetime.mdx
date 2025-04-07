@@ -1,10 +1,12 @@
 import { Badge } from '@theme';
 
-# Life cycle <Badge text="experiment" type="danger" />
+# Life cycle  <Badge text="experiment" type="danger" />
 
 > [!WARNING]
 >
-> Currently, the complete life cycle has not been fully implemented. It is an experimental function. Open `#[before_mount]`, `#mounted`
+> Currently, the complete life cycle has not been fully implemented. It is an experimental function. 
+>
+> Open `#[before_mount]`, `#mounted`, `#[before_update]`, `#[updated]`
 
 ## `#[before_mount]`
 
@@ -38,8 +40,23 @@ impl MyView{
 
 ## `#[before_update]`
 
-Called before instance update
+Called after component properties are updated but before re-rendering the component
+
+### Usage
 
 ## `#[updated]`
 
-Called after instance update
+Called after the component properties have been updated and the component has been re-rendered.
+
+### Usage
+
+```rust
+impl Hello{
+    #[updated]
+    fn do_updated(&mut self){
+        println!("do updated => hello.gen!");
+        let new_val = self.get_count() + 1;
+        self.set_count(new_val);
+    }   
+}
+```

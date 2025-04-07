@@ -244,3 +244,110 @@ impl FatherView{
 }
 </script>
 ```
+
+## `#[computed]`
+
+Computed properties are values ​​dynamically calculated based on existing properties. In GenUI, computed properties do not store state, but are automatically updated based on changes in their dependencies.
+
+| Features           | Computed                           | Two-way Binding       |
+| ------------------ | ---------------------------------- | --------------------- |
+| Store state?       | ❌ No                              | ✅ Yes                |
+| Mutable?           | ✅ Update when dependencies change | ✅ Yes                |
+| Manually editable? | ✅ But cannot use set_xxx method   | ✅ Modify via set_xxx |
+| Dependent data     | ✅ Requires dependencies           | ✅ Component state    |
+
+### Usage
+
+1. `#[computed]` needs to be declared in the method
+2. `#[computed]` depends on the fields declared in the component, which can be multiple
+3. The return value of the calculated property needs to be consistent with the component binding
+4. The calculated property is equivalent to handing over the value processing to the developer, so `set_xxx()` cannot be used in the calculated property method to change the component field. Instead, a more flexible assignment change is used
+
+```rust
+impl Hello{
+    #[computed([$(arg)*])]
+    fn $computed_fn($[&self|&mut self]?) -> $return_value_type{
+        // ...
+    }   
+}
+```
+
+> - `$(arg)*`: Depends on the parameter list, indicating that there can be one or more
+> - `$computed_fn`: Calculated attribute processing function
+> - `$[&self|&mut self]?`: Indicates that it can be `&self` or `&mut self`, which is up to you to decide
+> - `$return_value_type`: Return value type
+
+### Example
+
+The way to write a calculated property is to use a method to declare it when binding the property:
+
+```html
+<template>
+    <component name="Hello" class="hello_view" spacing="12.0">
+        <label :text="fmt_count()"></label>
+    </component>
+</template>
+
+<script>
+#[component]
+pub struct Hello{
+    count: u32,
+}
+
+impl Hello{
+    #[computed([count])]
+    fn fmt_count(&self) -> String{
+        format!("count: {}", self.count)
+    }   
+}
+</script>
+```
+
+## `nav_to!`
+
+Used to jump from a sub-page of routing management to other sub-pages.
+
+### Usage
+
+```rust
+nav_to!($page_id);
+```
+
+> - `$page_id`: id of the page
+
+```toml title="router.toml"
+[bar_pages]
+login = { path = "crate::views::login::*", component = "Login" }
+```
+
+The login key configured in `router.toml` is the page id
+
+### Example
+
+```rust
+impl Hello{
+    pub fn to_register(&mut self) {
+        nav_to!(register);
+    }
+}
+```
+
+## `nav_back!`
+
+Return the route to the previous page by pushing the stack, if any.
+
+### Usage
+
+```rust
+nav_back!();
+```
+
+### Example
+
+```
+impl Hello{
+    pub fn back(&mut self) {
+        nav_back!();
+    }
+}
+```

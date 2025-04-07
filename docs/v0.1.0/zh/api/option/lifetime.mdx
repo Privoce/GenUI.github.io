@@ -4,7 +4,9 @@ import { Badge } from '@theme';
 
 > [!WARNING]
 >
-> 当前完整的生命周期还未全部实现，属于实验性功能，开放`#[before_mount]`, `#[mounted]`
+> 当前完整的生命周期还未全部实现，属于实验性功能
+> 
+> 开放`#[before_mount]`, `#[mounted]`, `#[before_update]`, `#[updated]`
 
 ## `#[before_mount]`
 
@@ -38,9 +40,33 @@ impl MyView{
 
 ## `#[before_update]`
 
-在实例更新前调用
+在组件属性更新后，但还未重新渲染组件前被调用
+
+### 写法
+
+```rust
+impl Hello{
+    #[before_update]
+    fn do_before_update(&mut self) -> (){
+        println!("do before update => hello.gen!");
+        self.set_my_text(format!("{} => handle before", &self.my_text));
+    }  
+}
+```
 
 ## `#[updated]`
 
-在实例更新后调用
+在组件属性更新后并已经重新对组件进行了渲染之后进行调用
 
+### 写法
+
+```rust
+impl Hello{
+    #[updated]
+    fn do_updated(&mut self){
+        println!("do updated => hello.gen!");
+        let new_val = self.get_count() + 1;
+        self.set_count(new_val);
+    }   
+}
+```

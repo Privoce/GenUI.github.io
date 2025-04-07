@@ -4,10 +4,15 @@ All official examples are stored in [made_with_GenUI](https://github.com/Privoce
 
 ## Official Examples
 
-- [Source Code: Quickstart](https://github.com/Privoce/made_with_GenUI/tree/main/quickstart)
-- [Source Code: component ref(`c_ref!`) example](https://github.com/Privoce/made_with_GenUI/tree/main/c_ref_test)
-- [Source Code: for-syntax-sugar example](https://github.com/Privoce/made_with_GenUI/tree/main/for_test)
-- [Source Code: todo app example](https://github.com/Privoce/made_with_GenUI/tree/main/todo/todo_front)
+- [Source Code: Quickstart](https://github.com/Privoce/made_with_GenUI/tree/main/tests/quickstart)
+- [Source Code: component ref (`c_ref!`)](https://github.com/Privoce/made_with_GenUI/tree/main/tests/c_ref)
+- [Source Code: `for` sugar](https://github.com/Privoce/made_with_GenUI/tree/main/tests/for_sugar)
+- [Source Code: `if_else` sugar](https://github.com/Privoce/made_with_GenUI/tree/main/tests/if_sugar)
+- [Source Code: lifecycle](https://github.com/Privoce/made_with_GenUI/tree/main/tests/lifecycle)
+- [Sourec Code: router component](https://github.com/Privoce/made_with_GenUI/tree/main/tests/router)
+- [Source Code: router with tabbar](https://github.com/Privoce/made_with_GenUI/tree/main/tests/router_tabbar)
+- [Source Code: settings](https://github.com/Privoce/made_with_GenUI/blob/main/tests/settings/views/home.gen)
+- [Source Code: todo app (`network` plugin)](https://github.com/Privoce/made_with_GenUI/blob/main/tests/todo)
 
 ## Share Examples
 

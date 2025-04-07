@@ -4,10 +4,15 @@
 
 ## 官方示例
 
-- [Quickstart源码](https://github.com/Privoce/made_with_GenUI/tree/main/quickstart)
-- [组件引用示例(`c_ref!`)源码](https://github.com/Privoce/made_with_GenUI/tree/main/c_ref_test)
-- [for循环语法糖示例源码](https://github.com/Privoce/made_with_GenUI/tree/main/for_test)
-- [待办事项示例源码](https://github.com/Privoce/made_with_GenUI/tree/main/todo/todo_front)
+- [Quickstart源码](https://github.com/Privoce/made_with_GenUI/tree/main/tests/quickstart)
+- [组件引用示例(`c_ref!`)源码](https://github.com/Privoce/made_with_GenUI/tree/main/tests/c_ref)
+- [for循环语法糖示例源码](https://github.com/Privoce/made_with_GenUI/tree/main/tests/for_sugar)
+- [if条件语法糖示例源码](https://github.com/Privoce/made_with_GenUI/tree/main/tests/if_sugar)
+- [lifecycle示例源码](https://github.com/Privoce/made_with_GenUI/tree/main/tests/lifecycle)
+- [路由组件示例源码](https://github.com/Privoce/made_with_GenUI/tree/main/tests/router)
+- [路由+Tabbar示例源码](https://github.com/Privoce/made_with_GenUI/tree/main/tests/router_tabbar)
+- [settings页面源码](https://github.com/Privoce/made_with_GenUI/blob/main/tests/settings/views/home.gen)
+- [待办事项示例源码](https://github.com/Privoce/made_with_GenUI/blob/main/tests/todo)
 
 ## 分享示例
 

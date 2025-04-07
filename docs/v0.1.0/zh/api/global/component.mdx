@@ -247,3 +247,111 @@ impl FatherView{
 }
 </script>
 ```
+
+## `#[computed]`
+
+计算属性（Computed Property）是基于现有属性动态计算出的值，在 GenUI 中，计算属性不会存储状态，而是根据其依赖项的变化自动更新。
+
+| 特性           | 计算属性 (Computed)         | 双向绑定 (Two-way Binding) |
+| ------------- | -------------------------- | ------------------------- |
+| 是否存储状态    | ❌ 否                      | ✅ 是                     |
+| 是否可变       | ✅ 依赖项变化时更新           | ✅ 是                     |
+| 是否可手动修改  | ✅ 但不能使用 set_xxx 方法    | ✅ 通过 set_xxx 修改       |
+| 依赖数据       | ✅ 需要依赖项                | ✅ 组件状态                |
+
+### 用法
+
+1. `#[computed]`需要被声明在方法上
+2. `#[computed]`依赖于组件中声明的字段，可以是多个
+3. 计算属性的返回值需要和组件绑定一致
+4. 计算属性相当于将对值的处理交给开发者，所以在计算属性的方法中不可以使用`set_xxx()`对组件字段进行更改，取而代之的是更灵活的赋值更改
+
+```rust
+impl Hello{
+    #[computed([$(arg)*])]
+    fn $computed_fn($[&self|&mut self]?) -> $return_value_type{
+        // ...
+    }   
+}
+```
+
+> - `$(arg)*`: 依赖参数列表, 表示可以有一个或多个
+> - `$computed_fn`: 计算属性处理函数
+> - `$[&self|&mut self]?`: 表示可以是`&self`或`&mut self`这由您来决定
+> - `$return_value_type`: 返回值类型
+
+
+### 示例
+
+计算属性的写法为在属性绑定时使用方法进行声明:
+
+```html
+<template>
+    <component name="Hello" class="hello_view" spacing="12.0">
+        <label :text="fmt_count()"></label>
+    </component>
+</template>
+
+<script>
+#[component]
+pub struct Hello{
+    count: u32,
+}
+
+impl Hello{
+    #[computed([count])]
+    fn fmt_count(&self) -> String{
+        format!("count: {}", self.count)
+    }   
+}
+</script>
+```
+
+## `nav_to!`
+
+用于从路由管理的子页面中跳转至其他子页面中。
+
+### 用法
+
+```rust
+nav_to!($page_id);
+```
+
+> - `$page_id`: 页面id
+
+```toml title="router.toml"
+[bar_pages]
+login = { path = "crate::views::login::*", component = "Login" }
+```
+
+在`router.toml`中配置的login这个key就是页面id
+
+### 示例
+
+```rust
+impl Hello{
+    pub fn to_register(&mut self) {
+        nav_to!(register);
+    }
+}
+```
+
+## `nav_back!`
+
+通过压栈的方式让路由返回上一个页面，如果有的话。
+
+### 用法
+
+```rust
+nav_back!();
+```
+
+### 示例
+
+```
+impl Hello{
+    pub fn back(&mut self) {
+        nav_back!();
+    }
+}
+```
