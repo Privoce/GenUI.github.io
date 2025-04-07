@@ -3,5 +3,6 @@
     "env",
     "ract_toml",
     "gen_ui_toml",
+    "router_toml",
     "types"
 ]

@@ -1,0 +1,171 @@
+# Router configuration
+
+Starting from GenUI v0.1.2, the framework has introduced the routing configuration function. However, it should be noted that GenUI's routing mechanism is different from the "front-end routing" in traditional Web front-ends. There is no real URL routing in GUI applications. GenUI's routing is essentially a page switching mechanism for state management and navigation between multiple UI interfaces.
+
+GenUI's routing mechanism is based on a dedicated component and is enabled through the project configuration file. You can declare the routing structure in `router.toml`, enable the configuration in `gen_ui.toml`, and then introduce it to a specific page through the `route!` macro.
+
+For more examples, see:
+
+- [Route component example](https://github.com/Privoce/made_with_GenUI/tree/main/tests/router)
+- [Root route example](https://github.com/Privoce/made_with_GenUI/tree/main/tests/router_tabbar)
+
+## Configuration and usage process
+
+### Step 1: Configure `router.toml`
+
+You can define a complete route configuration through `router.toml`, including route mode, default activation page, whether to enable Tabbar, page path, etc.:
+
+```toml title="router.toml"
+name = "MyRouter"
+id = "app_router"
+mode = "History" # Optional value: History / Switch
+active = "login" # Default page ID
+
+[tabbar]
+theme = "Dark"
+active = false
+
+[tabbar.bars]
+login = { icon = "crate://self/resources/login.svg", text = "Login Page" }
+register = { icon = "crate://self/resources/register.svg", text = "Register Page" }
+
+[bar_pages]
+login = { path = "crate::views::login::*", component = "Login" }
+register = "crate::views::register::Register"
+
+[nav_pages]
+nav_about = { path = "crate::views::about::*", component = "About" }
+```
+
+### Step 2: Enable routing configuration in `gen_ui.toml`
+
+```toml title="gen_ui.toml"
+
+[compiler]
+#...
+
+[makepad]
+router = "./router.toml"
+
+[plugins]
+#...
+```
+
+### Step 3: Import routing in components
+
+In the `.gen` file where routing is needed, use the `route!` macro to import the declared routing component:
+
+```rust
+<script>
+route!(app_router);
+</script>
+```
+
+> [!WARNING]
+> If the `route!` macro is used, the `.gen` file cannot contain other elements and must be used only for routing.
+
+### Step 4: Use the Router component in other components
+
+You can embed the Router component in other pages just like using a normal component:
+
+```html
+<template>
+  <component name="Home">
+    <view>
+      <button @clicked="to_page('login')"></button>
+    </view>
+    <MyRouter id="my_router"></MyRouter>
+  </component>
+</template>
+```
+
+## Use the Router as the root component
+
+If you want to use the Router component as the root component of your application, use the `route!` macro in the `root.gen` file.
+
+> At this time, `name` in `router.toml` must be set to `"UiRoot"` to ensure that the compiler recognizes it as the main entry.
+
+## Page jump operation
+
+### Control jump in parent component
+
+You can get the router instance through the `c_ref!` macro and call the method it provides:
+
+```rust
+fn to_page(&mut self, page: &str) {
+let mut my_router = c_ref!(my_router);
+
+match page {
+"login" => my_router.nav_to(id!(login)),
+"register" => my_router.nav_to(id!(register)),
+"about" => my_router.nav_to(id!(nav_about)),
+"back" => my_router.nav_back(),
+_ => {}
+}
+}
+```
+
+### Jump in child component
+
+For child components, GenUI provides convenient macros `nav_to!` and `nav_back!` to handle jumps:
+
+```rust
+pub fn to_register(&mut self) {
+nav_to!(register);
+}
+
+pub fn back(&mut self) {
+nav_back!();
+}
+```
+
+## Routing configuration structure description
+
+### Data structure definition in Rust:
+
+```rust
+pub struct RouterBuilder {
+    pub name: String,
+    pub id: String,
+    pub mode: NavMode,
+    pub active: Option<String>,
+    pub tabbar: Option<TabbarBuilder>,
+    pub bar_pages: Vec<(String, Page)>,
+    pub nav_pages: HashMap<String, Page>,
+}
+
+pub struct TabbarBuilder {
+    pub theme: Option<Themes>,
+    pub active: bool,
+    pub bars: HashMap<String, TabbarItem>,
+}
+
+pub struct TabbarItem {
+    pub icon: Option<LiveDependency>,
+    pub text: Option<String>,
+}
+
+pub enum Page {
+    Path(Import),
+    Component { path: Import, component: String },
+}
+
+pub enum NavMode {
+    History,
+    Switch,
+}
+```
+
+### Field description table:
+
+| Key               | Type                     | Description                                                                 |
+| ----------------- | ------------------------ | --------------------------------------------------------------------------- |
+| `name`            | `String`                 | Routing component name                                                      |
+| `id`              | `String`                 | Routing component unique identifier                                         |
+| `mode`            | `NavMode`                | Routing mode, supports `History` (history stack) and `Switch` (switch mode) |
+| `active`          | `Option<String>`         | Default activated page ID                                                   |
+| `tabbar`          | `Option<TabbarBuilder>`  | Tabbar configuration items (optional)                                       |
+| `bar_pages`       | `Vec<(String, Page)>`    | Primary page configuration, supports component specification                |
+| `nav_pages`       | `HashMap<String, Page>`  | Secondary page configuration, not displayed in Tabbar                       |
+| `TabbarItem.icon` | `Option<LiveDependency>` | Icon resource path                                                          |
+| `TabbarItem.text` | `Option<String>`         | Tabbar display text                                                         |

@@ -1,7 +1,3 @@
-以下是对你的文档的补全与优化，保持了你原有的风格，并增强了清晰度、术语一致性和表达流畅性：
-
----
-
 # Router 配置
 
 从 GenUI v0.1.2 开始，框架引入了路由配置功能。但需要注意的是，GenUI 的路由机制与传统 Web 前端中的“前端路由”是不同的概念。在 GUI 应用中并没有真正的 URL 路由，GenUI 的路由本质上是一种页面切换机制，用于在多个 UI 界面间进行状态管理和导航。
@@ -9,6 +5,7 @@
 GenUI 的路由机制基于一个专用组件，并通过项目配置文件进行启用。你可以通过在 `router.toml` 中声明路由结构，并在 `gen_ui.toml` 中启用配置，再通过 `route!` 宏将其引入具体页面。
 
 示例详见：
+
 - [路由组件示例](https://github.com/Privoce/made_with_GenUI/tree/main/tests/router)
 - [根路由示例](https://github.com/Privoce/made_with_GenUI/tree/main/tests/router_tabbar)
 
@@ -72,22 +69,21 @@ route!(app_router);
 
 ```html
 <template>
-    <component name="Home">
-        <view>
-            <button @clicked="to_page('login')"></button>
-        </view>
-        <MyRouter id="my_router"></MyRouter>
-    </component>
+  <component name="Home">
+    <view>
+      <button @clicked="to_page('login')"></button>
+    </view>
+    <MyRouter id="my_router"></MyRouter>
+  </component>
 </template>
 ```
 
-### Step 5: 使用路由作为根组件
+## 使用路由作为根组件
 
 如果希望以路由组件作为应用根组件，请在 `root.gen` 文件中使用 `route!` 宏。
 
 > 此时 `router.toml` 中的 `name` 必须设置为 `"UiRoot"`，以保证编译器识别为主入口。
 
----
 
 ## 页面跳转操作
 
@@ -123,7 +119,6 @@ pub fn back(&mut self) {
 }
 ```
 
----
 
 ## 路由配置结构说明
 
@@ -164,18 +159,14 @@ pub enum NavMode {
 
 ### 字段说明表：
 
-| Key | 类型 | 描述 |
-|-----|------|------|
-| `name` | `String` | 路由组件名称 |
-| `id` | `String` | 路由组件唯一标识 |
-| `mode` | `NavMode` | 路由模式，支持 `History`（历史栈）与 `Switch`（切换模式） |
-| `active` | `Option<String>` | 默认激活的页面 ID |
-| `tabbar` | `Option<TabbarBuilder>` | Tabbar 配置项（可选） |
-| `bar_pages` | `Vec<(String, Page)>` | 主要页面配置，支持组件指定 |
-| `nav_pages` | `HashMap<String, Page>` | 次要页面配置，不显示在 Tabbar 中 |
-| `TabbarItem.icon` | `Option<LiveDependency>` | 图标资源路径 |
-| `TabbarItem.text` | `Option<String>` | Tabbar 显示文本 |
-
----
-
-如需进一步结构化文档（比如拆分子章节、整理多个路由配置策略对比等），也可以继续提出，我可以帮你统一风格和结构。你也可以指定这份文档最终用于生成 Markdown / HTML / Book 模式，我可以按目标格式优化结构。
+| Key               | 类型                     | 描述                                                      |
+| ----------------- | ------------------------ | --------------------------------------------------------- |
+| `name`            | `String`                 | 路由组件名称                                              |
+| `id`              | `String`                 | 路由组件唯一标识                                          |
+| `mode`            | `NavMode`                | 路由模式，支持 `History`（历史栈）与 `Switch`（切换模式） |
+| `active`          | `Option<String>`         | 默认激活的页面 ID                                         |
+| `tabbar`          | `Option<TabbarBuilder>`  | Tabbar 配置项（可选）                                     |
+| `bar_pages`       | `Vec<(String, Page)>`    | 主要页面配置，支持组件指定                                |
+| `nav_pages`       | `HashMap<String, Page>`  | 次要页面配置，不显示在 Tabbar 中                          |
+| `TabbarItem.icon` | `Option<LiveDependency>` | 图标资源路径                                              |
+| `TabbarItem.text` | `Option<String>`         | Tabbar 显示文本                                           |
