@@ -14,6 +14,13 @@ All official examples are stored in [made_with_GenUI](https://github.com/Privoce
 - [Source Code: settings](https://github.com/Privoce/made_with_GenUI/blob/main/tests/settings/views/home.gen)
 - [Source Code: todo app (`network` plugin)](https://github.com/Privoce/made_with_GenUI/blob/main/tests/todo)
 
+### Notes on running official examples
+
+1. Modify the absolute path in the example `gen_ui.toml` to your path
+   1. `[makepad.root] path`: Modify the `root.gen` file address
+   2. `[makepad.dependencies] makepad-widgets`: Modify `makepad` dependencies
+2. Use `Ract` to run the `ract run` command to generate the compiled result
+
 ## Share Examples
 
 We welcome you to share both code snippets and complete projects. Please add the following content to `AUTH.md` when sharing:

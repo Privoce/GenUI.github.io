@@ -14,6 +14,13 @@
 - [settings页面源码](https://github.com/Privoce/made_with_GenUI/blob/main/tests/settings/views/home.gen)
 - [待办事项示例源码](https://github.com/Privoce/made_with_GenUI/blob/main/tests/todo)
 
+### 运行官方示例须知
+
+1. 修改例子中`gen_ui.toml`中的绝对路径为您的路径
+   1. `[makepad.root] path`: 修改`root.gen`文件地址
+   2. `[makepad.dependencies] makepad-widgets`: 修改`makepad`依赖
+2. 使用`Ract`运行`ract run`命令以生成编译后结果
+
 ## 分享示例
 
 无论是代码片段还是完整的项目我们都欢迎您能分享，在分享时请在`AUTH.md`中添加如下内容：
